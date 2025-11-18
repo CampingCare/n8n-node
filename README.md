@@ -14,6 +14,8 @@ Regular node for making API calls to Starfish:
 - **Contacts**: Create, retrieve, and search contacts
 - **Reservations**: Get and create reservations with price calculations
 - **Accommodations**: List and manage accommodations
+- **Price Calculation**: Calculate prices, retrieve options and deposit info
+- **Timezones**: List supported timezones and filter by country code
 
 ### Starfish (CampingCare/HotelCare) Trigger Node
 
@@ -27,8 +29,8 @@ Webhook trigger node that listens for events from Starfish:
 
 ### Prerequisites
 
-- Node.js 20.x or higher
-- n8n installed (minimum version 0.x)
+- Node.js >= 20.15
+- n8n >= 1.0.0 (Community Nodes enabled)
 - A valid Starfish API key
 
 ### Install via npm
@@ -39,10 +41,16 @@ npm install n8n-nodes-campingcare-custom-nodes
 
 ### Install in n8n
 
+Option A — via UI (recommended):
+1. In n8n: Settings > Community Nodes > Install
+2. Search for or paste the package name: `n8n-nodes-campingcare-custom-nodes`
+3. Confirm and restart n8n
+
+Option B — via CLI:
 1. Stop your n8n instance
 2. Install the package: `npm install n8n-nodes-campingcare-custom-nodes`
-3. Restart n8n
-4. The nodes will appear in the nodes panel
+3. Start n8n again
+4. The nodes will appear in the panel
 
 ## Configuration
 
@@ -60,19 +68,15 @@ npm install n8n-nodes-campingcare-custom-nodes
 1. Add the "Starfish (CampingCare/HotelCare)" node
 2. Select **Resource**: Contact
 3. Select **Operation**: Add Contact
-4. Fill in the required fields:
-   - Last Name (required)
-   - Email (required)
-   - Additional optional fields as needed
+4. Fill in the fields you need (e.g., last name, email, phone). The API allows creating an empty contact and adding data as provided.
 
 ### Example 2: Create a Reservation
 
 1. Add the "Starfish (CampingCare/HotelCare)" node
 2. Select **Resource**: Create Reservation
-3. Choose operation type:
-   - **Using Price Calculation**: Calculate price first, then create
-   - **With Start/End Date**: Automatic price calculation
-   - **Force Reservation**: Use custom pricing data
+3. Choose creation method:
+  - **Using Price Calculation**: First use the Price Calculation resource to get `calculation_id` and `hash`, then create the reservation.
+  - **Force with Own Data**: Create directly by providing the required pricing and data yourself.
 
 ### Example 3: Listen for Webhook Events
 
@@ -109,7 +113,7 @@ For detailed API documentation, visit: [https://api.camping.care/docs](https://a
 
 ```bash
 # Clone the repository
-git clone https://github.com/MikeKorte12/n8n-nodes-campingcare-custom-nodes.git
+git clone https://github.com/mikecampingcare/n8n-nodes-campingcare-custom-nodes.git
 
 # Install dependencies
 npm install
@@ -132,13 +136,16 @@ nodes/
     CampingCare.node.ts          # Main node
     CampingCareTrigger.node.ts   # Webhook trigger node
     descriptions/                 # Operation descriptions
+      Accommodations.ts
       Contacts.ts
       Reservations.ts
       Administrations.ts
-      CreateReservations.ts
+      PriceCalculation.ts
+      Timezones.ts
     utils/                        # Utility functions
       constants.ts                # API constants
       helpers.ts                  # Helper functions
+      types.ts                    # Shared TypeScript types
 credentials/
   CampingCareApi.credentials.ts  # API credentials definition
 ```
@@ -182,7 +189,7 @@ Contributions are welcome! Please follow these steps:
 
 ## Changelog
 
-### Version 0.1.0
+### Version 1.0.0
 
 - Initial release
 - Support for Contacts, Reservations, and Accommodations
@@ -198,7 +205,7 @@ Contributions are welcome! Please follow these steps:
 For support, please:
 
 - Check the [API Documentation](https://api.camping.care/docs)
-- Open an issue on [GitHub](https://github.com/MikeKorte12/n8n-nodes-campingcare-custom-nodes/issues)
+- Open an issue on [GitHub](https://github.com/mikecampingcare/n8n-nodes-campingcare-custom-nodes/issues)
 - Contact Starfish support for API-related questions
 
 ## Credits
