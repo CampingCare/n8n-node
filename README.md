@@ -41,7 +41,7 @@ npm install n8n-nodes-campingcare-custom-nodes
 
 ### Install in n8n
 
-Option A — via UI (recommended):
+Option A — via UI:
 1. In n8n: Settings > Community Nodes > Install
 2. Search for or paste the package name: `n8n-nodes-campingcare-custom-nodes`
 3. Confirm and restart n8n
