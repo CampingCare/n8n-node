@@ -113,7 +113,7 @@ For detailed API documentation, visit: [https://api.camping.care/docs](https://a
 
 ```bash
 # Clone the repository
-git clone https://github.com/mikecampingcare/n8n-nodes-campingcare-custom-nodes.git
+git clone https://github.com/CampingCare/n8n-node.git
 
 # Install dependencies
 npm install
@@ -205,7 +205,7 @@ Contributions are welcome! Please follow these steps:
 For support, please:
 
 - Check the [API Documentation](https://api.camping.care/docs)
-- Open an issue on [GitHub](https://github.com/mikecampingcare/n8n-nodes-campingcare-custom-nodes/issues)
+- Open an issue on [GitHub](https://github.com/CampingCare/n8n-node/issues)
 - Contact Starfish support for API-related questions
 
 ## Credits
