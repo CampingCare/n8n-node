@@ -10,7 +10,7 @@ import type {
 import { NodeApiError, NodeConnectionTypes } from 'n8n-workflow';
 import { API_BASE_URL, API_ENDPOINTS } from './utils/constants';
 import { extractWebhookId } from './utils/helpers';
-import type { WebhookEvent, WebhookResponse } from './utils/types';
+import type { WebhookResponse } from './utils/types';
 
 export class CampingCareTrigger implements INodeType {
 	description: INodeTypeDescription = {
@@ -64,10 +64,9 @@ export class CampingCareTrigger implements INodeType {
 						},
 					});
 
-					const webhookEvents = (Array.isArray(events) ? events : []) as WebhookEvent[];
-					return webhookEvents.map((event) => ({
-						name: event.name || event.label || event.event,
-						value: event.value || event.event,
+					return events.map((event: any) => ({
+						name: event.name || event.label || event.event || event,
+						value: event.value || event.event || event,
 					}));
 				} catch (error) {
 					throw new NodeApiError(this.getNode(), error, {
