@@ -63,6 +63,14 @@ export interface CoTravelerField {
 	type?: string;
 }
 
+export interface Rate {
+	id: string;
+	name: string;
+	parent_id?: string | number;
+	status?: string;
+	[other: string]: unknown;
+}
+
 export interface WebhookResponse {
 	id?: string;
 	webhook_id?: string;

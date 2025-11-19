@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
 	WEBHOOKS_EVENTS: '/webhooks/events',
 	INVOICES: '/invoices',
 	PAYMENTS: '/payments',
+	RATES: '/rates',
 } as const;
 
 export const EXCLUDED_CONTACT_FIELDS = [
@@ -47,6 +48,7 @@ export const RESOURCES = {
 	PRICE_CALCULATION: 'priceCalculation',
 	RESERVATIONS: 'reservations',
 	TIMEZONES: 'timezones',
+	RATES: 'rates',
 } as const;
 
 export const OPERATIONS = {
@@ -69,4 +71,19 @@ export const OPERATIONS = {
 	CREATE_RESERVATION: 'createReservation',
 
 	GET_TIMEZONES: 'getTimezones',
+
+	GET_RATES: 'getRates',
+	GET_RATE: 'getRate',
+	ADD_RATE: 'addRate',
+	UPDATE_RATE: 'updateRate',
+	DELETE_RATE: 'deleteRate',
+
+	PRICES: 'prices',
+	GET_PRICES: 'getPrices',
+	UPDATE_PRICES: 'updatePrices',
+
+	META: 'meta',
+	GET_META: 'getMeta',
+	UPDATE_META: 'updateMeta',
+	DELETE_META: 'deleteMeta',
 } as const;

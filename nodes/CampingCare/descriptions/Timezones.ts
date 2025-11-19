@@ -32,6 +32,27 @@ export const timezonesDescription = [
 	},
 
 	{
+		displayName: 'Count',
+		name: 'count',
+		type: 'boolean' as NodePropertyTypes,
+		description: 'Get the total count of timezones',
+		default: false,
+		displayOptions: {
+			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
+		},
+	},
+	{
+		displayName: 'Country Code',
+		name: 'country_code',
+		type: 'string' as NodePropertyTypes,
+		description: 'Filter timezones by country code (e.g., deu for Germany)',
+		placeholder: 'deu',
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
+		},
+	},
+	{
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number' as NodePropertyTypes,
@@ -51,27 +72,6 @@ export const timezonesDescription = [
 		placeholder: '0',
 		typeOptions: { minValue: 0 },
 		default: 0,
-		displayOptions: {
-			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
-		},
-	},
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Get the total count of timezones',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
-		},
-	},
-	{
-		displayName: 'Country Code',
-		name: 'country_code',
-		type: 'string' as NodePropertyTypes,
-		description: 'Filter timezones by country code (e.g., deu for Germany)',
-		placeholder: 'deu',
-		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
 		},
