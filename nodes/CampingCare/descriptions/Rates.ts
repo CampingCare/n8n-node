@@ -32,7 +32,6 @@ export const ratesDescription = [
 						url: API_ENDPOINTS.RATES,
 						qs: {
 							count: '={{ $parameter["count"] || undefined }}',
-							child: '={{ $parameter["child"] || undefined }}',
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
 							order: '={{ $parameter["order"] || undefined }}',
@@ -65,7 +64,7 @@ export const ratesDescription = [
 					request: {
 						method: 'POST' as IHttpRequestMethods,
 						url: API_ENDPOINTS.RATES,
-						body: '={{ Object.assign({}, ( $parameter.name ? { name: $parameter.name } : {} ), ( $parameter.status ? { status: $parameter.status } : {} ), ( $parameter.parent_id ? { parent_id: $parameter.parent_id } : {} ), ( $parameter.closed !== undefined && $parameter.closed !== "" ? { closed: $parameter.closed } : {} ), ( $parameter.minimum_stay ? { minimum_stay: $parameter.minimum_stay } : {} ), ( $parameter.maximum_stay ? { maximum_stay: $parameter.maximum_stay } : {} ), ( $parameter.type ? { type: $parameter.type } : {} ), ($parameter.rules?.table ? { rules: (Array.isArray($parameter.rules.table) ? $parameter.rules.table.map(r => ({ type: r.type, amount: String(r.amount) })) : [{ type: $parameter.rules.table.type, amount: String($parameter.rules.table.amount) }]) } : {}) ) }}',
+						body: '={{ Object.assign({}, ( $parameter.name ? { name: $parameter.name } : {} ), ( $parameter.status ? { status: $parameter.status } : {} ), ( $parameter.parent_id ? { parent_id: $parameter.parent_id } : {} ), ( $parameter.closed !== undefined && $parameter.closed !== "" ? { closed: $parameter.closed } : {} ), ( $parameter.minimum_stay ? { minimum_stay: $parameter.minimum_stay } : {} ), ( $parameter.maximum_stay ? { maximum_stay: $parameter.maximum_stay } : {} ), ($parameter.rules?.table ? { rules: (Array.isArray($parameter.rules.table) ? $parameter.rules.table.map(r => ({ type: r.type, amount: String(r.amount) })) : [{ type: $parameter.rules.table.type, amount: String($parameter.rules.table.amount) }]) } : {}) ) }}',
 					},
 				},
 			},
@@ -81,11 +80,12 @@ export const ratesDescription = [
 						qs: {
 							name: '={{ $parameter["name"] || undefined }}',
 							parent_id: '={{ $parameter["parent_id"] || undefined }}',
-							closed: '={{ $parameter["closed"] !== undefined && $parameter["closed"] !== "" ? $parameter["closed"] : undefined }}',
+							closed:
+								'={{ $parameter["closed"] !== undefined && $parameter["closed"] !== "" ? $parameter["closed"] : undefined }}',
 							minimum_stay: '={{ $parameter["minimum_stay"] || undefined }}',
 							maximum_stay: '={{ $parameter["maximum_stay"] || undefined }}',
-							type: '={{ $parameter["type"] || undefined }}',
-							'rules[0]': '={{ $parameter["rules"]?.table ? ( Array.isArray($parameter["rules"].table) ? JSON.stringify({ type: $parameter["rules"].table[0].type, amount: String($parameter["rules"].table[0].amount) }) : JSON.stringify({ type: $parameter["rules"].table.type, amount: String($parameter["rules"].table.amount) }) ) : undefined }}',
+							'rules[0]':
+								'={{ $parameter["rules"]?.table ? ( Array.isArray($parameter["rules"].table) ? JSON.stringify({ type: $parameter["rules"].table[0].type, amount: String($parameter["rules"].table[0].amount) }) : JSON.stringify({ type: $parameter["rules"].table.type, amount: String($parameter["rules"].table.amount) }) ) : undefined }}',
 						},
 					},
 				},
@@ -137,7 +137,7 @@ export const ratesDescription = [
 				name: 'Update Prices',
 				value: OPERATIONS.UPDATE_PRICES,
 				description:
-					'Bulk update prices for a rate (max period 266 days). If start === end a single date is updated.',
+					'Update prices for a rate (max period 266 days). If start === end a single date is updated.',
 				action: 'Update prices',
 				routing: {
 					request: {
@@ -227,9 +227,9 @@ export const ratesDescription = [
 		name: 'rateId',
 		type: 'string' as NodePropertyTypes,
 		required: true,
-		default: '',
-		placeholder: '23',
 		description: 'ID of the rate to retrieve',
+		placeholder: '23',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -248,8 +248,8 @@ export const ratesDescription = [
 		displayName: 'Key',
 		name: 'key',
 		type: 'string' as NodePropertyTypes,
-		default: '',
 		description: 'Meta key to get or update (e.g. pin, first_name)',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -263,9 +263,10 @@ export const ratesDescription = [
 		displayName: 'Start',
 		name: 'start',
 		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '2025-09-01',
+		required: true,
 		description: 'Start date (YYYY-MM-DD)',
+		placeholder: '2025-09-01',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -278,9 +279,10 @@ export const ratesDescription = [
 		displayName: 'End',
 		name: 'end',
 		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '2025-12-31',
+		required: true,
 		description: 'End date (YYYY-MM-DD)',
+		placeholder: '2025-12-31',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -293,9 +295,10 @@ export const ratesDescription = [
 	{
 		displayName: 'Price',
 		name: 'price',
-		type: 'number' as NodePropertyTypes,
-		default: 0,
+		type: 'string' as NodePropertyTypes,
 		description: 'Base price to set',
+		placeholder: '0',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -309,9 +312,24 @@ export const ratesDescription = [
 		displayName: 'Closed',
 		name: 'closed',
 		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '0 (default) or 1 for closed',
 		description: '0 or 1',
+		placeholder: '0 (default) or 1 for closed',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.UPDATE_RATE],
+			},
+		},
+	},
+
+	{
+		displayName: 'Closed',
+		name: 'closed',
+		type: 'string' as NodePropertyTypes,
+		description: '0 or 1',
+		placeholder: '0 (default) or 1 for closed',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -324,10 +342,25 @@ export const ratesDescription = [
 	{
 		displayName: 'Minimum Stay',
 		name: 'minimum_stay',
-		type: 'number' as NodePropertyTypes,
-		default: 0,
+		type: 'string' as NodePropertyTypes,
+		description: '0 - 366 days (default is 0)',
 		placeholder: '0',
-		description: 'Minimum stay to set (days)',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.UPDATE_RATE],
+			},
+		},
+	},
+
+	{
+		displayName: 'Minimum Stay',
+		name: 'minimum_stay',
+		type: 'string' as NodePropertyTypes,
+		description: '0 - 366 days (default is 0)',
+		placeholder: '0',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -340,10 +373,25 @@ export const ratesDescription = [
 	{
 		displayName: 'Maximum Stay',
 		name: 'maximum_stay',
-		type: 'number' as NodePropertyTypes,
-		default: 0,
+		type: 'string' as NodePropertyTypes,
+		description: '0 - 366 days (default is 0)',
 		placeholder: '0',
-		description: 'Maximum stay to set (days)',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.UPDATE_RATE],
+			},
+		},
+	},
+
+	{
+		displayName: 'Maximum Stay',
+		name: 'maximum_stay',
+		type: 'string' as NodePropertyTypes,
+		description: '0 - 366 days (default is 0)',
+		placeholder: '0',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -356,9 +404,10 @@ export const ratesDescription = [
 	{
 		displayName: 'Min Book Offset',
 		name: 'min_book_offset',
-		type: 'number' as NodePropertyTypes,
-		default: 0,
+		type: 'string' as NodePropertyTypes,
 		description: 'Minimum booking offset',
+		placeholder: '0',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -371,9 +420,10 @@ export const ratesDescription = [
 	{
 		displayName: 'Max Book Offset',
 		name: 'max_book_offset',
-		type: 'number' as NodePropertyTypes,
-		default: 0,
+		type: 'string' as NodePropertyTypes,
 		description: 'Maximum booking offset',
+		placeholder: '0',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -387,8 +437,9 @@ export const ratesDescription = [
 		displayName: 'Closed For Arrival',
 		name: 'closed_for_arrival',
 		type: 'string' as NodePropertyTypes,
-		default: '',
+		description: 'Whether arrivals are closed for these dates (0 = open, 1 = closed)',
 		placeholder: '0 (default) or 1 for closed',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -402,8 +453,9 @@ export const ratesDescription = [
 		displayName: 'Closed For Departure',
 		name: 'closed_for_departure',
 		type: 'string' as NodePropertyTypes,
-		default: '',
+		description: 'Whether departures are closed for these dates (0 = open, 1 = closed)',
 		placeholder: '0 (default) or 1 for closed',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -414,12 +466,12 @@ export const ratesDescription = [
 	},
 
 	{
-		displayName: 'Weekdays (Comma Separated 0-6)',
+		displayName: 'Weekdays',
 		name: 'weekdays',
 		type: 'string' as NodePropertyTypes,
+		description: 'Weekdays to apply',
+		placeholder: '0',
 		default: '',
-		placeholder: '0,1,2,3,4,5,6',
-		description: 'Comma-separated weekdays to apply (0=Sunday)',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -433,9 +485,9 @@ export const ratesDescription = [
 		displayName: 'Age Table Prices',
 		name: 'age_table_prices',
 		type: 'fixedCollection' as NodePropertyTypes,
+		description: 'List of {id, price} objects to set for age tables',
 		typeOptions: { multipleValues: true },
 		default: { table: [] },
-		description: 'List of {id, price} objects to set for age tables',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -452,12 +504,14 @@ export const ratesDescription = [
 						displayName: 'Age Table ID',
 						name: 'id',
 						type: 'string' as NodePropertyTypes,
+						description: 'Unique identifier of the age table',
 						default: '',
 					},
 					{
 						displayName: 'Price',
 						name: 'price',
 						type: 'number' as NodePropertyTypes,
+						description: 'Price amount for this age table',
 						default: 0,
 					},
 				],
@@ -469,38 +523,31 @@ export const ratesDescription = [
 		displayName: 'Count',
 		name: 'count',
 		type: 'boolean' as NodePropertyTypes,
-		default: false,
 		description: 'Return only the total count',
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
-	},
-	{
-		displayName: 'Child',
-		name: 'child',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		description: 'Child filter',
+		default: false,
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number' as NodePropertyTypes,
-		default: 1,
 		description: 'Limit for pagination',
+		default: 10,
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
 		displayName: 'Offset',
 		name: 'offset',
 		type: 'number' as NodePropertyTypes,
-		default: 1,
 		description: 'Offset for pagination',
+		default: 0,
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
 		displayName: 'Order',
 		name: 'order',
 		type: 'options' as NodePropertyTypes,
+		description: 'Sort order for the results (ascending or descending)',
 		options: [
 			{ name: '— None —', value: '' },
 			{ name: 'ASC', value: 'asc' },
@@ -513,6 +560,7 @@ export const ratesDescription = [
 		displayName: 'Order By',
 		name: 'order_by',
 		type: 'options' as NodePropertyTypes,
+		description: 'Field to sort the results by',
 		options: [
 			{ name: '— None —', value: '' },
 			{ name: 'Name', value: 'name' },
@@ -522,42 +570,38 @@ export const ratesDescription = [
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
-		displayName: 'Parent ID',
-		name: 'parent_id',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		description: 'Parent rate id',
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
-	},
-	{
 		displayName: 'Search',
 		name: 'search',
 		type: 'string' as NodePropertyTypes,
-		default: '',
 		description: 'Search term',
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
-	},
-	{
-		displayName: 'Status',
-		name: 'status',
-		type: 'string' as NodePropertyTypes,
 		default: '',
-		description: 'Filter by status',
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
-
 	// Add / Update Rate fields
 	{
 		displayName: 'Name',
 		name: 'name',
 		type: 'string' as NodePropertyTypes,
 		required: true,
-		default: '',
 		description: 'Name of the rate',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
-				operation: [OPERATIONS.ADD_RATE, OPERATIONS.UPDATE_RATE],
+				operation: [OPERATIONS.ADD_RATE],
+			},
+		},
+	},
+	{
+		displayName: 'Name',
+		name: 'name',
+		type: 'string' as NodePropertyTypes,
+		description: 'Name of the rate',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.UPDATE_RATE],
 			},
 		},
 	},
@@ -570,64 +614,36 @@ export const ratesDescription = [
 			{ name: 'Active', value: 'active' },
 			{ name: 'Archived', value: 'archived' },
 		],
-		default: '',
 		description: 'Status of the rate',
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.ADD_RATE] } },
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.GET_RATES, OPERATIONS.ADD_RATE],
+			},
+		},
 	},
 	{
 		displayName: 'Parent ID',
 		name: 'parent_id',
 		type: 'string' as NodePropertyTypes,
+		description: 'Parent rate id / This rate uses prices from another rate id',
 		default: '',
-		description: 'This rate uses prices from another rate id',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
-				operation: [OPERATIONS.ADD_RATE, OPERATIONS.UPDATE_RATE],
+				operation: [OPERATIONS.GET_RATES, OPERATIONS.ADD_RATE, OPERATIONS.UPDATE_RATE],
 			},
 		},
-	},
-	{
-		displayName: 'Closed',
-		name: 'closed',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		minValue: 0,
-		maxValue: 1,
-		placeholder: '0 (default) or 1 for closed',
-		description: '0 (default) or 1 for closed',
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.UPDATE_RATE] } },
-	},
-	{
-		displayName: 'Minimum Stay',
-		name: 'minimum_stay',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '0',
-		description: '0 - 366 Default is 0',
-		minValue: 0,
-		maxValue: 366,
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.UPDATE_RATE] } },
-	},
-	{
-		displayName: 'Maximum Stay',
-		name: 'maximum_stay',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '0',
-		description: '0 - 366 Default is 0',
-		minValue: 0,
-		maxValue: 366,
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.UPDATE_RATE] } },
 	},
 	{
 		displayName: 'Rules',
 		name: 'rules',
 		type: 'fixedCollection' as NodePropertyTypes,
-		typeOptions: { multipleValues: false },
-		default: '',
 		description:
 			'Single rule object with type and amount (choose fixed or percentage). Internally represented as an array for compatibility.',
+		typeOptions: { multipleValues: false },
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
@@ -643,6 +659,7 @@ export const ratesDescription = [
 						displayName: 'Type',
 						name: 'type',
 						type: 'options' as NodePropertyTypes,
+						description: 'Type of rule calculation (fixed amount or percentage)',
 						options: [
 							{ name: 'Fixed', value: 'fixed' },
 							{ name: 'Percentage', value: 'percentage' },
@@ -653,8 +670,8 @@ export const ratesDescription = [
 						displayName: 'Amount',
 						name: 'amount',
 						type: 'number' as NodePropertyTypes,
-						default: 0,
 						description: 'Amount for the rule (use percentage for percent type)',
+						default: 0,
 					},
 				],
 			},

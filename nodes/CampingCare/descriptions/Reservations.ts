@@ -802,13 +802,13 @@ export const reservationsDescription = [
 						displayName: 'Type',
 						name: 'type',
 						type: 'options' as NodePropertyTypes,
+						description: 'Type of the forced row',
 						options: [
 							{ name: 'Product Price', value: 'product_price' },
 							{ name: 'Product Guest', value: 'product_guest' },
 							{ name: 'Product ID', value: 'product_id' },
 						],
 						default: 'product_price',
-						description: 'Type of the forced row',
 					},
 					{
 						displayName: 'Description',
@@ -894,6 +894,7 @@ export const reservationsDescription = [
 						displayName: 'Fields',
 						name: 'field',
 						type: 'fixedCollection' as NodePropertyTypes,
+						description: 'Add custom fields for this co-traveler',
 						typeOptions: {
 							multipleValues: true,
 						},
