@@ -1,37 +1,28 @@
 # n8n-nodes-campingcare-custom-nodes
 
-Custom n8n nodes for integrating with the [Starfish API](https://api.camping.care) for CampingCare and HotelCare platforms. These nodes allow you to interact with contacts, reservations, accommodations, and webhooks in your n8n workflows.
+This is an n8n community node. It lets you use the Starfish API (CampingCare/HotelCare) in your n8n workflows.
 
-## Features
+Starfish is a comprehensive booking and reservation management platform for camping and hotel accommodations, providing APIs for managing contacts, reservations, accommodations, invoices, rates, and more.
 
-This package provides the following nodes:
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-### Starfish (CampingCare/HotelCare) Node
-
-Regular node for making API calls to Starfish:
-
-- **Administrations**: Manage administration data
-- **Contacts**: Create, retrieve, and search contacts
-- **Reservations**: Get and create reservations with price calculations
-- **Accommodations**: List and manage accommodations
-- **Price Calculation**: Calculate prices, retrieve options and deposit info
-- **Timezones**: List supported timezones and filter by country code
-
-### Starfish (CampingCare/HotelCare) Trigger Node
-
-Webhook trigger node that listens for events from Starfish:
-
-- Automatically creates and manages webhooks
-- Supports multiple event types
-- Receives real-time updates from Starfish
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  
+[Compatibility](#compatibility)  
+[Usage](#usage)  
+[Resources](#resources)  
+[Version history](#version-history)
 
 ## Installation
+
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
 ### Prerequisites
 
 - Node.js >= 20.15
 - n8n >= 1.0.0 (Community Nodes enabled)
-- A valid Starfish API key
+- A valid Starfish API key (available in your Starfish dashboard)
 
 ### Install via npm
 
@@ -41,153 +32,178 @@ npm install n8n-nodes-campingcare-custom-nodes
 
 ### Install in n8n
 
-Option A — via UI:
+**Option A — via UI:**
+
 1. In n8n: Settings > Community Nodes > Install
-2. Search for or paste the package name: `n8n-nodes-campingcare-custom-nodes`
+2. Search for or paste: `n8n-nodes-campingcare-custom-nodes`
 3. Confirm and restart n8n
 
-Option B — via CLI:
-1. Stop your n8n instance
-2. Install the package: `npm install n8n-nodes-campingcare-custom-nodes`
-3. Start n8n again
-4. The nodes will appear in the panel
+**Option B — via CLI:**
 
-## Configuration
+1. Stop your n8n instance
+2. Install: `npm install n8n-nodes-campingcare-custom-nodes`
+3. Restart n8n
+4. The nodes will appear in the node panel
+
+## Operations
+
+This package provides two nodes:
+
+### Starfish (CampingCare/HotelCare) Node
+
+Regular node for making API calls:
+
+#### Accommodations API
+
+- Get Accommodations - List accommodations with filtering options
+- Get Accommodation - Retrieve a specific accommodation by ID
+- Add Accommodation - Create a new accommodation
+
+#### Administrations API
+
+- Get Administrations - List all administrations
+- Get Administration - Get details of a specific administration
+- Age Tables - Retrieve age table configurations
+
+#### Contacts API
+
+- Get Contacts - List contacts with filtering and pagination
+- Get Contact - Retrieve a specific contact by ID
+- Add Contact - Create a new contact with metadata support
+
+#### Invoices API
+
+- Get Invoices - List invoices with filters
+- Get Invoice - Get a specific invoice by ID
+- Add Invoice - Create a new invoice
+- Update Invoice - Modify existing invoice
+- Delete Invoice - Remove an invoice
+- Finalize Invoice - Finalize an invoice for payment
+- Cancel Delayed Finalized Invoice - Cancel a delayed finalization
+- Create Credit - Create a credit note for an invoice
+- Meta Operations - Manage invoice metadata
+
+#### Price Calculation API
+
+- Calculate Price - Get pricing information before creating a reservation
+
+#### Rates API
+
+- Get Rates - List all rates
+- Get Rate - Get a specific rate by ID
+- Add Rate - Create a new rate
+- Update Rate - Modify existing rate
+- Delete Rate - Remove a rate
+- Prices - Manage rate prices (get/update)
+- Meta Operations - Manage rate metadata
+
+#### Reservations API
+
+- Get Reservations - List reservations with filtering
+- Get Reservation - Get details of a specific reservation
+- Create Reservation - Create a new reservation (multiple methods available)
+
+#### Timezones API
+
+- Get Timezones - List supported timezones with country filtering
+
+### Starfish (CampingCare/HotelCare) Trigger Node
+
+Webhook trigger node for real-time events:
+
+- Automatically creates and manages webhooks in Starfish
+- Supports multiple event types (reservations, contacts, invoices, etc.)
+- Receives real-time updates when data changes in Starfish
+- Includes signature validation for security
+
+## Credentials
 
 ### Setting up API Credentials
 
 1. In n8n, go to **Credentials** > **New**
 2. Search for "Starfish (CampingCare/HotelCare) API"
 3. Enter your API credentials:
-   - **API Key**: Your Starfish API key (available in your Starfish dashboard)
+   - **API Key**: Your Starfish API key
 
-## Usage Examples
+To obtain your API key:
+
+1. Log in to your Starfish dashboard (CampingCare or HotelCare)
+2. Navigate to Settings > API
+3. Generate or copy your API key
+
+The API key is used for authentication with all Starfish API endpoints.
+
+## Compatibility
+
+- **Minimum n8n version:** 1.0.0
+- **Node.js version:** >= 20.15
+- **Tested with:** n8n 1.0.0+
+
+This node uses the Starfish API v21. Ensure your API key has access to the required endpoints.
+
+## Usage
+
+### Getting Started
+
+If you're new to n8n, check out the [Try it out](https://docs.n8n.io/try-it-out/) documentation to get started.
 
 ### Example 1: Create a Contact
 
 1. Add the "Starfish (CampingCare/HotelCare)" node
-2. Select **Resource**: Contact
+2. Select **Resource**: Contacts API
 3. Select **Operation**: Add Contact
-4. Fill in the fields you need (e.g., last name, email, phone). The API allows creating an empty contact and adding data as provided.
+4. Fill in required fields:
+   - Email (required)
+   - First Name
+   - Last Name
+   - Phone, Address, etc. (optional)
+
+The API allows creating contacts with minimal information and adding data as needed.
 
 ### Example 2: Create a Reservation
 
 1. Add the "Starfish (CampingCare/HotelCare)" node
-2. Select **Resource**: Create Reservation
-3. Choose creation method:
-  - **Using Price Calculation**: First use the Price Calculation resource to get `calculation_id` and `hash`, then create the reservation.
-  - **Force with Own Data**: Create directly by providing the required pricing and data yourself.
+2. Select **Resource**: Reservations API
+3. Select **Operation**: Create Reservation
+4. Choose creation method:
+   - **Using Price Calculation**: First calculate price, then create reservation
+   - **Force with Own Data**: Provide all required data directly
+
+For the price calculation method:
+
+1. First use Price Calculation API to get `calculation_id` and `hash`
+2. Then create the reservation using these values
 
 ### Example 3: Listen for Webhook Events
 
 1. Add the "Starfish (CampingCare/HotelCare) Trigger" node
-2. Select the event types you want to listen for
+2. Select events to listen for (e.g., "reservation_create", "contact_update")
 3. Activate the workflow
-4. The webhook will be automatically created in Starfish
+4. The webhook will be automatically registered with Starfish
+5. When events occur, the workflow will be triggered
 
-## Supported Operations
+### Important Notes
 
-### Contacts
+- **Date Format**: Always use YYYY-MM-DD format for dates
+- **Required Fields**: Some operations have required fields (marked with \*)
+- **Meta Fields**: Many resources support custom metadata via meta operations
+- **Pagination**: Use `count` and `limit` parameters for large datasets
 
-- **Get Contacts**: Retrieve contacts with filtering, sorting, and pagination
-- **Get Contact**: Get a specific contact by ID
-- **Add Contact**: Create a new contact with metadata support
+## Resources
 
-### Reservations
+- [Starfish API Documentation](https://api.camping.care/docs)
+- [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [GitHub Repository](https://github.com/CampingCare/n8n-node)
+- [CampingCare Website](https://www.camping.care)
 
-- **Get Reservations**: List reservations with filters
-- **Create Reservation**: Multiple methods for creating reservations
-- **Calculate Price**: Get pricing before creating a reservation
+## Version history
 
-### Administrations
+### Version 1.0.6 (Current)
 
-- Manage administration data and settings
-
-## API Documentation
-
-For detailed API documentation, visit: [https://api.camping.care/docs](https://api.camping.care)
-
-## Development
-
-### Setup Development Environment
-
-```bash
-# Clone the repository
-git clone https://github.com/CampingCare/n8n-node.git
-
-# Install dependencies
-npm install
-
-# Build the project
-npm run build
-
-# Link for local testing
-npm link
-
-# In your n8n installation directory
-npm link n8n-nodes-campingcare-custom-nodes
-```
-
-### Project Structure
-
-```
-nodes/
-  CampingCare/
-    CampingCare.node.ts          # Main node
-    CampingCareTrigger.node.ts   # Webhook trigger node
-    descriptions/                 # Operation descriptions
-      Accommodations.ts
-      Contacts.ts
-      Reservations.ts
-      Administrations.ts
-      PriceCalculation.ts
-      Timezones.ts
-    utils/                        # Utility functions
-      constants.ts                # API constants
-      helpers.ts                  # Helper functions
-      types.ts                    # Shared TypeScript types
-credentials/
-  CampingCareApi.credentials.ts  # API credentials definition
-```
-
-### Running Tests
-
-```bash
-npm run lint          # Check for linting errors
-npm run lintfix       # Auto-fix linting errors
-npm run build         # Build the project
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**Issue**: "Invalid API Key" error
-
-- **Solution**: Verify your API key in the Starfish dashboard and update it in n8n credentials
-
-**Issue**: Webhook not receiving events
-
-- **Solution**:
-  - Check that the workflow is activated
-  - Verify the webhook exists in Starfish dashboard
-  - Ensure n8n is accessible from the internet (for webhooks)
-
-**Issue**: Date format errors in reservations
-
-- **Solution**: Ensure dates are in YYYY-MM-DD format
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Commit your changes: `git commit -am 'Add new feature'`
-4. Push to the branch: `git push origin feature/my-feature`
-5. Submit a pull request
-
-## Changelog
+- Support for Invoices API
+- Support for Rates API with pricing and metadata
+- Enhanced webhook trigger with signature validation
+- Improved error handling and validation
 
 ### Version 1.0.0
 
@@ -195,6 +211,38 @@ Contributions are welcome! Please follow these steps:
 - Support for Contacts, Reservations, and Accommodations
 - Webhook trigger support
 - Price calculation features
+- Administrations and Timezones support
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+**"Invalid API Key" error**
+
+- Verify your API key in the Starfish dashboard
+- Update the key in n8n credentials
+
+**Webhook not receiving events**
+
+- Check that the workflow is activated
+- Verify the webhook exists in Starfish dashboard
+- Ensure n8n is accessible from the internet
+
+**Date format errors**
+
+- Ensure all dates use YYYY-MM-DD format
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Submit a pull request
 
 ## License
 
@@ -202,7 +250,7 @@ Contributions are welcome! Please follow these steps:
 
 ## Support
 
-For support, please:
+For support:
 
 - Check the [API Documentation](https://api.camping.care/docs)
 - Open an issue on [GitHub](https://github.com/CampingCare/n8n-node/issues)
@@ -210,6 +258,6 @@ For support, please:
 
 ## Credits
 
-Created by [MikeKorte12](https://github.com/MikeKorte12)
+Created by the CampingCare development team.
 
-Built with the [n8n nodes starter](https://github.com/n8n-io/n8n-nodes-starter)
+Built with the [n8n nodes starter](https://github.com/n8n-io/n8n-nodes-starter).
