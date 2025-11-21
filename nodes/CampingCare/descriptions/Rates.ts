@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const ratesDescription = [
 	{
@@ -200,6 +201,7 @@ export const ratesDescription = [
 						url: '=/rates/{{$parameter["rateId"]}}/meta',
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
+							value: '={{ $parameter["value"] || undefined }}',
 						},
 					},
 				},
@@ -249,12 +251,28 @@ export const ratesDescription = [
 		name: 'key',
 		type: 'string' as NodePropertyTypes,
 		description: 'Meta key to get or update (e.g. pin, first_name)',
+		placeholder: 'first_name',
 		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RATES],
 				operation: [OPERATIONS.META],
 				metaOperation: [OPERATIONS.GET_META, OPERATIONS.UPDATE_META, OPERATIONS.DELETE_META],
+			},
+		},
+	},
+	{
+		displayName: 'Value',
+		name: 'value',
+		type: 'string' as NodePropertyTypes,
+		description: 'Value to set for the meta key (e.g. John Doe)',
+		placeholder: 'John Doe',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RATES],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
 			},
 		},
 	},
@@ -519,14 +537,7 @@ export const ratesDescription = [
 		],
 	},
 
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Return only the total count',
-		default: false,
-		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
-	},
+	commonBooleans.count([RESOURCES.RATES], [OPERATIONS.GET_RATES]),
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -577,7 +588,6 @@ export const ratesDescription = [
 		default: '',
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
-	// Add / Update Rate fields
 	{
 		displayName: 'Name',
 		name: 'name',

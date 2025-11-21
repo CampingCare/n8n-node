@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const priceCalculationDescription = [
 	{
@@ -122,137 +123,19 @@ export const priceCalculationDescription = [
 			},
 		},
 	},
-	{
-		displayName: 'Get Guests Price',
-		name: 'get_guests_price',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include extra guest prices in the calculation',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Taxes Price',
-		name: 'get_taxes_price',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include taxes in the calculation',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Discounts Price',
-		name: 'get_discounts_price',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include discounts in the calculation',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Required Options Price',
-		name: 'get_required_options_price',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include required options in the calculation',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Options',
-		name: 'get_options',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description:
-			'Whether to get available bookable options (baby chair, extra tent, dog, etc.). The option IDs which are coming from the price calculation result can be used in the add options method.',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Deposit',
-		name: 'get_deposit',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include deposit information',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Translations',
-		name: 'translations',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include translations in the response',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Search Alternative',
-		name: 'search_alternative',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to search for alternative accommodations',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Available Places',
-		name: 'get_available_places',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to get available places',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
-	{
-		displayName: 'Get Rows',
-		name: 'get_rows',
-		type: 'boolean' as NodePropertyTypes,
-		default: false,
-		description: 'Whether to include detailed row information',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.PRICE_CALCULATION],
-				operation: [OPERATIONS.CALCULATE_PRICE],
-			},
-		},
-	},
+	commonBooleans.getGuestsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getTaxesPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getDiscountsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getRequiredOptionsPrice(
+		[RESOURCES.PRICE_CALCULATION],
+		[OPERATIONS.CALCULATE_PRICE],
+	),
+	commonBooleans.getOptions([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getDeposit([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.translations([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.searchAlternative([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getAvailablePlaces([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	commonBooleans.getRows([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
 	{
 		displayName: 'Age Table IDs',
 		name: 'age_tables',

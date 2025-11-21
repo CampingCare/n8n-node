@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const accommodationsDescription = [
 	{
@@ -83,65 +84,20 @@ export const accommodationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Get the total count of accommodations (independent of channel filter)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
-		},
-	},
-	{
-		displayName: 'Get Meta',
-		name: 'get_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Include meta data for each accommodation',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ACCOMMODATIONS],
-				operation: [OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Media',
-		name: 'get_media',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Include media info for each accommodation',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ACCOMMODATIONS],
-				operation: [OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Services',
-		name: 'get_services',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Include services for each accommodation',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
-		},
-	},
-	{
-		displayName: 'Translations',
-		name: 'translations',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Include translations of names and descriptions',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ACCOMMODATIONS],
-				operation: [OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
-			},
-		},
-	},
+	commonBooleans.count([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
+	commonBooleans.getMeta(
+		[RESOURCES.ACCOMMODATIONS],
+		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
+	),
+	commonBooleans.getMedia(
+		[RESOURCES.ACCOMMODATIONS],
+		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
+	),
+	commonBooleans.getServices([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
+	commonBooleans.translations(
+		[RESOURCES.ACCOMMODATIONS],
+		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
+	),
 	{
 		displayName: 'Limit',
 		name: 'limit',

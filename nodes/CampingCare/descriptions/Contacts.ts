@@ -1,6 +1,7 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
 import { createDisplayOptions, createContactField } from '../utils/helpers';
+import { commonBooleans } from '../utils/commonFields';
 
 export const contactsDescription = [
 	{
@@ -107,82 +108,24 @@ export const contactsDescription = [
 			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACT] },
 		},
 	},
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to return only the total number of contacts instead of full details',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACTS] },
-		},
-	},
-	{
-		displayName: 'Get Invoice Payments',
-		name: 'get_invoice_payments',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice payment details for the contact(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
-			},
-		},
-	},
-	{
-		displayName: 'Get Invoices',
-		name: 'get_invoices',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include related invoices for the contact(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
-			},
-		},
-	},
-	{
-		displayName: 'Get Meta',
-		name: 'get_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description:
-			'Whether to include meta information about the contact. Note: OTA users have limited access.',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
-			},
-		},
-	},
-	{
-		displayName: 'Get Reservation Payment Terms',
-		name: 'get_reservation_payment_terms',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include reservation payment term information for the contact(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
-			},
-		},
-	},
-	{
-		displayName: 'Get Reservations',
-		name: 'get_reservations',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include reservations related to the contact(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
-			},
-		},
-	},
+	commonBooleans.count([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS]),
+	commonBooleans.getInvoicePayments(
+		[RESOURCES.CONTACTS],
+		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
+	),
+	commonBooleans.getInvoices(
+		[RESOURCES.CONTACTS],
+		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
+	),
+	commonBooleans.getMeta([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT]),
+	commonBooleans.getReservationPaymentTerms(
+		[RESOURCES.CONTACTS],
+		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
+	),
+	commonBooleans.getReservations(
+		[RESOURCES.CONTACTS],
+		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
+	),
 
 	{
 		displayName: 'Limit',

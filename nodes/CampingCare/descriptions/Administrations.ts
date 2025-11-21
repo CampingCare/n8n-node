@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const administrationsDescription = [
 	{
@@ -123,89 +124,25 @@ export const administrationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to get a total count back of the administrations. Default: false.',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
-		},
-	},
-	{
-		displayName: 'Get Accommodations',
-		name: 'get_accommodations',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include accommodation data for each administration',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
-		},
-	},
-	{
-		displayName: 'Get Age Tables',
-		name: 'get_age_tables',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include age table information for the administration(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Media',
-		name: 'get_media',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include media information for the administration(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Meta',
-		name: 'get_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description:
-			'Whether to include meta information for the administration(s). Note: OTA users may have limited access.',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get VAT Tables',
-		name: 'get_vat_tables',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include VAT table information for the administration',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATION] },
-		},
-	},
-	{
-		displayName: 'Translations',
-		name: 'translations',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include translations for administration fields',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
-			},
-		},
-	},
+	commonBooleans.count([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
+	commonBooleans.getAccommodations([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
+	commonBooleans.getAgeTables(
+		[RESOURCES.ADMINISTRATIONS],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
+	),
+	commonBooleans.getMedia(
+		[RESOURCES.ADMINISTRATIONS],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
+	),
+	commonBooleans.getMeta(
+		[RESOURCES.ADMINISTRATIONS],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
+	),
+	commonBooleans.getVatTables([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATION]),
+	commonBooleans.translations(
+		[RESOURCES.ADMINISTRATIONS],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
+	),
 
 	{
 		displayName: 'Limit',

@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const reservationsDescription = [
 	{
@@ -137,157 +138,40 @@ export const reservationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to return only the total count of reservations instead of full details',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATIONS] },
-		},
-	},
-	{
-		displayName: 'Filter Root Meta',
-		name: 'filter_root_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include only reservations with root meta information',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Booker',
-		name: 'get_booker',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include booker details of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATION] },
-		},
-	},
-	{
-		displayName: 'Get Co Travelers',
-		name: 'get_co_travelers',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include co-traveler details of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATION] },
-		},
-	},
-	{
-		displayName: 'Get Contact',
-		name: 'get_contact',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include contact details of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Invoice Meta',
-		name: 'get_invoice_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice meta of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Invoice Payment',
-		name: 'get_invoice_payment',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice payment of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATIONS] },
-		},
-	},
-	{
-		displayName: 'Get Invoice Payments',
-		name: 'get_invoice_payments',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice payments of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATION] },
-		},
-	},
-	{
-		displayName: 'Get Invoice Rowsfilter',
-		name: 'get_invoice_rowsfilter',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice rows filter of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATION] },
-		},
-	},
-	{
-		displayName: 'Get Invoices',
-		name: 'get_invoices',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include invoice data of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Meta',
-		name: 'get_meta',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include meta data of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Payment Terms',
-		name: 'get_payment_terms',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include payment term data of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
-	{
-		displayName: 'Get Rows',
-		name: 'get_rows',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include rows data of the reservation(s)',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-			},
-		},
-	},
+	commonBooleans.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	commonBooleans.filterRootMeta(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getBooker([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	commonBooleans.getCoTravelers([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	commonBooleans.getContact(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getInvoiceMeta(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	commonBooleans.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	commonBooleans.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	commonBooleans.getInvoices(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getMeta(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getPaymentTerms(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
+	commonBooleans.getRows(
+		[RESOURCES.RESERVATIONS],
+		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
+	),
 
 	{
 		displayName: 'Accommodation Name or ID',
@@ -330,7 +214,6 @@ export const reservationsDescription = [
 		displayName: 'Arrival Operator',
 		name: 'arrival_operator',
 		type: 'options' as NodePropertyTypes,
-		noDataExpression: true,
 		description: 'Operator to use with arrival date',
 		options: [
 			{ name: '— None —', value: '' },
@@ -383,7 +266,6 @@ export const reservationsDescription = [
 		displayName: 'Create Date Operator',
 		name: 'create_date_operator',
 		type: 'options' as NodePropertyTypes,
-		noDataExpression: true,
 		description: 'Operator to use with create date',
 		options: [
 			{ name: '— None —', value: '' },
@@ -414,7 +296,6 @@ export const reservationsDescription = [
 		displayName: 'Departure Operator',
 		name: 'departure_operator',
 		type: 'options' as NodePropertyTypes,
-		noDataExpression: true,
 		description: 'Operator to use with departure date',
 		options: [
 			{ name: '— None —', value: '' },
@@ -455,7 +336,6 @@ export const reservationsDescription = [
 		displayName: 'Last Modified Operator',
 		name: 'last_modified_operator',
 		type: 'options' as NodePropertyTypes,
-		noDataExpression: true,
 		description: 'Operator to use with last modified date',
 		options: [
 			{ name: '— None —', value: '' },

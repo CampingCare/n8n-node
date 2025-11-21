@@ -49,6 +49,7 @@ export const RESOURCES = {
 	RESERVATIONS: 'reservations',
 	TIMEZONES: 'timezones',
 	RATES: 'rates',
+	INVOICES: 'invoices',
 } as const;
 
 export const OPERATIONS = {
@@ -81,9 +82,19 @@ export const OPERATIONS = {
 	PRICES: 'prices',
 	GET_PRICES: 'getPrices',
 	UPDATE_PRICES: 'updatePrices',
+	UPDATE_PRICES_BULK: 'updatePricesBulk',
 
 	META: 'meta',
 	GET_META: 'getMeta',
 	UPDATE_META: 'updateMeta',
 	DELETE_META: 'deleteMeta',
+
+	GET_INVOICES: 'getInvoices',
+	GET_INVOICE: 'getInvoice',
+	ADD_INVOICE: 'addInvoice',
+	UPDATE_INVOICE: 'updateInvoice',
+	DELETE_INVOICE: 'deleteInvoice',
+	FINALIZE_INVOICE: 'finalizeInvoice',
+	CANCEL_DELAYED_FINALIZED_INVOICE: 'cancelDelayedFinalizedInvoice',
+	CREATE_CREDIT: 'createCredit',
 } as const;
