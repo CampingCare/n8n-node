@@ -83,7 +83,6 @@ export const createNumberField = (
 	},
 });
 
-// Pre-defined common boolean fields that can be reused across different resources
 export const commonBooleans = {
 	count: (resources: string[], operations: string[]) =>
 		createBooleanField(
@@ -292,7 +291,6 @@ export const commonBooleans = {
 			operations,
 		),
 
-	// Administration specific
 	getAccommodations: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'get_accommodations',
@@ -320,7 +318,6 @@ export const commonBooleans = {
 			operations,
 		),
 
-	// Price Calculation specific
 	getGuestsPrice: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'get_guests_price',
@@ -394,7 +391,6 @@ export const commonBooleans = {
 		),
 };
 
-// Pre-defined common string fields
 export const commonStrings = {
 	limit: (resources: string[], operations: string[], defaultValue = 15, maxValue = 50) =>
 		createNumberField(
