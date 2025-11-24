@@ -191,7 +191,7 @@ For the price calculation method:
 
 ## Resources
 
-- [Starfish API Documentation](https://api.camping.care/docs)
+- [Starfish API Documentation](https://support.starfish.care/faq/n8n/)
 - [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [GitHub Repository](https://github.com/CampingCare/n8n-node)
 - [CampingCare Website](https://www.camping.care)
@@ -252,7 +252,7 @@ Contributions are welcome! Please:
 
 For support:
 
-- Check the [API Documentation](https://api.camping.care/docs)
+- Check the [API Documentation](https://support.starfish.care/faq/n8n/)
 - Open an issue on [GitHub](https://github.com/CampingCare/n8n-node/issues)
 - Contact Starfish support for API-related questions
 

@@ -6,12 +6,12 @@
 	"resources": {
 		"primaryDocumentation": [
 			{
-				"url": "https://docs.campingcare.com/n8n-node"
+				"url": "https://support.starfish.care/faq/n8n/"
 			}
 		],
 		"credentialDocumentation": [
 			{
-				"url": "https://docs.campingcare.com/n8n-credentials"
+				"url": "https://support.starfish.care/faq/n8n/"
 			}
 		]
 	}

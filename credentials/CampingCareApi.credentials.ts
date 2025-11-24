@@ -4,7 +4,7 @@ export class CampingCareApi implements ICredentialType {
 	name = 'campingCareApi';
 	displayName = 'Starfish (CampingCare/HotelCare) API';
 	documentationUrl =
-		'https://1drv.ms/p/c/7D450A4555B73F91/EXaXncSEOOhMrbgY426x0IkBR7zHsN4tQT1GllgNmP_dog';
+		'https://support.starfish.care/faq/n8n/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',
