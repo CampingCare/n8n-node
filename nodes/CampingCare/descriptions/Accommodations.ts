@@ -13,8 +13,7 @@ export const accommodationsDescription = [
 			{
 				name: 'Get Accommodations',
 				value: OPERATIONS.GET_ACCOMMODATIONS,
-				description:
-					'Get a list of accommodations with optional meta, media, services and translations',
+				description: 'You can get your accommodations with the get accommodations method',
 				action: 'Get accommodations',
 				routing: {
 					request: {
@@ -29,7 +28,8 @@ export const accommodationsDescription = [
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
 							channel_id: '={{ $parameter["channel_id"] || undefined }}',
-							status: '={{ $parameter["status"] || undefined }}',
+							'status[0]': '={{ $parameter["status_0"] || undefined }}',
+							'status[1]': '={{ $parameter["status_1"] || undefined }}',
 						},
 					},
 				},
@@ -37,7 +37,7 @@ export const accommodationsDescription = [
 			{
 				name: 'Get Accommodation',
 				value: OPERATIONS.GET_ACCOMMODATION,
-				description: 'Get a single accommodation by ID',
+				description: 'With this method you can retreive a single accommodation',
 				action: 'Get accommodation',
 				routing: {
 					request: {
@@ -55,7 +55,7 @@ export const accommodationsDescription = [
 			{
 				name: 'Add Accommodation',
 				value: OPERATIONS.ADD_ACCOMMODATION,
-				description: 'Add a new accommodation (minimal: name)',
+				description: 'With this method you can add a new accommodation',
 				action: 'Add accommodation',
 				routing: {
 					request: {
@@ -72,13 +72,13 @@ export const accommodationsDescription = [
 	},
 
 	{
-		displayName: 'Accommodation ID',
+		displayName: 'Accommodation',
 		name: 'accommodation_id',
-		type: 'string' as NodePropertyTypes,
+		type: 'options' as NodePropertyTypes,
 		required: true,
-		description: 'Unique identifier of the accommodation to retrieve',
-		placeholder: '7343',
+		description: 'Select the accommodation to retrieve',
 		default: '',
+		typeOptions: { loadOptionsMethod: 'getAccommodations' },
 		displayOptions: {
 			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATION] },
 		},
@@ -101,11 +101,10 @@ export const accommodationsDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
-		description: 'Maximum number of accommodations to return (1-50)',
+		type: 'string' as NodePropertyTypes,
+		description: 'Maximum number of accommodations to return',
 		placeholder: '15',
-		typeOptions: { minValue: 1, maxValue: 50 },
-		default: 15,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
 		},
@@ -113,11 +112,10 @@ export const accommodationsDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Number of items to skip before starting to return results',
 		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
 		},
@@ -134,12 +132,27 @@ export const accommodationsDescription = [
 		},
 	},
 	{
-		displayName: 'Status',
-		name: 'status',
+		displayName: 'Status 1',
+		name: 'status_0',
 		type: 'options' as NodePropertyTypes,
-		description: 'Filter by a status value',
+		description: 'Filter by first status (leave empty to not filter)',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
+			{ name: 'Active', value: 'active' },
+			{ name: 'Nonactive', value: 'nonactive' },
+		],
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
+		},
+	},
+	{
+		displayName: 'Status 2',
+		name: 'status_1',
+		type: 'options' as NodePropertyTypes,
+		description: 'Filter by second status (leave empty to not filter)',
+		options: [
+			{ name: 'None', value: '' },
 			{ name: 'Active', value: 'active' },
 			{ name: 'Nonactive', value: 'nonactive' },
 		],

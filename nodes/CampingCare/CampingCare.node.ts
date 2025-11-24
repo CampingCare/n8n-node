@@ -93,7 +93,7 @@ export class CampingCare implements INodeType {
 						value: channel.id,
 						iconUrl: channel.icon,
 					}));
-					options.unshift({ name: '— None —', value: '', iconUrl: undefined });
+					options.unshift({ name: 'None', value: '', iconUrl: undefined });
 					return options;
 				} catch (error) {
 					throw new NodeApiError(this.getNode(), error, {
@@ -119,7 +119,7 @@ export class CampingCare implements INodeType {
 						name: code.name || code.code,
 						value: code.id,
 					}));
-					options.unshift({ name: '— None —', value: '' });
+					options.unshift({ name: 'None', value: '' });
 					return options;
 				} catch (error) {
 					throw new NodeApiError(this.getNode(), error, {
@@ -227,7 +227,7 @@ export class CampingCare implements INodeType {
 					countries.sort((a, b) => a.name.localeCompare(b.name));
 
 					countries.unshift({
-						name: '— None —',
+						name: 'None',
 						value: '',
 					});
 					return countries;
@@ -260,7 +260,7 @@ export class CampingCare implements INodeType {
 							value: a.id,
 						}));
 					accommodations.unshift({
-						name: '— None —',
+						name: 'None',
 						value: '',
 					});
 

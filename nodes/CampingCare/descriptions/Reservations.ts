@@ -13,7 +13,8 @@ export const reservationsDescription = [
 			{
 				name: 'Get Reservations',
 				value: OPERATIONS.GET_RESERVATIONS,
-				description: 'Get a list of reservations with various filtering options',
+				description:
+					'You have a lot of possibilities to get information about multiple reservations',
 				action: 'Get reservations',
 				routing: {
 					request: {
@@ -59,7 +60,8 @@ export const reservationsDescription = [
 			{
 				name: 'Get Reservation',
 				value: OPERATIONS.GET_RESERVATION,
-				description: 'Get a single reservation by ID with optional additional data',
+				description:
+					'You also can get the individual reservation, it is possible to get extra data on the reservation when needed',
 				action: 'Get reservation',
 				routing: {
 					request: {
@@ -149,10 +151,7 @@ export const reservationsDescription = [
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getInvoiceMeta(
-		[RESOURCES.RESERVATIONS],
-		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
-	),
+	commonBooleans.getInvoiceMeta([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
 	commonBooleans.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
 	commonBooleans.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
 	commonBooleans.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
@@ -216,7 +215,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Operator to use with arrival date',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: '=', value: '=' },
 			{ name: '>', value: '>' },
 			{ name: '>=', value: '>=' },
@@ -268,7 +267,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Operator to use with create date',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: '=', value: '=' },
 			{ name: '>', value: '>' },
 			{ name: '>=', value: '>=' },
@@ -298,7 +297,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Operator to use with departure date',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: '=', value: '=' },
 			{ name: '>', value: '>' },
 			{ name: '>=', value: '>=' },
@@ -338,7 +337,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Operator to use with last modified date',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: '=', value: '=' },
 			{ name: '>', value: '>' },
 			{ name: '>=', value: '>=' },
@@ -353,11 +352,10 @@ export const reservationsDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Limit for pagination (Default 10, Max 30)',
 		placeholder: '10',
-		typeOptions: { maxValue: 30 },
-		default: 10,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATIONS] },
 		},
@@ -376,9 +374,16 @@ export const reservationsDescription = [
 	{
 		displayName: 'Meta Operator',
 		name: 'meta_operator',
-		type: 'string' as NodePropertyTypes,
+		type: 'options' as NodePropertyTypes,
 		description: 'Operator to use with meta key (e.g., =, >, <)',
-		placeholder: '=',
+		options: [
+			{ name: 'None', value: '' },
+			{ name: '=', value: '=' },
+			{ name: '>', value: '>' },
+			{ name: '>=', value: '>=' },
+			{ name: '<', value: '<' },
+			{ name: '<=', value: '<=' },
+		],
 		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATIONS] },
@@ -398,11 +403,10 @@ export const reservationsDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Offset for pagination',
-		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		placeholder: '20',
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATIONS] },
 		},
@@ -413,7 +417,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Sort order: ASC or DESC',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ASC', value: 'asc' },
 			{ name: 'DESC', value: 'desc' },
 		],
@@ -428,7 +432,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Sort by field: id, last_modified, arrival, departure',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ID', value: 'id' },
 			{ name: 'Last Modified', value: 'last_modified' },
 			{ name: 'Arrival', value: 'arrival' },
@@ -456,7 +460,7 @@ export const reservationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Filter by status: pending, option, confirmed, checkedin, checkedout, deleted',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Pending', value: 'pending' },
 			{ name: 'Option', value: 'option' },
 			{ name: 'Confirmed', value: 'confirmed' },

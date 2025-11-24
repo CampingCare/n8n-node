@@ -40,7 +40,7 @@ export const contactsDescription = [
 			{
 				name: 'Get Contact',
 				value: OPERATIONS.GET_CONTACT,
-				description: 'Get a single contact by ID',
+				description: 'Get a single contact by id',
 				action: 'Get contact',
 				routing: {
 					request: {
@@ -60,8 +60,7 @@ export const contactsDescription = [
 			{
 				name: 'Add Contact',
 				value: OPERATIONS.ADD_CONTACT,
-				description:
-					'Add either an empty contact or add parameters to a contact. All provided data will be added to the new contact.',
+				description: 'Add either a empty contact or add parameters to a contact',
 				action: 'Add contact',
 				routing: {
 					request: {
@@ -130,11 +129,10 @@ export const contactsDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Maximum number of contacts to return (minimum 1)',
-		placeholder: '10',
-		typeOptions: { minValue: 1 },
-		default: 10,
+		placeholder: '1',
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACTS] },
 		},
@@ -142,11 +140,10 @@ export const contactsDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Number of contacts to skip before starting to collect results',
 		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACTS] },
 		},
@@ -158,7 +155,7 @@ export const contactsDescription = [
 		description:
 			'Sorting order of the returned contacts. Choose ascending (ASC) or descending (DESC).',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ASC', value: 'asc' },
 			{ name: 'DESC', value: 'desc' },
 		],
@@ -173,7 +170,7 @@ export const contactsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Field to sort the results by',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ID', value: 'id' },
 			{ name: 'Contact UID', value: 'contact_uid' },
 			{ name: 'Contact ID', value: 'contact_id' },
@@ -196,7 +193,7 @@ export const contactsDescription = [
 		name: 'search',
 		type: 'string' as NodePropertyTypes,
 		description: 'Filter contacts by ID or name. Partial matches are allowed.',
-		placeholder: 'support@camping.care',
+		placeholder: 'Enter ID or name',
 		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACTS] },
@@ -216,7 +213,7 @@ export const contactsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Gender of the contact (used for personalization and reporting)',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Male', value: 'male' },
 			{ name: 'Female', value: 'female' },
 			{ name: 'Family', value: 'family' },
@@ -305,7 +302,7 @@ export const contactsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Type of contact',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Main Traveler', value: 'main_traveler' },
 			{ name: 'Co Traveler', value: 'co_traveler' },
 			{ name: 'Booker', value: 'booker' },

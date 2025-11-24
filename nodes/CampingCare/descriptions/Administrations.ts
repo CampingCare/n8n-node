@@ -13,8 +13,7 @@ export const administrationsDescription = [
 			{
 				name: 'Get Administrations',
 				value: OPERATIONS.GET_ADMINISTRATIONS,
-				description:
-					'You can retrieve the administrations of a specific user. Each API key has access to a single administration. Each user could have access to multiple administrations',
+				description: 'You can retrieve the administrations of a specific user',
 				action: 'Get administrations',
 				routing: {
 					request: {
@@ -79,7 +78,7 @@ export const administrationsDescription = [
 			{
 				name: 'Get Age Tables',
 				value: 'getAgeTables',
-				description: 'Get age tables for this administration',
+				description: 'Get age tables for this administrations',
 				action: 'Get age tables',
 				routing: {
 					request: {
@@ -95,7 +94,7 @@ export const administrationsDescription = [
 			{
 				name: 'Get Age Table',
 				value: 'getAgeTable',
-				description: 'Get a single age table by ID',
+				description: 'Get a single age table by id',
 				action: 'Get age table',
 				routing: {
 					request: {
@@ -147,11 +146,10 @@ export const administrationsDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Maximum number of administrations to return (minimum 1)',
-		placeholder: '10',
-		typeOptions: { minValue: 1 },
-		default: 5,
+		placeholder: '5',
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
 		},
@@ -159,11 +157,10 @@ export const administrationsDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Number of items to skip before starting to collect results',
 		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
 		},
@@ -172,10 +169,9 @@ export const administrationsDescription = [
 		displayName: 'Order',
 		name: 'order',
 		type: 'options' as NodePropertyTypes,
-		description:
-			'Select the sorting order of the returned administrations. — None — will not sort.',
+		description: 'Select the sorting order of the returned administrations. None will not sort.',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ASC', value: 'asc' },
 			{ name: 'DESC', value: 'desc' },
 		],
@@ -246,7 +242,7 @@ export const administrationsDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Sort age tables by field',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Priority', value: 'priority' },
 			{ name: 'Name', value: 'name' },
 			{ name: 'ID', value: 'id' },

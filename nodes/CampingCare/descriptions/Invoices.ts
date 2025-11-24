@@ -13,13 +13,13 @@ export const invoicesDescription = [
 			{
 				name: 'Meta',
 				value: OPERATIONS.META,
-				description: 'HTTP methods for meta of a rate',
+				description: 'Manage invoice meta information',
 				action: 'Meta',
 			},
 			{
 				name: 'Get Invoices',
 				value: OPERATIONS.GET_INVOICES,
-				description: 'Get a list of invoices',
+				description: 'Get a list of invoices for this administration',
 				action: 'Get invoices',
 				routing: {
 					request: {
@@ -53,7 +53,7 @@ export const invoicesDescription = [
 			{
 				name: 'Get Invoice',
 				value: OPERATIONS.GET_INVOICE,
-				description: 'Get a single invoice by ID',
+				description: 'Get a single invoice by id',
 				action: 'Get invoice',
 				routing: {
 					request: {
@@ -77,7 +77,7 @@ export const invoicesDescription = [
 			{
 				name: 'Add Invoice',
 				value: OPERATIONS.ADD_INVOICE,
-				description: 'Create a new invoice',
+				description: 'Add a new empty concept email to the administration',
 				action: 'Add invoice',
 				routing: {
 					request: {
@@ -94,7 +94,7 @@ export const invoicesDescription = [
 			{
 				name: 'Update Invoice',
 				value: OPERATIONS.UPDATE_INVOICE,
-				description: 'Update an existing invoice',
+				description: 'Update a invoice contact',
 				action: 'Update invoice',
 				routing: {
 					request: {
@@ -110,7 +110,7 @@ export const invoicesDescription = [
 			{
 				name: 'Delete Invoice',
 				value: OPERATIONS.DELETE_INVOICE,
-				description: 'Delete an invoice by ID',
+				description: 'Remove a invoice from the administration',
 				action: 'Delete invoice',
 				routing: {
 					request: {
@@ -122,7 +122,7 @@ export const invoicesDescription = [
 			{
 				name: 'Finalize Invoice',
 				value: OPERATIONS.FINALIZE_INVOICE,
-				description: 'Finalize an invoice',
+				description: 'Invoices are started in status concept a can be changed',
 				action: 'Finalize invoice',
 				routing: {
 					request: {
@@ -137,7 +137,7 @@ export const invoicesDescription = [
 			{
 				name: 'Cancel Delayed Finalized Invoice',
 				value: OPERATIONS.CANCEL_DELAYED_FINALIZED_INVOICE,
-				description: 'Cancel a delayed finalized invoice',
+				description: 'Invoices are started in status concept a can be changed',
 				action: 'Cancel delayed finalized invoice',
 				routing: {
 					request: {
@@ -176,7 +176,7 @@ export const invoicesDescription = [
 			{
 				name: 'Update Meta',
 				value: OPERATIONS.UPDATE_META,
-				description: 'Update meta for a specific rate',
+				description: 'Update the invoice meta',
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
@@ -316,7 +316,7 @@ export const invoicesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Operator for create date filter',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: '=', value: '=' },
 			{ name: '>', value: '>' },
 			{ name: '>=', value: '>=' },
@@ -349,11 +349,10 @@ export const invoicesDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Maximum number of invoices to return (Max: 30)',
 		placeholder: '10',
-		typeOptions: { minValue: 1, maxValue: 30 },
-		default: 10,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
 		},
@@ -361,11 +360,10 @@ export const invoicesDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Number of invoices to skip',
 		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
 		},
@@ -376,7 +374,7 @@ export const invoicesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Sort order',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ASC', value: 'ASC' },
 			{ name: 'DESC', value: 'DESC' },
 		],
@@ -391,7 +389,7 @@ export const invoicesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Field to sort by',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ID', value: 'id' },
 			{ name: 'Invoice UID', value: 'invoice_uid' },
 			{ name: 'Invoice ID', value: 'invoice_id' },
@@ -571,7 +569,7 @@ export const invoicesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Filter by invoice status',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Draft', value: 'draft' },
 			{ name: 'Paid', value: 'paid' },
 			{ name: 'Unpaid', value: 'unpaid' },
@@ -589,7 +587,7 @@ export const invoicesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Filter by invoice type',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Invoice', value: 'invoice' },
 			{ name: 'Concept', value: 'concept' },
 		],

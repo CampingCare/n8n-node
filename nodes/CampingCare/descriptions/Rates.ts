@@ -541,17 +541,19 @@ export const ratesDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Limit for pagination',
-		default: 10,
+		placeholder: '1',
+		default: '',
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Offset for pagination',
-		default: 0,
+		placeholder: '1',
+		default: '',
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
 	{
@@ -560,7 +562,7 @@ export const ratesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Sort order for the results (ascending or descending)',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'ASC', value: 'asc' },
 			{ name: 'DESC', value: 'desc' },
 		],
@@ -573,7 +575,7 @@ export const ratesDescription = [
 		type: 'options' as NodePropertyTypes,
 		description: 'Field to sort the results by',
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Name', value: 'name' },
 			{ name: 'ID', value: 'id' },
 		],
@@ -585,6 +587,7 @@ export const ratesDescription = [
 		name: 'search',
 		type: 'string' as NodePropertyTypes,
 		description: 'Search term',
+		placeholder: 'ID or name',
 		default: '',
 		displayOptions: { show: { resource: [RESOURCES.RATES], operation: [OPERATIONS.GET_RATES] } },
 	},
@@ -594,6 +597,7 @@ export const ratesDescription = [
 		type: 'string' as NodePropertyTypes,
 		required: true,
 		description: 'Name of the rate',
+		placeholder: 'Standard Rate',
 		default: '',
 		displayOptions: {
 			show: {
@@ -607,6 +611,7 @@ export const ratesDescription = [
 		name: 'name',
 		type: 'string' as NodePropertyTypes,
 		description: 'Name of the rate',
+		placeholder: 'Standard Rate',
 		default: '',
 		displayOptions: {
 			show: {
@@ -620,7 +625,7 @@ export const ratesDescription = [
 		name: 'status',
 		type: 'options' as NodePropertyTypes,
 		options: [
-			{ name: '— None —', value: '' },
+			{ name: 'None', value: '' },
 			{ name: 'Active', value: 'active' },
 			{ name: 'Archived', value: 'archived' },
 		],
@@ -638,6 +643,7 @@ export const ratesDescription = [
 		name: 'parent_id',
 		type: 'string' as NodePropertyTypes,
 		description: 'Parent rate id / This rate uses prices from another rate id',
+		placeholder: '1234',
 		default: '',
 		displayOptions: {
 			show: {

@@ -55,11 +55,10 @@ export const timezonesDescription = [
 	{
 		displayName: 'Limit',
 		name: 'limit',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Maximum number of timezones to return',
 		placeholder: '15',
-		typeOptions: { minValue: 1 },
-		default: 15,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
 		},
@@ -67,11 +66,10 @@ export const timezonesDescription = [
 	{
 		displayName: 'Offset',
 		name: 'offset',
-		type: 'number' as NodePropertyTypes,
+		type: 'string' as NodePropertyTypes,
 		description: 'Number of items to skip before starting to return results',
 		placeholder: '0',
-		typeOptions: { minValue: 0 },
-		default: 0,
+		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
 		},

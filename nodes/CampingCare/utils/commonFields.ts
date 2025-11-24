@@ -1,8 +1,5 @@
 import type { NodePropertyTypes, INodeProperties } from 'n8n-workflow';
 
-/**
- * Creates a reusable boolean field with customizable display options
- */
 export const createBooleanField = (
 	name: string,
 	displayName: string,
@@ -24,9 +21,6 @@ export const createBooleanField = (
 	},
 });
 
-/**
- * Creates a reusable string field with customizable display options
- */
 export const createStringField = (
 	name: string,
 	displayName: string,

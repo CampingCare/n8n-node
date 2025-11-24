@@ -13,8 +13,7 @@ export const priceCalculationDescription = [
 			{
 				name: 'Price Calculation',
 				value: OPERATIONS.CALCULATE_PRICE,
-				description:
-					'Calculate accommodation price to get calculation ID and hash for creating a reservation',
+				description: 'With the price calculation API you can calculate a price',
 				action: 'Calculate price',
 				routing: {
 					request: {
@@ -55,7 +54,7 @@ export const priceCalculationDescription = [
 	},
 
 	{
-		displayName: 'Accommodation Name or ID',
+		displayName: 'Accommodation',
 		name: 'accommodation_id',
 		type: 'options' as NodePropertyTypes,
 		required: true,
@@ -63,8 +62,7 @@ export const priceCalculationDescription = [
 			loadOptionsMethod: 'getAccommodations',
 		},
 		default: '',
-		description:
-			'The accommodation ID can be found using the accommodations API. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+		description: 'Select the accommodation to calculate the price for',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.PRICE_CALCULATION],
