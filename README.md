@@ -1,4 +1,4 @@
-# n8n-nodes-campingcare-custom-nodes
+# n8n-nodes-starfish
 
 This is an n8n community node. It lets you use the Starfish API (CampingCare/HotelCare) in your n8n workflows.
 
@@ -6,12 +6,12 @@ Starfish is a comprehensive booking and reservation management platform for camp
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-[Installation](#installation)  
-[Operations](#operations)  
-[Credentials](#credentials)  
-[Compatibility](#compatibility)  
-[Usage](#usage)  
-[Resources](#resources)  
+[Installation](#installation)
+[Operations](#operations)
+[Credentials](#credentials)
+[Compatibility](#compatibility)
+[Usage](#usage)
+[Resources](#resources)
 [Version history](#version-history)
 
 ## Installation
@@ -27,7 +27,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 ### Install via npm
 
 ```bash
-npm install n8n-nodes-campingcare-custom-nodes
+npm install n8n-nodes-starfish
 ```
 
 ### Install in n8n
@@ -35,13 +35,13 @@ npm install n8n-nodes-campingcare-custom-nodes
 **Option A — via UI:**
 
 1. In n8n: Settings > Community Nodes > Install
-2. Search for or paste: `n8n-nodes-campingcare-custom-nodes`
+2. Search for or paste: `n8n-nodes-starfish`
 3. Confirm and restart n8n
 
 **Option B — via CLI:**
 
 1. Stop your n8n instance
-2. Install: `npm install n8n-nodes-campingcare-custom-nodes`
+2. Install: `npm install n8n-nodes-starfish`
 3. Restart n8n
 4. The nodes will appear in the node panel
 
@@ -193,7 +193,7 @@ For the price calculation method:
 
 - [Starfish API Documentation](https://support.starfish.care/faq/n8n/)
 - [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [GitHub Repository](https://github.com/CampingCare/n8n-node)
+- [GitHub Repository](https://github.com/CampingCare/n8n-nodes-starfish)
 - [CampingCare Website](https://www.camping.care)
 
 ## Version history
