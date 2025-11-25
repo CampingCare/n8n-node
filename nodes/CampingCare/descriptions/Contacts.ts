@@ -45,7 +45,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contactId"]}}',
+						url: '=/contacts/{{$parameter["contact_id"]}}',
 						qs: {
 							get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
 							get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
@@ -91,20 +91,35 @@ export const contactsDescription = [
 					},
 				},
 			},
+			{
+				name: 'Delete Contact',
+				value: OPERATIONS.DELETE_CONTACT,
+				description: 'Deletes a contact from the administration by ID',
+				action: 'Delete contact',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/contacts/{{$parameter["contact_id"]}}',
+					},
+				},
+			},
 		],
 		default: OPERATIONS.GET_CONTACTS,
 	},
 
 	{
 		displayName: 'Contact ID',
-		name: 'contactId',
+		name: 'contact_id',
 		type: 'string' as NodePropertyTypes,
 		required: true,
-		description: 'Unique identifier of the contact to retrieve',
+		description: 'The unique identifier of the contact',
 		placeholder: '340',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACT] },
+			show: {
+				resource: [RESOURCES.CONTACTS],
+				operation: [OPERATIONS.GET_CONTACT, OPERATIONS.DELETE_CONTACT],
+			},
 		},
 	},
 	commonBooleans.count([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS]),

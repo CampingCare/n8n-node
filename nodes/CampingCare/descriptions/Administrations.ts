@@ -42,7 +42,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["administrationId"]}}',
+						url: '=/administrations/{{$parameter["admin_id"]}}',
 						qs: {
 							get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
@@ -50,6 +50,34 @@ export const administrationsDescription = [
 							get_vat_tables: '={{ $parameter["get_vat_tables"] || undefined }}',
 							translations: '={{ $parameter["translations"] || undefined }}',
 						},
+					},
+				},
+			},
+			{
+				name: 'Add Administration',
+				value: OPERATIONS.ADD_ADMINISTRATION,
+				description: 'Add a new administration (full PMS or lite version)',
+				action: 'Add administration',
+				routing: {
+					request: {
+						method: 'POST' as IHttpRequestMethods,
+						url: API_ENDPOINTS.ADMINISTRATIONS,
+						body: {
+							name: '={{ $parameter["name"] }}',
+							type: '={{ $parameter["type"] }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Delete Administration',
+				value: OPERATIONS.DELETE_ADMINISTRATION,
+				description: 'Delete an administration by ID',
+				action: 'Delete administration',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/administrations/{{$parameter["admin_id"]}}',
 					},
 				},
 			},
@@ -112,14 +140,50 @@ export const administrationsDescription = [
 
 	{
 		displayName: 'Administration ID',
-		name: 'administrationId',
+		name: 'admin_id',
 		type: 'string' as NodePropertyTypes,
 		required: true,
-		description: 'Unique identifier of the administration to retrieve',
+		description: 'The unique identifier of the administration',
 		placeholder: '1234',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATION] },
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [
+					OPERATIONS.GET_ADMINISTRATION,
+					OPERATIONS.AGE_TABLES,
+					OPERATIONS.DELETE_ADMINISTRATION,
+				],
+			},
+		},
+	},
+
+	{
+		displayName: 'Name',
+		name: 'name',
+		type: 'string' as NodePropertyTypes,
+		required: true,
+		description: 'Name of the administration',
+		placeholder: 'Camping.care Park',
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
+		},
+	},
+
+	{
+		displayName: 'Type',
+		name: 'type',
+		type: 'options' as NodePropertyTypes,
+		required: true,
+		description: 'Type of administration',
+		options: [
+			{ name: 'Full', value: 'full' },
+			{ name: 'Lite', value: 'lite' },
+		],
+		default: 'full',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
 		},
 	},
 
@@ -192,21 +256,6 @@ export const administrationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Administration ID',
-		name: 'admin_id',
-		type: 'string' as NodePropertyTypes,
-		required: true,
-		description: 'The administration ID to get age tables from',
-		placeholder: '1234',
-		default: '',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.AGE_TABLES],
-			},
-		},
-	},
 	{
 		displayName: 'Translations',
 		name: 'translations_age_tables',

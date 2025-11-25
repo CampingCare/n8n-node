@@ -56,20 +56,25 @@ export const OPERATIONS = {
 	GET_ACCOMMODATION: 'getAccommodation',
 	GET_ACCOMMODATIONS: 'getAccommodations',
 	ADD_ACCOMMODATION: 'addAccommodation',
+	DELETE_ACCOMMODATION: 'deleteAccommodation',
 
 	GET_ADMINISTRATION: 'getAdministration',
 	GET_ADMINISTRATIONS: 'getAdministrations',
+	ADD_ADMINISTRATION: 'addAdministration',
+	DELETE_ADMINISTRATION: 'deleteAdministration',
 	AGE_TABLES: 'ageTables',
 
 	GET_CONTACT: 'getContact',
 	GET_CONTACTS: 'getContacts',
 	ADD_CONTACT: 'addContact',
+	DELETE_CONTACT: 'deleteContact',
 
 	CALCULATE_PRICE: 'calculatePrice',
 
 	GET_RESERVATION: 'getReservation',
 	GET_RESERVATIONS: 'getReservations',
 	CREATE_RESERVATION: 'createReservation',
+	DELETE_RESERVATION: 'deleteReservation',
 
 	GET_TIMEZONES: 'getTimezones',
 

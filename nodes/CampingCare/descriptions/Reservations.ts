@@ -89,6 +89,18 @@ export const reservationsDescription = [
 				description: 'Create a reservation using different methods',
 				action: 'Create reservation',
 			},
+			{
+				name: 'Delete Reservation',
+				value: OPERATIONS.DELETE_RESERVATION,
+				description: 'Delete a reservation by ID',
+				action: 'Delete reservation',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/reservations/{{$parameter["reservation_id"]}}',
+					},
+				},
+			},
 		],
 		default: OPERATIONS.GET_RESERVATIONS,
 	},
@@ -132,11 +144,14 @@ export const reservationsDescription = [
 		name: 'reservation_id',
 		required: true,
 		type: 'string' as NodePropertyTypes,
-		description: 'The unique ID of the reservation you want to retrieve',
+		description: 'The unique ID of the reservation',
 		placeholder: '1234567',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.RESERVATIONS], operation: [OPERATIONS.GET_RESERVATION] },
+			show: {
+				resource: [RESOURCES.RESERVATIONS],
+				operation: [OPERATIONS.GET_RESERVATION, OPERATIONS.DELETE_RESERVATION]
+			},
 		},
 	},
 

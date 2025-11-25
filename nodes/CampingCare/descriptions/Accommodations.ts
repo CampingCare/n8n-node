@@ -67,6 +67,18 @@ export const accommodationsDescription = [
 					},
 				},
 			},
+			{
+				name: 'Delete Accommodation',
+				value: OPERATIONS.DELETE_ACCOMMODATION,
+				description: 'With this method you can delete a single accommodation',
+				action: 'Delete accommodation',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/accommodations/{{$parameter["accommodation_id"]}}',
+					},
+				},
+			},
 		],
 		default: OPERATIONS.GET_ACCOMMODATIONS,
 	},
@@ -76,11 +88,14 @@ export const accommodationsDescription = [
 		name: 'accommodation_id',
 		type: 'options' as NodePropertyTypes,
 		required: true,
-		description: 'Select the accommodation to retrieve',
+		description: 'Select the accommodation',
 		default: '',
 		typeOptions: { loadOptionsMethod: 'getAccommodations' },
 		displayOptions: {
-			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATION] },
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.GET_ACCOMMODATION, OPERATIONS.DELETE_ACCOMMODATION],
+			},
 		},
 	},
 
