@@ -16,6 +16,7 @@ export const API_ENDPOINTS = {
 	INVOICES: '/invoices',
 	PAYMENTS: '/payments',
 	RATES: '/rates',
+	LICENSE_PLATES: '/license_plates',
 } as const;
 
 export const EXCLUDED_CONTACT_FIELDS = [
@@ -50,6 +51,7 @@ export const RESOURCES = {
 	TIMEZONES: 'timezones',
 	RATES: 'rates',
 	INVOICES: 'invoices',
+	LICENSE_PLATES: 'licensePlates',
 } as const;
 
 export const OPERATIONS = {
@@ -89,6 +91,12 @@ export const OPERATIONS = {
 	UPDATE_RATE: 'updateRate',
 	DELETE_RATE: 'deleteRate',
 
+	GET_LICENSE_PLATES: 'getLicensePlates',
+	GET_LICENSE_PLATE: 'getLicensePlate',
+	CHECK_VALID_LICENSE_PLATE: 'checkValidLicensePlate',
+	ADD_LICENSE_PLATE: 'addLicensePlate',
+	UPDATE_LICENSE_PLATE: 'updateLicensePlate',
+	DELETE_LICENSE_PLATE: 'deleteLicensePlate',
 	PRICES: 'prices',
 	GET_PRICES: 'getPrices',
 	UPDATE_PRICES: 'updatePrices',

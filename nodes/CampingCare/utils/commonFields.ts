@@ -168,6 +168,15 @@ export const commonBooleans = {
 			operations,
 		),
 
+	forceDates: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'force_dates',
+			'Force Dates',
+			'Whether to overwrite the stay dates of the reservation',
+			resources,
+			operations,
+		),
+
 	getReservationMeta: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'get_reservation_meta',

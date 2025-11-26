@@ -9,6 +9,7 @@ import { accommodationsDescription } from './descriptions/Accommodations';
 import { timezonesDescription } from './descriptions/Timezones';
 import { ratesDescription } from './descriptions/Rates';
 import { invoicesDescription } from './descriptions/Invoices';
+import { licensePlatesDescription } from './descriptions/LicensePlates';
 import { API_BASE_URL, API_ENDPOINTS, EXCLUDED_CONTACT_FIELDS, RESOURCES } from './utils/constants';
 import type {
 	ContactField,
@@ -56,6 +57,7 @@ export class CampingCare implements INodeType {
 					{ name: 'Invoices API', value: RESOURCES.INVOICES },
 					{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
 					{ name: 'Rates API', value: RESOURCES.RATES },
+					{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
 					{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
 					{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
 				],
@@ -68,6 +70,7 @@ export class CampingCare implements INodeType {
 			...invoicesDescription,
 			...priceCalculationDescription,
 			...ratesDescription,
+			...licensePlatesDescription,
 			...reservationsDescription,
 			...timezonesDescription,
 		],
