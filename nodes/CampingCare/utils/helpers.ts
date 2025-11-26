@@ -25,6 +25,7 @@ export const createContactField = (
 		default?: string | number | boolean;
 		typeOptions?: Record<string, unknown>;
 		placeholder?: string;
+		operations?: string | string[];
 	} = {},
 ) => ({
 	displayName,
@@ -33,7 +34,7 @@ export const createContactField = (
 	description,
 	default: options.default !== undefined ? options.default : '',
 	required: options.required || false,
-	displayOptions: createDisplayOptions('contacts', 'addContact'),
+	displayOptions: createDisplayOptions('contacts', options.operations || ['addContact', 'updateContact']),
 	...(options.typeOptions && { typeOptions: options.typeOptions }),
 	...(options.placeholder && { placeholder: options.placeholder }),
 });

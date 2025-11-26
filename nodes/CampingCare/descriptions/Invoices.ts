@@ -235,7 +235,7 @@ export const invoicesDescription = [
 		displayName: 'Key',
 		name: 'key',
 		type: 'string' as NodePropertyTypes,
-		description: 'Meta key to get or update (e.g. pin, first_name)',
+		description: 'Meta key to get or update',
 		placeholder: 'first_name',
 		default: '',
 		displayOptions: {
@@ -251,7 +251,7 @@ export const invoicesDescription = [
 		displayName: 'Value',
 		name: 'value',
 		type: 'string' as NodePropertyTypes,
-		description: 'Value to set for the meta key (e.g. John Doe)',
+		description: 'Value to set for the meta key',
 		placeholder: 'John Doe',
 		default: '',
 		displayOptions: {
@@ -263,7 +263,6 @@ export const invoicesDescription = [
 		},
 	},
 
-	// Common boolean fields
 	commonBooleans.count([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES]),
 	commonBooleans.filterRootMeta(
 		[RESOURCES.INVOICES],
@@ -291,7 +290,6 @@ export const invoicesDescription = [
 	commonBooleans.getRows([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
 	commonBooleans.getVatTotals([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
 
-	// Filter fields
 	createStringField(
 		'channel_id',
 		'Channel ID',

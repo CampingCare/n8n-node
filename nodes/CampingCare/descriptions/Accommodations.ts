@@ -11,6 +11,12 @@ export const accommodationsDescription = [
 		displayOptions: { show: { resource: [RESOURCES.ACCOMMODATIONS] } },
 		options: [
 			{
+				name: 'Meta',
+				value: OPERATIONS.META,
+				description: 'Manage accommodation meta information',
+				action: 'Meta',
+			},
+			{
 				name: 'Get Accommodations',
 				value: OPERATIONS.GET_ACCOMMODATIONS,
 				description: 'You can get your accommodations with the get accommodations method',
@@ -68,6 +74,24 @@ export const accommodationsDescription = [
 				},
 			},
 			{
+				name: 'Update Accommodation',
+				value: OPERATIONS.UPDATE_ACCOMMODATION,
+				description: 'With this method you can update an existing accommodation',
+				action: 'Update accommodation',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/accommodations/{{$parameter["accommodation_id"]}}',
+						qs: {
+							name: '={{ $parameter["update_name"] }}',
+							description: '={{ $parameter["description"] || undefined }}',
+							status: '={{ $parameter["status"] || undefined }}',
+							vat_procent: '={{ $parameter["vat_procent"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
 				name: 'Delete Accommodation',
 				value: OPERATIONS.DELETE_ACCOMMODATION,
 				description: 'With this method you can delete a single accommodation',
@@ -82,6 +106,50 @@ export const accommodationsDescription = [
 		],
 		default: OPERATIONS.GET_ACCOMMODATIONS,
 	},
+	{
+		displayName: 'Meta Operation',
+		name: 'metaOperation',
+		type: 'options' as NodePropertyTypes,
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.META],
+			},
+		},
+		options: [
+			{
+				name: 'Update Meta',
+				value: OPERATIONS.UPDATE_META,
+				description: 'Update the accommodation meta',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/accommodations/{{$parameter["accommodation_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+							value: '={{ $parameter["value"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Meta',
+				value: OPERATIONS.GET_META,
+				description: 'Get the accommodation meta',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/accommodations/{{$parameter["accommodation_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+		],
+		default: OPERATIONS.UPDATE_META,
+	},
 
 	{
 		displayName: 'Accommodation',
@@ -94,7 +162,12 @@ export const accommodationsDescription = [
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.ACCOMMODATIONS],
-				operation: [OPERATIONS.GET_ACCOMMODATION, OPERATIONS.DELETE_ACCOMMODATION],
+				operation: [
+					OPERATIONS.GET_ACCOMMODATION,
+					OPERATIONS.DELETE_ACCOMMODATION,
+					OPERATIONS.META,
+					OPERATIONS.UPDATE_ACCOMMODATION,
+				],
 			},
 		},
 	},
@@ -113,6 +186,7 @@ export const accommodationsDescription = [
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
+
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -186,7 +260,102 @@ export const accommodationsDescription = [
 		placeholder: 'Campsite',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.ADD_ACCOMMODATION] },
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.ADD_ACCOMMODATION],
+			},
+		},
+	},
+
+	{
+		displayName: 'Name',
+		name: 'update_name',
+		type: 'string' as NodePropertyTypes,
+		description: 'Update the name of the accommodation',
+		placeholder: 'Camping name',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.UPDATE_ACCOMMODATION],
+			},
+		},
+	},
+	{
+		displayName: 'Description',
+		name: 'description',
+		type: 'string' as NodePropertyTypes,
+		description: 'Update the description of the accommodation',
+		placeholder: 'This is the accommodation description!',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.UPDATE_ACCOMMODATION],
+			},
+		},
+	},
+	{
+		displayName: 'Status',
+		name: 'status',
+		type: 'options' as NodePropertyTypes,
+		description: 'Status of the accommodation',
+		options: [
+			{ name: 'None', value: '' },
+			{ name: 'Active', value: 'active' },
+			{ name: 'Nonactive', value: 'nonactive' },
+		],
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.UPDATE_ACCOMMODATION],
+			},
+		},
+	},
+	{
+		displayName: 'VAT Procent',
+		name: 'vat_procent',
+		type: 'string' as NodePropertyTypes,
+		description: 'VAT procent for the accommodation',
+		placeholder: '0',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.UPDATE_ACCOMMODATION],
+			},
+		},
+	},
+
+	{
+		displayName: 'Key',
+		name: 'key',
+		type: 'string' as NodePropertyTypes,
+		description: 'Meta key to get or update',
+		placeholder: 'pin',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META, OPERATIONS.GET_META],
+			},
+		},
+	},
+	{
+		displayName: 'Value',
+		name: 'value',
+		type: 'string' as NodePropertyTypes,
+		description: 'Value to set for the meta key',
+		placeholder: '12345',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ACCOMMODATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
+			},
 		},
 	},
 ];

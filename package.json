@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-starfish",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Custom n8n nodes for integrating with the Starfish API (CampingCare/HotelCare) - manage contacts, reservations, accommodations, webhooks and more.",
 	"keywords": [
 		"n8n-community-node-package",

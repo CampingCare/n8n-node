@@ -11,6 +11,18 @@ export const administrationsDescription = [
 		displayOptions: { show: { resource: [RESOURCES.ADMINISTRATIONS] } },
 		options: [
 			{
+				name: 'Meta',
+				value: OPERATIONS.META,
+				description: 'Manage administration meta information',
+				action: 'Meta',
+			},
+			{
+				name: 'Age Tables',
+				value: OPERATIONS.AGE_TABLES,
+				description: 'Get age tables for an administration',
+				action: 'Age tables',
+			},
+			{
 				name: 'Get Administrations',
 				value: OPERATIONS.GET_ADMINISTRATIONS,
 				description: 'You can retrieve the administrations of a specific user',
@@ -54,6 +66,21 @@ export const administrationsDescription = [
 				},
 			},
 			{
+				name: 'Update Administration',
+				value: OPERATIONS.UPDATE_ADMINISTRATION,
+				description: 'Update an administration by id',
+				action: 'Update administration',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/administrations/{{$parameter["admin_id"]}}',
+						qs: {
+							name: '={{ $parameter["update_name"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
 				name: 'Add Administration',
 				value: OPERATIONS.ADD_ADMINISTRATION,
 				description: 'Add a new administration (full PMS or lite version)',
@@ -72,7 +99,7 @@ export const administrationsDescription = [
 			{
 				name: 'Delete Administration',
 				value: OPERATIONS.DELETE_ADMINISTRATION,
-				description: 'Delete an administration by ID',
+				description: 'Delete an administration by id',
 				action: 'Delete administration',
 				routing: {
 					request: {
@@ -81,14 +108,67 @@ export const administrationsDescription = [
 					},
 				},
 			},
-			{
-				name: 'Age Tables',
-				value: OPERATIONS.AGE_TABLES,
-				description: 'Get age tables for an administration',
-				action: 'Age tables',
-			},
 		],
 		default: OPERATIONS.GET_ADMINISTRATIONS,
+	},
+	{
+		displayName: 'Meta Operation',
+		name: 'metaOperation',
+		type: 'options' as NodePropertyTypes,
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.META],
+			},
+		},
+		options: [
+			{
+				name: 'Update Meta',
+				value: OPERATIONS.UPDATE_META,
+				description: 'Update the administration meta',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+							value: '={{ $parameter["value"] || undefined }}',
+							admin_id: '={{ $parameter["update_admin_id"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Meta',
+				value: OPERATIONS.GET_META,
+				description: 'Get the administration meta',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Delete Meta',
+				value: OPERATIONS.DELETE_META,
+				description: 'Delete the administration meta',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+		],
+		default: OPERATIONS.UPDATE_META,
 	},
 
 	{
@@ -150,9 +230,11 @@ export const administrationsDescription = [
 			show: {
 				resource: [RESOURCES.ADMINISTRATIONS],
 				operation: [
-					OPERATIONS.GET_ADMINISTRATION,
 					OPERATIONS.AGE_TABLES,
+					OPERATIONS.GET_ADMINISTRATION,
+					OPERATIONS.UPDATE_ADMINISTRATION,
 					OPERATIONS.DELETE_ADMINISTRATION,
+					OPERATIONS.META,
 				],
 			},
 		},
@@ -170,7 +252,6 @@ export const administrationsDescription = [
 			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
 		},
 	},
-
 	{
 		displayName: 'Type',
 		name: 'type',
@@ -257,6 +338,67 @@ export const administrationsDescription = [
 	},
 
 	{
+		displayName: 'Name',
+		name: 'update_name',
+		type: 'string' as NodePropertyTypes,
+		description: 'Name of the administration',
+		placeholder: 'Camping.care Park',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.UPDATE_ADMINISTRATION],
+			},
+		},
+	},
+
+	{
+		displayName: 'Key',
+		name: 'key',
+		type: 'string' as NodePropertyTypes,
+		description: 'Meta key to get or update',
+		placeholder: 'currency',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META, OPERATIONS.GET_META, OPERATIONS.DELETE_META],
+			},
+		},
+	},
+	{
+		displayName: 'Value',
+		name: 'value',
+		type: 'string' as NodePropertyTypes,
+		description: 'Value to set for the meta key',
+		placeholder: 'EUR',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
+			},
+		},
+	},
+	{
+		displayName: 'Update Administration ID',
+		name: 'update_admin_id',
+		type: 'string' as NodePropertyTypes,
+		description: '**OTA only: administration id of the administration meta you want to change',
+		placeholder: '1234',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
+			},
+		},
+	},
+
+	{
 		displayName: 'Translations',
 		name: 'translations_age_tables',
 		type: 'boolean' as NodePropertyTypes,
@@ -281,7 +423,7 @@ export const administrationsDescription = [
 			show: {
 				resource: [RESOURCES.ADMINISTRATIONS],
 				operation: [OPERATIONS.AGE_TABLES],
-				ageTablesMethod: ['getAgeTable'],
+				ageTablesMethod: [OPERATIONS.GET_AGE_TABLE],
 			},
 		},
 	},
@@ -301,7 +443,7 @@ export const administrationsDescription = [
 			show: {
 				resource: [RESOURCES.ADMINISTRATIONS],
 				operation: [OPERATIONS.AGE_TABLES],
-				ageTablesMethod: ['getAgeTables'],
+				ageTablesMethod: [OPERATIONS.GET_AGE_TABLES],
 			},
 		},
 	},

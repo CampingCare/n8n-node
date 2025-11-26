@@ -11,6 +11,12 @@ export const reservationsDescription = [
 		displayOptions: { show: { resource: [RESOURCES.RESERVATIONS] } },
 		options: [
 			{
+				name: 'Meta',
+				value: OPERATIONS.META,
+				description: 'Manage reservation meta information',
+				action: 'Meta',
+			},
+			{
 				name: 'Get Reservations',
 				value: OPERATIONS.GET_RESERVATIONS,
 				description:
@@ -104,6 +110,64 @@ export const reservationsDescription = [
 		],
 		default: OPERATIONS.GET_RESERVATIONS,
 	},
+	{
+		displayName: 'Meta Operation',
+		name: 'metaOperation',
+		type: 'options' as NodePropertyTypes,
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RESERVATIONS],
+				operation: [OPERATIONS.META],
+			},
+		},
+		options: [
+			{
+				name: 'Update Meta',
+				value: OPERATIONS.UPDATE_META,
+				description: 'Update the reservation meta',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+							value: '={{ $parameter["value"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Meta',
+				value: OPERATIONS.GET_META,
+				description: 'Get the reservation meta',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Delete Meta',
+				value: OPERATIONS.DELETE_META,
+				description: 'Delete the reservation meta',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+		],
+		default: OPERATIONS.UPDATE_META,
+	},
 
 	{
 		displayName: 'Creation Method',
@@ -150,7 +214,7 @@ export const reservationsDescription = [
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.RESERVATIONS],
-				operation: [OPERATIONS.GET_RESERVATION, OPERATIONS.DELETE_RESERVATION]
+				operation: [OPERATIONS.GET_RESERVATION, OPERATIONS.DELETE_RESERVATION, OPERATIONS.META],
 			},
 		},
 	},
@@ -833,6 +897,37 @@ export const reservationsDescription = [
 					co_travelers:
 						'={{ $parameter["co_travelers"].traveler?.map(traveler => Object.fromEntries(traveler.field.field.map(f => [f.key, f.value]))) || [] }}',
 				},
+			},
+		},
+	},
+
+	{
+		displayName: 'Key',
+		name: 'key',
+		type: 'string' as NodePropertyTypes,
+		description: 'Meta key to get or update',
+		placeholder: 'pin',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RESERVATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META, OPERATIONS.GET_META],
+			},
+		},
+	},
+	{
+		displayName: 'Value',
+		name: 'value',
+		type: 'string' as NodePropertyTypes,
+		description: 'Value to set for the meta key',
+		placeholder: '12345',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.RESERVATIONS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
 			},
 		},
 	},

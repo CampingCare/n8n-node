@@ -52,7 +52,29 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}',
+						url: '=/rates/{{$parameter["rate_id"]}}',
+					},
+				},
+			},
+			{
+				name: 'Update Rate',
+				value: OPERATIONS.UPDATE_RATE,
+				description: 'Update an existing rate',
+				action: 'Update rate',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/rates/{{$parameter["rate_id"]}}',
+						qs: {
+							name: '={{ $parameter["name"] || undefined }}',
+							parent_id: '={{ $parameter["parent_id"] || undefined }}',
+							closed:
+								'={{ $parameter["closed"] !== undefined && $parameter["closed"] !== "" ? $parameter["closed"] : undefined }}',
+							minimum_stay: '={{ $parameter["minimum_stay"] || undefined }}',
+							maximum_stay: '={{ $parameter["maximum_stay"] || undefined }}',
+							'rules[0]':
+								'={{ $parameter["rules"]?.table ? ( Array.isArray($parameter["rules"].table) ? JSON.stringify({ type: $parameter["rules"].table[0].type, amount: String($parameter["rules"].table[0].amount) }) : JSON.stringify({ type: $parameter["rules"].table.type, amount: String($parameter["rules"].table.amount) }) ) : undefined }}',
+						},
 					},
 				},
 			},
@@ -70,28 +92,6 @@ export const ratesDescription = [
 				},
 			},
 			{
-				name: 'Update Rate',
-				value: OPERATIONS.UPDATE_RATE,
-				description: 'Update an existing rate',
-				action: 'Update rate',
-				routing: {
-					request: {
-						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}',
-						qs: {
-							name: '={{ $parameter["name"] || undefined }}',
-							parent_id: '={{ $parameter["parent_id"] || undefined }}',
-							closed:
-								'={{ $parameter["closed"] !== undefined && $parameter["closed"] !== "" ? $parameter["closed"] : undefined }}',
-							minimum_stay: '={{ $parameter["minimum_stay"] || undefined }}',
-							maximum_stay: '={{ $parameter["maximum_stay"] || undefined }}',
-							'rules[0]':
-								'={{ $parameter["rules"]?.table ? ( Array.isArray($parameter["rules"].table) ? JSON.stringify({ type: $parameter["rules"].table[0].type, amount: String($parameter["rules"].table[0].amount) }) : JSON.stringify({ type: $parameter["rules"].table.type, amount: String($parameter["rules"].table.amount) }) ) : undefined }}',
-						},
-					},
-				},
-			},
-			{
 				name: 'Delete Rate',
 				value: OPERATIONS.DELETE_RATE,
 				description: 'Delete a rate by ID',
@@ -99,7 +99,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}',
+						url: '=/rates/{{$parameter["rate_id"]}}',
 					},
 				},
 			},
@@ -126,7 +126,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}/prices',
+						url: '=/rates/{{$parameter["rate_id"]}}/prices',
 						qs: {
 							start: '={{ $parameter["start"] || undefined }}',
 							end: '={{ $parameter["end"] || undefined }}',
@@ -143,7 +143,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}/prices',
+						url: '=/rates/{{$parameter["rate_id"]}}/prices',
 						qs: {
 							start: '={{ $parameter["start"] || undefined }}',
 							end: '={{ $parameter["end"] || undefined }}',
@@ -178,30 +178,30 @@ export const ratesDescription = [
 		},
 		options: [
 			{
-				name: 'Get Meta',
-				value: OPERATIONS.GET_META,
-				description: 'Get meta for a specific rate',
-				routing: {
-					request: {
-						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}/meta',
-						qs: {
-							key: '={{ $parameter["key"] || undefined }}',
-						},
-					},
-				},
-			},
-			{
 				name: 'Update Meta',
 				value: OPERATIONS.UPDATE_META,
 				description: 'Update meta for a specific rate',
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}/meta',
+						url: '=/rates/{{$parameter["rate_id"]}}/meta',
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Meta',
+				value: OPERATIONS.GET_META,
+				description: 'Get meta for a specific rate',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/rates/{{$parameter["rate_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
 						},
 					},
 				},
@@ -213,7 +213,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rateId"]}}/meta',
+						url: '=/rates/{{$parameter["rate_id"]}}/meta',
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -226,7 +226,7 @@ export const ratesDescription = [
 
 	{
 		displayName: 'Rate ID',
-		name: 'rateId',
+		name: 'rate_id',
 		type: 'string' as NodePropertyTypes,
 		required: true,
 		description: 'ID of the rate to retrieve',

@@ -12,6 +12,12 @@ export const contactsDescription = [
 		displayOptions: { show: { resource: [RESOURCES.CONTACTS] } },
 		options: [
 			{
+				name: 'Meta',
+				value: OPERATIONS.META,
+				description: 'Manage contact meta information',
+				action: 'Meta',
+			},
+			{
 				name: 'Get Contacts',
 				value: OPERATIONS.GET_CONTACTS,
 				description: 'Get a list of contacts for this administration',
@@ -92,6 +98,31 @@ export const contactsDescription = [
 				},
 			},
 			{
+				name: 'Update Contact',
+				value: OPERATIONS.UPDATE_CONTACT,
+				description: 'Update a contact, only provided parameters will be updated',
+				action: 'Update contact',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/contacts/{{$parameter["contact_id"]}}',
+						body: {
+							gender: '={{ $parameter["gender"] || undefined }}',
+							first_name: '={{ $parameter["first_name"] || undefined }}',
+							last_name: '={{ $parameter["last_name"] || undefined }}',
+							address: '={{ $parameter["address"] || undefined }}',
+							address_number: '={{ $parameter["address_number"] || undefined }}',
+							zipcode: '={{ $parameter["zipcode"] || undefined }}',
+							city: '={{ $parameter["city"] || undefined }}',
+							country: '={{ $parameter["country"] || undefined }}',
+							company: '={{ $parameter["company"] || undefined }}',
+							phone: '={{ $parameter["phone"] || undefined }}',
+							type: '={{ $parameter["type"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
 				name: 'Delete Contact',
 				value: OPERATIONS.DELETE_CONTACT,
 				description: 'Deletes a contact from the administration by ID',
@@ -106,6 +137,65 @@ export const contactsDescription = [
 		],
 		default: OPERATIONS.GET_CONTACTS,
 	},
+	{
+		displayName: 'Meta Operation',
+		name: 'metaOperation',
+		type: 'options' as NodePropertyTypes,
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.CONTACTS],
+				operation: [OPERATIONS.META],
+			},
+		},
+		options: [
+			{
+				name: 'Update Meta',
+				value: OPERATIONS.UPDATE_META,
+				description: 'Update the contact meta',
+				routing: {
+					request: {
+						method: 'PUT' as IHttpRequestMethods,
+						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+							value: '={{ $parameter["value"] || undefined }}',
+							contact_id: '={{ $parameter["update_contact_id"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Get Meta',
+				value: OPERATIONS.GET_META,
+				description: 'Get the contact meta',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
+				name: 'Delete Meta',
+				value: OPERATIONS.DELETE_META,
+				description: 'Delete the contact meta',
+				routing: {
+					request: {
+						method: 'DELETE' as IHttpRequestMethods,
+						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						qs: {
+							key: '={{ $parameter["key"] || undefined }}',
+						},
+					},
+				},
+			},
+		],
+		default: OPERATIONS.UPDATE_META,
+	},
 
 	{
 		displayName: 'Contact ID',
@@ -118,7 +208,7 @@ export const contactsDescription = [
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACT, OPERATIONS.DELETE_CONTACT],
+				operation: [OPERATIONS.GET_CONTACT, OPERATIONS.UPDATE_CONTACT, OPERATIONS.DELETE_CONTACT, OPERATIONS.META],
 			},
 		},
 	},
@@ -221,6 +311,11 @@ export const contactsDescription = [
 	createContactField('last_name', 'Last Name', 'Last name of the contact', {
 		required: true,
 		placeholder: 'Doe',
+		operations: 'addContact',
+	}),
+	createContactField('last_name', 'Last Name', 'Last name of the contact', {
+		placeholder: 'Doe',
+		operations: 'updateContact',
 	}),
 	{
 		displayName: 'Gender',
@@ -234,10 +329,11 @@ export const contactsDescription = [
 			{ name: 'Family', value: 'family' },
 		],
 		default: '',
-		displayOptions: createDisplayOptions('contacts', 'addContact'),
+		displayOptions: createDisplayOptions('contacts', ['addContact', 'updateContact']),
 	},
 	createContactField('birthday', 'Birthday', 'Birthday of the contact in YYYY-MM-DD format', {
 		placeholder: '1990-01-15',
+		operations: 'addContact',
 		typeOptions: {
 			validation: [
 				{
@@ -253,12 +349,14 @@ export const contactsDescription = [
 	createContactField('email', 'Email', 'Email address of the contact', {
 		required: true,
 		placeholder: 'support@camping.care',
+		operations: 'addContact',
 	}),
 	createContactField('phone', 'Phone', 'Primary phone number of the contact', {
 		placeholder: '+31 (0)541 248 011',
 	}),
 	createContactField('phone_mobile', 'Mobile Phone', 'Mobile phone number of the contact', {
 		placeholder: '+31 (0)541 248 011',
+		operations: 'addContact',
 	}),
 	createContactField('address', 'Address', "Street name of the contact's address", {
 		placeholder: 'Lossersestraat',
@@ -271,6 +369,7 @@ export const contactsDescription = [
 	}),
 	createContactField('state', 'State', 'State or province of the contact', {
 		placeholder: 'Overijssel',
+		operations: 'addContact',
 	}),
 	createContactField('zipcode', 'Zipcode', "Postal code of the contact's address", {
 		placeholder: '7574AE',
@@ -282,16 +381,17 @@ export const contactsDescription = [
 		description: 'Country where the contact resides',
 		typeOptions: { loadOptionsMethod: 'getCountriesFromRules' },
 		default: '',
-		displayOptions: createDisplayOptions('contacts', 'addContact'),
+		displayOptions: createDisplayOptions('contacts', ['addContact', 'updateContact']),
 	},
 	createContactField(
 		'id_type',
 		'ID Type',
 		'Type of identification document (e.g. Passport, ID Card)',
-		{ placeholder: 'Passport' },
+		{ placeholder: 'Passport', operations: 'addContact' },
 	),
 	createContactField('id_nr', 'ID Number', 'Identification number of the document', {
 		placeholder: 'AB1234567',
+		operations: 'addContact',
 	}),
 	{
 		displayName: 'Country of Origin',
@@ -309,7 +409,7 @@ export const contactsDescription = [
 		'vat_number',
 		'VAT Number',
 		'VAT number associated with the company (if applicable)',
-		{ placeholder: 'NL123456789B01' },
+		{ placeholder: 'NL123456789B01', operations: 'addContact' },
 	),
 	{
 		displayName: 'Type',
@@ -323,7 +423,7 @@ export const contactsDescription = [
 			{ name: 'Booker', value: 'booker' },
 		],
 		default: '',
-		displayOptions: createDisplayOptions('contacts', 'addContact'),
+		displayOptions: createDisplayOptions('contacts', ['addContact', 'updateContact']),
 	},
 	{
 		displayName: 'Extra Fields',
@@ -359,5 +459,51 @@ export const contactsDescription = [
 				],
 			},
 		],
+	},
+
+	{
+		displayName: 'Key',
+		name: 'key',
+		type: 'string' as NodePropertyTypes,
+		description: 'Meta key to get or update',
+		placeholder: 'currency',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.CONTACTS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META, OPERATIONS.GET_META, OPERATIONS.DELETE_META],
+			},
+		},
+	},
+	{
+		displayName: 'Value',
+		name: 'value',
+		type: 'string' as NodePropertyTypes,
+		description: 'Value to set for the meta key',
+		placeholder: 'EUR',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.CONTACTS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
+			},
+		},
+	},
+	{
+		displayName: 'Update Contact ID',
+		name: 'update_contact_id',
+		type: 'string' as NodePropertyTypes,
+		description: '**OTA only: contact id of the contact meta you want to change',
+		placeholder: '1234',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.CONTACTS],
+				operation: [OPERATIONS.META],
+				metaOperation: [OPERATIONS.UPDATE_META],
+			},
+		},
 	},
 ];
