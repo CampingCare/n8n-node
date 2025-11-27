@@ -6,6 +6,7 @@ import { contactsDescription } from './descriptions/Contacts';
 import { priceCalculationDescription } from './descriptions/PriceCalculation';
 import { reservationsDescription } from './descriptions/Reservations';
 import { accommodationsDescription } from './descriptions/Accommodations';
+import { categoriesDescription } from './descriptions/Categories';
 import { timezonesDescription } from './descriptions/Timezones';
 import { ratesDescription } from './descriptions/Rates';
 import { invoicesDescription } from './descriptions/Invoices';
@@ -55,6 +56,7 @@ export class CampingCare implements INodeType {
 			options: [
 				{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
 				{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
+				{ name: 'Categories API', value: RESOURCES.CATEGORIES },
 				{ name: 'Contacts API', value: RESOURCES.CONTACTS },
 				{ name: 'Invoices API', value: RESOURCES.INVOICES },
 			{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
@@ -70,6 +72,7 @@ export class CampingCare implements INodeType {
 
 			...accommodationsDescription,
 			...administrationsDescription,
+			...categoriesDescription,
 			...contactsDescription,
 			...invoicesDescription,
 			...priceCalculationDescription,

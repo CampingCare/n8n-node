@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
 	FIELDS: '/fields',
 	FIELDS_FORMS: '/fields/forms',
 	ACCOMMODATIONS: '/accommodations',
+	CATEGORIES: '/categories',
 	CHANNELS: '/channels',
 	CODES: '/codes',
 	CONTACTS: '/contacts',
@@ -47,6 +48,7 @@ export const EXCLUDED_CONTACT_FIELDS = [
 export const RESOURCES = {
 	ACCOMMODATIONS: 'accommodations',
 	ADMINISTRATIONS: 'administrations',
+	CATEGORIES: 'categories',
 	CONTACTS: 'contacts',
 	PRICE_CALCULATION: 'priceCalculation',
 	RESERVATIONS: 'reservations',
@@ -64,6 +66,12 @@ export const OPERATIONS = {
 	ADD_ACCOMMODATION: 'addAccommodation',
 	UPDATE_ACCOMMODATION: 'updateAccommodation',
 	DELETE_ACCOMMODATION: 'deleteAccommodation',
+
+	GET_CATEGORIES: 'getCategories',
+	GET_CATEGORY: 'getCategory',
+	ADD_CATEGORY: 'addCategory',
+	UPDATE_CATEGORY: 'updateCategory',
+	DELETE_CATEGORY: 'deleteCategory',
 
 	GET_ADMINISTRATION: 'getAdministration',
 	GET_ADMINISTRATIONS: 'getAdministrations',
