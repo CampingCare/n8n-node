@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { booleans } from '../utils/booleansParams';
+import { booleanParams } from '../utils/booleanParameters';
 
 export const invoicesDescription = [
 	{
@@ -263,32 +263,32 @@ export const invoicesDescription = [
 		},
 	},
 
-	booleans.count([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES]),
-	booleans.filterRootMeta(
+	booleanParams.count([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES]),
+	booleanParams.filterRootMeta(
 		[RESOURCES.INVOICES],
 		[OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE],
 	),
-	booleans.getContact(
+	booleanParams.getContact(
 		[RESOURCES.INVOICES],
 		[OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE],
 	),
-	booleans.getContactMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
-	booleans.getMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
-	booleans.getPaymentTerms(
+	booleanParams.getContactMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
+	booleanParams.getMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
+	booleanParams.getPaymentTerms(
 		[RESOURCES.INVOICES],
 		[OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE],
 	),
-	booleans.getPayments(
+	booleanParams.getPayments(
 		[RESOURCES.INVOICES],
 		[OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE],
 	),
-	booleans.getReservation(
+	booleanParams.getReservation(
 		[RESOURCES.INVOICES],
 		[OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE],
 	),
-	booleans.getReservationMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
-	booleans.getRows([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
-	booleans.getVatTotals([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
+	booleanParams.getReservationMeta([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
+	booleanParams.getRows([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
+	booleanParams.getVatTotals([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
 
 	{
 		displayName: 'Channel',

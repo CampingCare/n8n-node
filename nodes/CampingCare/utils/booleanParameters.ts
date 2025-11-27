@@ -21,7 +21,7 @@ export const createBooleanField = (
 	},
 });
 
-export const booleans = {
+export const booleanParams = {
 	backend: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'backend',

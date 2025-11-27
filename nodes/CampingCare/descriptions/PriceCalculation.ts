@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { booleans } from '../utils/booleansParams';
+import { booleanParams } from '../utils/booleanParameters';
 
 export const priceCalculationDescription = [
 	{
@@ -121,19 +121,19 @@ export const priceCalculationDescription = [
 			},
 		},
 	},
-	booleans.getGuestsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getTaxesPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getDiscountsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getRequiredOptionsPrice(
+	booleanParams.getGuestsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getTaxesPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getDiscountsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getRequiredOptionsPrice(
 		[RESOURCES.PRICE_CALCULATION],
 		[OPERATIONS.CALCULATE_PRICE],
 	),
-	booleans.getOptions([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getDeposit([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.translations([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.searchAlternative([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getAvailablePlaces([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	booleans.getRows([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getOptions([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getDeposit([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.translations([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.searchAlternative([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getAvailablePlaces([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleanParams.getRows([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
 	{
 		displayName: 'Age Table IDs',
 		name: 'age_tables',

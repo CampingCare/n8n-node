@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { booleans } from '../utils/booleansParams';
+import { booleanParams } from '../utils/booleanParameters';
 
 export const reservationsDescription = [
 	{
@@ -219,34 +219,34 @@ export const reservationsDescription = [
 		},
 	},
 
-	booleans.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
-	booleans.filterRootMeta(
+	booleanParams.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	booleanParams.filterRootMeta(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	booleans.getBooker([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	booleans.getCoTravelers([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	booleans.getContact(
+	booleanParams.getBooker([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleanParams.getCoTravelers([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleanParams.getContact(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	booleans.getInvoiceMeta([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	booleans.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
-	booleans.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	booleans.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	booleans.getInvoices(
+	booleanParams.getInvoiceMeta([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleanParams.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	booleanParams.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleanParams.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleanParams.getInvoices(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	booleans.getMeta(
+	booleanParams.getMeta(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	booleans.getPaymentTerms(
+	booleanParams.getPaymentTerms(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	booleans.getRows(
+	booleanParams.getRows(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),

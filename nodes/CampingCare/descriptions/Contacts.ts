@@ -1,7 +1,7 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
 import { createDisplayOptions, createContactField } from '../utils/helpers';
-import { booleans } from '../utils/booleansParams';
+import { booleanParams } from '../utils/booleanParameters';
 
 export const contactsDescription = [
 	{
@@ -212,21 +212,21 @@ export const contactsDescription = [
 			},
 		},
 	},
-	booleans.count([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS]),
-	booleans.getInvoicePayments(
+	booleanParams.count([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS]),
+	booleanParams.getInvoicePayments(
 		[RESOURCES.CONTACTS],
 		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
 	),
-	booleans.getInvoices(
+	booleanParams.getInvoices(
 		[RESOURCES.CONTACTS],
 		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
 	),
-	booleans.getMeta([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT]),
-	booleans.getReservationPaymentTerms(
+	booleanParams.getMeta([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT]),
+	booleanParams.getReservationPaymentTerms(
 		[RESOURCES.CONTACTS],
 		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
 	),
-	booleans.getReservations(
+	booleanParams.getReservations(
 		[RESOURCES.CONTACTS],
 		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
 	),
