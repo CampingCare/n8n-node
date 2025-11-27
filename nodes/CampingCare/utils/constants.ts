@@ -22,6 +22,7 @@ export const API_ENDPOINTS = {
 	TAGS: '/tags',
 	AVAILABILITY_STOCK: '/availability/stock',
 	AVAILABILITY_PLACES: '/availability/places',
+	EXCHANGE_RATES: '/exchange_rates',
 } as const;
 
 export const EXCLUDED_CONTACT_FIELDS = [
@@ -61,6 +62,7 @@ export const RESOURCES = {
 	LICENSE_PLATES: 'licensePlates',
 	LOGS: 'logs',
 	TAGS: 'tags',
+	EXCHANGE_RATES: 'exchangeRates',
 } as const;
 
 export const OPERATIONS = {
@@ -90,6 +92,9 @@ export const OPERATIONS = {
 	ADD_CONTACT: 'addContact',
 	UPDATE_CONTACT: 'updateContact',
 	DELETE_CONTACT: 'deleteContact',
+
+	GET_EXCHANGE_RATES: 'getExchangeRates',
+	EXCHANGE_VALUE: 'exchangeValue',
 
 	CALCULATE_PRICE: 'calculatePrice',
 

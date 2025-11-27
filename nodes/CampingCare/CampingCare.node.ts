@@ -6,6 +6,7 @@ import { accommodationsDescription } from './descriptions/Accommodations';
 import { availabilityDescription } from './descriptions/Availability';
 import { categoriesDescription } from './descriptions/Categories';
 import { contactsDescription } from './descriptions/Contacts';
+import { exchangeRatesDescription } from './descriptions/ExchangeRates';
 import { invoicesDescription } from './descriptions/Invoices';
 import { licensePlatesDescription } from './descriptions/LicensePlates';
 import { logsDescription } from './descriptions/Logs';
@@ -54,21 +55,22 @@ export class CampingCare implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
-			options: [
-				{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
-				{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
-				{ name: 'Availability API', value: RESOURCES.AVAILABILITY },
-				{ name: 'Categories API', value: RESOURCES.CATEGORIES },
-				{ name: 'Contacts API', value: RESOURCES.CONTACTS },
-				{ name: 'Invoices API', value: RESOURCES.INVOICES },
-			{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
-			{ name: 'Logs API', value: RESOURCES.LOGS },
-			{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
-			{ name: 'Rates API', value: RESOURCES.RATES },
-			{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
-			{ name: 'Tags API', value: RESOURCES.TAGS },
-			{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
-			],
+				options: [
+					{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
+					{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
+					{ name: 'Availability API', value: RESOURCES.AVAILABILITY },
+					{ name: 'Categories API', value: RESOURCES.CATEGORIES },
+					{ name: 'Contacts API', value: RESOURCES.CONTACTS },
+					{ name: 'Exchange Rates API', value: RESOURCES.EXCHANGE_RATES },
+					{ name: 'Invoices API', value: RESOURCES.INVOICES },
+					{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
+					{ name: 'Logs API', value: RESOURCES.LOGS },
+					{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
+					{ name: 'Rates API', value: RESOURCES.RATES },
+					{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
+					{ name: 'Tags API', value: RESOURCES.TAGS },
+					{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
+				],
 				default: '',
 			},
 
@@ -77,6 +79,7 @@ export class CampingCare implements INodeType {
 			...availabilityDescription,
 			...categoriesDescription,
 			...contactsDescription,
+			...exchangeRatesDescription,
 			...invoicesDescription,
 			...licensePlatesDescription,
 			...logsDescription,
