@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans, createStringField } from '../utils/commonFields';
+import { commonBooleans } from '../utils/commonFields';
 
 export const invoicesDescription = [
 	{
@@ -290,24 +290,28 @@ export const invoicesDescription = [
 	commonBooleans.getRows([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
 	commonBooleans.getVatTotals([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
 
-	createStringField(
-		'channel_id',
-		'Channel ID',
-		'Filter by channel ID',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.GET_INVOICES],
-		false,
-		'456',
-	),
-	createStringField(
-		'create_date_from',
-		'Create Date From',
-		'Filter by creation date from (format: YYYY-MM-DD)',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.GET_INVOICES],
-		false,
-		'2025-07-28',
-	),
+	{
+		displayName: 'Channel',
+		name: 'channel_id',
+		type: 'options' as NodePropertyTypes,
+		description: 'Select a channel (OTAs)',
+		default: '',
+		typeOptions: { loadOptionsMethod: 'getChannels' },
+		displayOptions: {
+			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
+		},
+	},
+	{
+		displayName: 'Create Date From',
+		name: 'create_date_from',
+		type: 'string' as NodePropertyTypes,
+		description: 'Filter by creation date from (format: YYYY-MM-DD)',
+		default: '',
+		placeholder: '2025-07-28',
+		displayOptions: {
+			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
+		},
+	},
 	{
 		displayName: 'Create Date Operator',
 		name: 'create_date_operator',
@@ -326,24 +330,28 @@ export const invoicesDescription = [
 			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
 		},
 	},
-	createStringField(
-		'create_date_to',
-		'Create Date To',
-		'Filter by creation date to (format: YYYY-MM-DD)',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.GET_INVOICES],
-		false,
-		'2025-08-04',
-	),
-	createStringField(
-		'invoice_id_filter',
-		'Invoice ID Filter',
-		'Filter by specific invoice ID',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.GET_INVOICES],
-		false,
-		'123',
-	),
+	{
+		displayName: 'Create Date To',
+		name: 'create_date_to',
+		type: 'string' as NodePropertyTypes,
+		description: 'Filter by creation date to (format: YYYY-MM-DD)',
+		default: '',
+		placeholder: '2025-08-04',
+		displayOptions: {
+			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
+		},
+	},
+	{
+		displayName: 'Invoice ID Filter',
+		name: 'invoice_id_filter',
+		type: 'string' as NodePropertyTypes,
+		description: 'Filter by specific invoice ID',
+		default: '',
+		placeholder: '123',
+		displayOptions: {
+			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
+		},
+	},
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -408,24 +416,34 @@ export const invoicesDescription = [
 			show: { resource: [RESOURCES.INVOICES], operation: [OPERATIONS.GET_INVOICES] },
 		},
 	},
-	createStringField(
-		'contact_id',
-		'Contact ID',
-		'Get only invoices for a specific contact',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.ADD_INVOICE, OPERATIONS.UPDATE_INVOICE],
-		false,
-		'123',
-	),
-	createStringField(
-		'reservation_id',
-		'Reservation ID',
-		'Get only invoices for a specific reservation',
-		[RESOURCES.INVOICES],
-		[OPERATIONS.GET_INVOICES, OPERATIONS.ADD_INVOICE, OPERATIONS.UPDATE_INVOICE],
-		false,
-		'1234',
-	),
+	{
+		displayName: 'Contact ID',
+		name: 'contact_id',
+		type: 'string' as NodePropertyTypes,
+		description: 'Get only invoices for a specific contact',
+		default: '',
+		placeholder: '123',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.INVOICES],
+				operation: [OPERATIONS.ADD_INVOICE, OPERATIONS.UPDATE_INVOICE],
+			},
+		},
+	},
+	{
+		displayName: 'Reservation ID',
+		name: 'reservation_id',
+		type: 'string' as NodePropertyTypes,
+		description: 'Get only invoices for a specific reservation',
+		default: '',
+		placeholder: '1234',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.INVOICES],
+				operation: [OPERATIONS.GET_INVOICES, OPERATIONS.ADD_INVOICE, OPERATIONS.UPDATE_INVOICE],
+			},
+		},
+	},
 	{
 		displayName: 'Meta',
 		name: 'meta',
