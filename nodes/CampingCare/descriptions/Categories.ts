@@ -20,11 +20,13 @@ export const categoriesDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.CATEGORIES,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
+							// Query parameters
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
-							order_by: '={{ $parameter["order_by"] || undefined }}',
 							order: '={{ $parameter["order"] || undefined }}',
+							order_by: '={{ $parameter["order_by"] || undefined }}',
 							search: '={{ $parameter["search"] || undefined }}',
 							'status[0]': '={{ $parameter["status_0"] || undefined }}',
 							'status[1]': '={{ $parameter["status_1"] || undefined }}',
@@ -147,6 +149,24 @@ export const categoriesDescription = [
 		},
 	},
 	{
+		displayName: 'Order',
+		name: 'order',
+		type: 'options' as NodePropertyTypes,
+		options: [
+			{ name: 'None', value: '' },
+			{ name: 'Ascending', value: 'asc' },
+			{ name: 'Descending', value: 'desc' },
+		],
+		default: '',
+		description: 'Sort order',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.CATEGORIES],
+				operation: [OPERATIONS.GET_CATEGORIES],
+			},
+		},
+	},
+	{
 		displayName: 'Order By',
 		name: 'order_by',
 		type: 'options' as NodePropertyTypes,
@@ -162,24 +182,6 @@ export const categoriesDescription = [
 		],
 		default: '',
 		description: 'Field to order results by',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.CATEGORIES],
-				operation: [OPERATIONS.GET_CATEGORIES],
-			},
-		},
-	},
-	{
-		displayName: 'Order',
-		name: 'order',
-		type: 'options' as NodePropertyTypes,
-		options: [
-			{ name: 'None', value: '' },
-			{ name: 'Ascending', value: 'asc' },
-			{ name: 'Descending', value: 'desc' },
-		],
-		default: '',
-		description: 'Sort order',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.CATEGORIES],
@@ -239,7 +241,7 @@ export const categoriesDescription = [
 			},
 		},
 	},
-  {
+	{
 		displayName: 'Status 3',
 		name: 'status_2',
 		type: 'options' as NodePropertyTypes,

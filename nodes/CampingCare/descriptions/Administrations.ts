@@ -192,12 +192,12 @@ export const administrationsDescription = [
 				description: 'Get age tables for this administrations',
 				action: 'Get age tables',
 				routing: {
-					request: {
-						method: 'GET' as IHttpRequestMethods,
-						url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLES,
-						qs: {
-							translations: '={{ $parameter["translations_age_tables"] || undefined }}',
-							sort: '={{ $parameter["sort"] || undefined }}',
+				request: {
+					method: 'GET' as IHttpRequestMethods,
+					url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLES,
+					qs: {
+						translations: '={{ $parameter["translations"] || undefined }}',
+						sort: '={{ $parameter["sort"] || undefined }}',
 						},
 					},
 				},
@@ -212,7 +212,7 @@ export const administrationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLE_BY_ID,
 						qs: {
-							translations: '={{ $parameter["translations_age_tables"] || undefined }}',
+							translations: '={{ $parameter["translations"] || undefined }}',
 						},
 					},
 				},
@@ -262,7 +262,7 @@ export const administrationsDescription = [
 	booleanParams.getVatTables([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATION]),
 	booleanParams.translations(
 		[RESOURCES.ADMINISTRATIONS],
-		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION, OPERATIONS.AGE_TABLES],
 	),
 
 	// Query parameters (GET operations)
@@ -406,19 +406,6 @@ export const administrationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Translations',
-		name: 'translations_age_tables',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Whether to include translations for age table fields',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.ADMINISTRATIONS],
-				operation: [OPERATIONS.AGE_TABLES],
-			},
-		},
-	},
 	{
 		displayName: 'Age Table ID',
 		name: 'age_table_id',

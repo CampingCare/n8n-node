@@ -20,21 +20,23 @@ export const licensePlatesDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.LICENSE_PLATES,
 						qs: {
-							offset: '={{ $parameter["offset"] || undefined }}',
-							limit: '={{ $parameter["limit"] || undefined }}',
-							order_by: '={{ $parameter["order_by"] || undefined }}',
-							order: '={{ $parameter["order"] || undefined }}',
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
 							force_dates: '={{ $parameter["force_dates"] || undefined }}',
 							get_reservation: '={{ $parameter["get_reservation"] || undefined }}',
-							status: '={{ $parameter["status"] || undefined }}',
-							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
-							search: '={{ $parameter["search"] || undefined }}',
-							license_plate: '={{ $parameter["license_plate"] || undefined }}',
-							start_date: '={{ $parameter["start_date"] || undefined }}',
-							start_date_operator: '={{ $parameter["start_date_operator"] || undefined }}',
+							// Query parameters
 							end_date: '={{ $parameter["end_date"] || undefined }}',
 							end_date_operator: '={{ $parameter["end_date_operator"] || undefined }}',
+							license_plate: '={{ $parameter["license_plate"] || undefined }}',
+							limit: '={{ $parameter["limit"] || undefined }}',
+							offset: '={{ $parameter["offset"] || undefined }}',
+							order: '={{ $parameter["order"] || undefined }}',
+							order_by: '={{ $parameter["order_by"] || undefined }}',
+							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
+							search: '={{ $parameter["search"] || undefined }}',
+							start_date: '={{ $parameter["start_date"] || undefined }}',
+							start_date_operator: '={{ $parameter["start_date_operator"] || undefined }}',
+							status: '={{ $parameter["status"] || undefined }}',
 						},
 					},
 				},
@@ -94,11 +96,11 @@ export const licensePlatesDescription = [
 						url: API_ENDPOINTS.LICENSE_PLATE_BY_ID,
 						qs: {
 							plate: '={{ $parameter["plate"] || undefined }}',
-							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
-							description: '={{ $parameter["description"] || undefined }}',
-							status: '={{ $parameter["status"] || undefined }}',
 							start_date: '={{ $parameter["start_date"] || undefined }}',
 							end_date: '={{ $parameter["end_date"] || undefined }}',
+							description: '={{ $parameter["description"] || undefined }}',
+							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
+							status: '={{ $parameter["status"] || undefined }}',
 						},
 					},
 				},
@@ -188,20 +190,10 @@ export const licensePlatesDescription = [
 		},
 	},
 
-	{
-		displayName: 'Description',
-		name: 'description',
-		type: 'string' as NodePropertyTypes,
-		description: 'Additional description or notes for the license plate',
-		default: '',
-		placeholder: 'some description',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.LICENSE_PLATES],
-				operation: [OPERATIONS.ADD_LICENSE_PLATE, OPERATIONS.UPDATE_LICENSE_PLATE],
-			},
-		},
-	},
+	// Boolean parameters
+	booleanParams.count([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
+	booleanParams.forceDates([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
+	booleanParams.getReservation([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
 
 	{
 		displayName: 'Plate',
@@ -217,19 +209,50 @@ export const licensePlatesDescription = [
 			},
 		},
 	},
-
-	// Boolean parameters
-	booleanParams.count([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
-	booleanParams.forceDates([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
-	booleanParams.getReservation([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
-
+	{
+		displayName: 'Start Date',
+		name: 'start_date',
+		type: 'string' as NodePropertyTypes,
+		default: '',
+		placeholder: '2025-01-01',
+		description:
+			'Filter by start date (GET) or set validity start (UPDATE). UPDATE: choose either reservation_id OR start/end date range.',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.LICENSE_PLATES],
+				operation: [OPERATIONS.GET_LICENSE_PLATES, OPERATIONS.UPDATE_LICENSE_PLATE],
+			},
+		},
+	},
+	{
+		displayName: 'Start Date Operator',
+		name: 'start_date_operator',
+		type: 'options' as NodePropertyTypes,
+		description: 'Operator to use with start date',
+		options: [
+			{ name: 'None', value: '' },
+			{ name: '=', value: '=' },
+			{ name: '>', value: '>' },
+			{ name: '>=', value: '>=' },
+			{ name: '<', value: '<' },
+			{ name: '<=', value: '<=' },
+		],
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.LICENSE_PLATES],
+				operation: [OPERATIONS.GET_LICENSE_PLATES],
+			},
+		},
+	},
 	{
 		displayName: 'End Date',
 		name: 'end_date',
 		type: 'string' as NodePropertyTypes,
 		default: '',
 		placeholder: '2025-12-31',
-		description: 'Filter by end date (GET) or set validity end (UPDATE). UPDATE: choose either reservation_id OR start/end date range.',
+		description:
+			'Filter by end date (GET) or set validity end (UPDATE). UPDATE: choose either reservation_id OR start/end date range.',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.LICENSE_PLATES],
@@ -255,6 +278,20 @@ export const licensePlatesDescription = [
 			show: {
 				resource: [RESOURCES.LICENSE_PLATES],
 				operation: [OPERATIONS.GET_LICENSE_PLATES],
+			},
+		},
+	},
+	{
+		displayName: 'Description',
+		name: 'description',
+		type: 'string' as NodePropertyTypes,
+		default: '',
+		placeholder: 'some description',
+		description: 'Description for the license plate',
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.LICENSE_PLATES],
+				operation: [OPERATIONS.ADD_LICENSE_PLATE, OPERATIONS.UPDATE_LICENSE_PLATE],
 			},
 		},
 	},
@@ -348,7 +385,8 @@ export const licensePlatesDescription = [
 		type: 'string' as NodePropertyTypes,
 		default: '',
 		placeholder: '5952',
-		description: 'Associate with reservation (ADD/UPDATE) or filter (GET). UPDATE: choose either reservation_id OR start/end date range.',
+		description:
+			'Associate with reservation (ADD/UPDATE) or filter (GET). UPDATE: choose either reservation_id OR start/end date range.',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.LICENSE_PLATES],
@@ -367,41 +405,6 @@ export const licensePlatesDescription = [
 		default: '',
 		placeholder: 'Search for license plates',
 		description: 'Filter license plates by search term. Partial matches are allowed.',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.LICENSE_PLATES],
-				operation: [OPERATIONS.GET_LICENSE_PLATES],
-			},
-		},
-	},
-	{
-		displayName: 'Start Date',
-		name: 'start_date',
-		type: 'string' as NodePropertyTypes,
-		default: '',
-		placeholder: '2025-01-01',
-		description: 'Filter by start date (GET) or set validity start (UPDATE). UPDATE: choose either reservation_id OR start/end date range.',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.LICENSE_PLATES],
-				operation: [OPERATIONS.GET_LICENSE_PLATES, OPERATIONS.UPDATE_LICENSE_PLATE],
-			},
-		},
-	},
-	{
-		displayName: 'Start Date Operator',
-		name: 'start_date_operator',
-		type: 'options' as NodePropertyTypes,
-		description: 'Operator to use with start date',
-		options: [
-			{ name: 'None', value: '' },
-			{ name: '=', value: '=' },
-			{ name: '>', value: '>' },
-			{ name: '>=', value: '>=' },
-			{ name: '<', value: '<' },
-			{ name: '<=', value: '<=' },
-		],
-		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.LICENSE_PLATES],

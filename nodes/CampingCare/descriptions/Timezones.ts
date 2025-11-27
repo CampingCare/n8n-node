@@ -20,10 +20,12 @@ export const timezonesDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.TIMEZONES,
 						qs: {
+							// Boolean parameters
+							count: '={{ $parameter["count"] || undefined }}',
+							// Query parameters
+							country_code: '={{ $parameter["country_code"] || undefined }}',
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
-							count: '={{ $parameter["count"] || undefined }}',
-							country_code: '={{ $parameter["country_code"] || undefined }}',
 						},
 					},
 				},

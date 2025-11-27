@@ -17,7 +17,7 @@ export const logsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: API_ENDPOINTS.LOGS,
+						url: API_ENDPOINTS.LOGS_BY_ID,
 					},
 				},
 			},
@@ -40,7 +40,7 @@ export const logsDescription = [
 				},
 			},
 		],
-		default: OPERATIONS.ADD_LOG,
+		default: OPERATIONS.GET_LOGS,
 	},
 
 	{
@@ -70,7 +70,7 @@ export const logsDescription = [
 		required: true,
 		type: 'string' as NodePropertyTypes,
 		description: 'ID of the entity this log is associated with',
-		placeholder: 'res_adfdsdasadsasd',
+		placeholder: '1234',
 		default: '',
 		displayOptions: {
 			show: {

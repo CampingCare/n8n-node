@@ -21,9 +21,9 @@ export const availabilityDescription = [
 						url: API_ENDPOINTS.AVAILABILITY_STOCK,
 						qs: {
 							accommodation_id: '={{ $parameter["accommodation_id"] || undefined }}',
+							channel_id: '={{ $parameter["channel_id"] || undefined }}',
 							from: '={{ $parameter["from"] || undefined }}',
 							till: '={{ $parameter["till"] || undefined }}',
-							channel_id: '={{ $parameter["channel_id"] || undefined }}',
 						},
 					},
 				},
@@ -38,12 +38,14 @@ export const availabilityDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.AVAILABILITY_PLACES,
 						qs: {
+							// Boolean parameters
+							count: '={{ $parameter["count"] || undefined }}',
+							backend: '={{ $parameter["backend"] || undefined }}',
+							// Query parameters
+							accommodation_id: '={{ $parameter["accommodation_id"] || undefined }}',
+							place_id: '={{ $parameter["place_id"] || undefined }}',
 							start_date: '={{ $parameter["start_date"] || undefined }}',
 							end_date: '={{ $parameter["end_date"] || undefined }}',
-							accommodation_id: '={{ $parameter["accommodation_id"] || undefined }}',
-							backend: '={{ $parameter["backend"] || undefined }}',
-							place_id: '={{ $parameter["place_id"] || undefined }}',
-							count: '={{ $parameter["count"] || undefined }}',
 						},
 					},
 				},
@@ -66,6 +68,17 @@ export const availabilityDescription = [
 				resource: [RESOURCES.AVAILABILITY],
 				operation: [OPERATIONS.GET_STOCK],
 			},
+		},
+	},
+	{
+		displayName: 'Channel',
+		name: 'channel_id',
+		type: 'options' as NodePropertyTypes,
+		description: 'Select a channel (OTAs)',
+		default: '',
+		typeOptions: { loadOptionsMethod: 'getChannels' },
+		displayOptions: {
+			show: { resource: [RESOURCES.AVAILABILITY], operation: [OPERATIONS.GET_STOCK] },
 		},
 	},
 	{
@@ -98,17 +111,6 @@ export const availabilityDescription = [
 			},
 		},
 	},
-	{
-		displayName: 'Channel',
-		name: 'channel_id',
-		type: 'options' as NodePropertyTypes,
-		description: 'Select a channel (OTAs)',
-		default: '',
-		typeOptions: { loadOptionsMethod: 'getChannels' },
-		displayOptions: {
-			show: { resource: [RESOURCES.AVAILABILITY], operation: [OPERATIONS.GET_STOCK] },
-		},
-	},
 
 	booleanParams.backend([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
 	booleanParams.count([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
@@ -121,6 +123,20 @@ export const availabilityDescription = [
 		placeholder: '7343',
 		default: '',
 		typeOptions: { loadOptionsMethod: 'getAccommodations' },
+		displayOptions: {
+			show: {
+				resource: [RESOURCES.AVAILABILITY],
+				operation: [OPERATIONS.GET_PLACES],
+			},
+		},
+	},
+	{
+		displayName: 'Place ID',
+		name: 'place_id',
+		type: 'string' as NodePropertyTypes,
+		description: 'Optional place ID to filter by',
+		placeholder: '12345',
+		default: '',
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.AVAILABILITY],
@@ -150,20 +166,6 @@ export const availabilityDescription = [
 		required: true,
 		description: 'End date (YYYY-MM-DD)',
 		placeholder: '2025-01-31',
-		default: '',
-		displayOptions: {
-			show: {
-				resource: [RESOURCES.AVAILABILITY],
-				operation: [OPERATIONS.GET_PLACES],
-			},
-		},
-	},
-	{
-		displayName: 'Place ID',
-		name: 'place_id',
-		type: 'string' as NodePropertyTypes,
-		description: 'Optional place ID to filter by',
-		placeholder: '12345',
 		default: '',
 		displayOptions: {
 			show: {

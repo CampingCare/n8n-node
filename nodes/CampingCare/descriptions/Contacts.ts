@@ -23,25 +23,25 @@ export const contactsDescription = [
 				description: 'Get a list of contacts for this administration',
 				action: 'Get contacts',
 				routing: {
-				request: {
-					method: 'GET' as IHttpRequestMethods,
-					url: API_ENDPOINTS.CONTACTS,
-					qs: {
-						// Boolean parameters
-						count: '={{ $parameter["count"] || undefined }}',
-						get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
-						get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
-						get_meta: '={{ $parameter["get_meta"] || undefined }}',
-						get_reservation_payment_terms:
-							'={{ $parameter["get_reservation_payment_terms"] || undefined }}',
-						get_reservations: '={{ $parameter["get_reservations"] || undefined }}',
-						// Query parameters
-						limit: '={{ $parameter["limit"] || undefined }}',
-						offset: '={{ $parameter["offset"] || undefined }}',
-						order: '={{ $parameter["order"] || undefined }}',
-						order_by: '={{ $parameter["order_by"] || undefined }}',
-						search: '={{ $parameter["search"] || undefined }}',
-					},
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: API_ENDPOINTS.CONTACTS,
+						qs: {
+							// Boolean parameters
+							count: '={{ $parameter["count"] || undefined }}',
+							get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
+							get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
+							get_meta: '={{ $parameter["get_meta"] || undefined }}',
+							get_reservation_payment_terms:
+								'={{ $parameter["get_reservation_payment_terms"] || undefined }}',
+							get_reservations: '={{ $parameter["get_reservations"] || undefined }}',
+							// Query parameters
+							limit: '={{ $parameter["limit"] || undefined }}',
+							offset: '={{ $parameter["offset"] || undefined }}',
+							order: '={{ $parameter["order"] || undefined }}',
+							order_by: '={{ $parameter["order_by"] || undefined }}',
+							search: '={{ $parameter["search"] || undefined }}',
+						},
 					},
 				},
 			},
@@ -110,16 +110,16 @@ export const contactsDescription = [
 						method: 'PUT' as IHttpRequestMethods,
 						url: API_ENDPOINTS.CONTACT_BY_ID,
 						body: {
-							gender: '={{ $parameter["gender"] || undefined }}',
 							first_name: '={{ $parameter["first_name"] || undefined }}',
 							last_name: '={{ $parameter["last_name"] || undefined }}',
+							gender: '={{ $parameter["gender"] || undefined }}',
+							phone: '={{ $parameter["phone"] || undefined }}',
 							address: '={{ $parameter["address"] || undefined }}',
 							address_number: '={{ $parameter["address_number"] || undefined }}',
 							zipcode: '={{ $parameter["zipcode"] || undefined }}',
 							city: '={{ $parameter["city"] || undefined }}',
 							country: '={{ $parameter["country"] || undefined }}',
 							company: '={{ $parameter["company"] || undefined }}',
-							phone: '={{ $parameter["phone"] || undefined }}',
 							type: '={{ $parameter["type"] || undefined }}',
 						},
 					},
@@ -212,7 +212,12 @@ export const contactsDescription = [
 		displayOptions: {
 			show: {
 				resource: [RESOURCES.CONTACTS],
-				operation: [OPERATIONS.GET_CONTACT, OPERATIONS.UPDATE_CONTACT, OPERATIONS.DELETE_CONTACT, OPERATIONS.META],
+				operation: [
+					OPERATIONS.GET_CONTACT,
+					OPERATIONS.UPDATE_CONTACT,
+					OPERATIONS.DELETE_CONTACT,
+					OPERATIONS.META,
+				],
 			},
 		},
 	},

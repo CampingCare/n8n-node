@@ -28,14 +28,14 @@ export const accommodationsDescription = [
 						qs: {
 							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
-							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
+							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_services: '={{ $parameter["get_services"] || undefined }}',
 							translations: '={{ $parameter["translations"] || undefined }}',
 							// Query parameters
+							channel_id: '={{ $parameter["channel_id"] || undefined }}',
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
-							channel_id: '={{ $parameter["channel_id"] || undefined }}',
 							'status[0]': '={{ $parameter["status_0"] || undefined }}',
 							'status[1]': '={{ $parameter["status_1"] || undefined }}',
 						},
@@ -53,8 +53,8 @@ export const accommodationsDescription = [
 						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 						qs: {
 							// Boolean parameters
-							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
+							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							translations: '={{ $parameter["translations"] || undefined }}',
 							// Query parameters
 							admin_id: '={{ $parameter["admin_id"] || undefined }}',
@@ -179,11 +179,11 @@ export const accommodationsDescription = [
 
 	// Boolean parameters
 	booleanParams.count([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
-	booleanParams.getMeta(
+	booleanParams.getMedia(
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
-	booleanParams.getMedia(
+	booleanParams.getMeta(
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
@@ -194,6 +194,17 @@ export const accommodationsDescription = [
 	),
 
 	// Query parameters
+	{
+		displayName: 'Channel',
+		name: 'channel_id',
+		type: 'options' as NodePropertyTypes,
+		description: 'Select a channel (OTAs)',
+		default: '',
+		typeOptions: { loadOptionsMethod: 'getChannels' },
+		displayOptions: {
+			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
+		},
+	},
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -212,17 +223,6 @@ export const accommodationsDescription = [
 		description: 'Number of items to skip before starting to return results',
 		placeholder: '0',
 		default: '',
-		displayOptions: {
-			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
-		},
-	},
-	{
-		displayName: 'Channel',
-		name: 'channel_id',
-		type: 'options' as NodePropertyTypes,
-		description: 'Select a channel (OTAs)',
-		default: '',
-		typeOptions: { loadOptionsMethod: 'getChannels' },
 		displayOptions: {
 			show: { resource: [RESOURCES.ACCOMMODATIONS], operation: [OPERATIONS.GET_ACCOMMODATIONS] },
 		},

@@ -32,7 +32,9 @@ export const ratesDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.RATES,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
+							// Query parameters
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
 							order: '={{ $parameter["order"] || undefined }}',
@@ -66,12 +68,12 @@ export const ratesDescription = [
 						method: 'PUT' as IHttpRequestMethods,
 						url: API_ENDPOINTS.RATE_BY_ID,
 						qs: {
-							name: '={{ $parameter["name"] || undefined }}',
-							parent_id: '={{ $parameter["parent_id"] || undefined }}',
 							closed:
 								'={{ $parameter["closed"] !== undefined && $parameter["closed"] !== "" ? $parameter["closed"] : undefined }}',
 							minimum_stay: '={{ $parameter["minimum_stay"] || undefined }}',
 							maximum_stay: '={{ $parameter["maximum_stay"] || undefined }}',
+							name: '={{ $parameter["name"] || undefined }}',
+							parent_id: '={{ $parameter["parent_id"] || undefined }}',
 							'rules[0]':
 								'={{ $parameter["rules"]?.table ? ( Array.isArray($parameter["rules"].table) ? JSON.stringify({ type: $parameter["rules"].table[0].type, amount: String($parameter["rules"].table[0].amount) }) : JSON.stringify({ type: $parameter["rules"].table.type, amount: String($parameter["rules"].table.amount) }) ) : undefined }}',
 						},

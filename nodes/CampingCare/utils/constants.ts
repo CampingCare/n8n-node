@@ -41,6 +41,7 @@ export const API_ENDPOINTS = {
 	LICENSE_PLATES: '/license_plates',
 	LICENSE_PLATE_BY_ID: '=/license_plates/{{$parameter["license_plate_id"]}}',
 
+	LOGS_BY_ID: '/api/logs',
 	LOGS: '/logs',
 
 	PAYMENTS: '/payments',
@@ -156,6 +157,7 @@ export const OPERATIONS = {
 	ADD_LICENSE_PLATE: 'addLicensePlate',
 	UPDATE_LICENSE_PLATE: 'updateLicensePlate',
 	DELETE_LICENSE_PLATE: 'deleteLicensePlate',
+
 	PRICES: 'prices',
 	GET_PRICES: 'getPrices',
 	UPDATE_PRICES: 'updatePrices',

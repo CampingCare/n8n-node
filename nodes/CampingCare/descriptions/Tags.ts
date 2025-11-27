@@ -20,7 +20,9 @@ export const tagsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.TAGS,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
+							// Query parameters
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
 							search: '={{ $parameter["search"] || undefined }}',

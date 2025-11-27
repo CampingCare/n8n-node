@@ -26,6 +26,7 @@ export const invoicesDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.INVOICES,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
 							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
 							get_contact: '={{ $parameter["get_contact"] || undefined }}',
@@ -34,6 +35,7 @@ export const invoicesDescription = [
 							get_payments: '={{ $parameter["get_payments"] || undefined }}',
 							get_reservation: '={{ $parameter["get_reservation"] || undefined }}',
 							get_rows: '={{ $parameter["get_rows"] || undefined }}',
+							// Query parameters
 							channel_id: '={{ $parameter["channel_id"] || undefined }}',
 							'create_date[0]': '={{ $parameter["create_date_from"] || undefined }}',
 							create_date_operator: '={{ $parameter["create_date_operator"] || undefined }}',
