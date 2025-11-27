@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const tagsDescription = [
 	{
@@ -71,7 +71,7 @@ export const tagsDescription = [
 		default: OPERATIONS.GET_TAGS,
 	},
 
-	commonBooleans.count([RESOURCES.TAGS], [OPERATIONS.GET_TAGS]),
+	booleans.count([RESOURCES.TAGS], [OPERATIONS.GET_TAGS]),
 	{
 		displayName: 'Limit',
 		name: 'limit',

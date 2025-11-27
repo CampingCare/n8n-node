@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const availabilityDescription = [
 	{
@@ -110,8 +110,8 @@ export const availabilityDescription = [
 		},
 	},
 
-	commonBooleans.backend([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
-	commonBooleans.count([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
+	booleans.backend([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
+	booleans.count([RESOURCES.AVAILABILITY], [OPERATIONS.GET_PLACES]),
 
 	{
 		displayName: 'Accommodation ID',

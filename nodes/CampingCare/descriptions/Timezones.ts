@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const timezonesDescription = [
 	{
@@ -32,7 +32,7 @@ export const timezonesDescription = [
 		default: OPERATIONS.GET_TIMEZONES,
 	},
 
-	commonBooleans.count([RESOURCES.TIMEZONES], [OPERATIONS.GET_TIMEZONES]),
+	booleans.count([RESOURCES.TIMEZONES], [OPERATIONS.GET_TIMEZONES]),
 
 	{
 		displayName: 'Country Code',

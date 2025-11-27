@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const licensePlatesDescription = [
 	{
@@ -154,7 +154,7 @@ export const licensePlatesDescription = [
 			},
 		},
 	},
-	
+
 	{
 		displayName: 'Start Date',
 		name: 'start_date',
@@ -217,9 +217,9 @@ export const licensePlatesDescription = [
 		},
 	},
 
-	commonBooleans.count([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
-	commonBooleans.forceDates([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
-	commonBooleans.getReservation([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
+	booleans.count([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
+	booleans.forceDates([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
+	booleans.getReservation([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
 
 	{
 		displayName: 'End Date',

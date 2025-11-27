@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const accommodationsDescription = [
 	{
@@ -172,17 +172,17 @@ export const accommodationsDescription = [
 		},
 	},
 
-	commonBooleans.count([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
-	commonBooleans.getMeta(
+	booleans.count([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
+	booleans.getMeta(
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
-	commonBooleans.getMedia(
+	booleans.getMedia(
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
-	commonBooleans.getServices([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
-	commonBooleans.translations(
+	booleans.getServices([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
+	booleans.translations(
 		[RESOURCES.ACCOMMODATIONS],
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),

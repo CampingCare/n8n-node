@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const reservationsDescription = [
 	{
@@ -219,34 +219,34 @@ export const reservationsDescription = [
 		},
 	},
 
-	commonBooleans.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
-	commonBooleans.filterRootMeta(
+	booleans.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	booleans.filterRootMeta(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getBooker([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	commonBooleans.getCoTravelers([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	commonBooleans.getContact(
+	booleans.getBooker([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleans.getCoTravelers([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleans.getContact(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getInvoiceMeta([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	commonBooleans.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
-	commonBooleans.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	commonBooleans.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
-	commonBooleans.getInvoices(
+	booleans.getInvoiceMeta([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleans.getInvoicePayment([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
+	booleans.getInvoicePayments([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleans.getInvoiceRowsfilter([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATION]),
+	booleans.getInvoices(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getMeta(
+	booleans.getMeta(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getPaymentTerms(
+	booleans.getPaymentTerms(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),
-	commonBooleans.getRows(
+	booleans.getRows(
 		[RESOURCES.RESERVATIONS],
 		[OPERATIONS.GET_RESERVATIONS, OPERATIONS.GET_RESERVATION],
 	),

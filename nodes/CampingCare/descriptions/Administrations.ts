@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const administrationsDescription = [
 	{
@@ -268,22 +268,22 @@ export const administrationsDescription = [
 		},
 	},
 
-	commonBooleans.count([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
-	commonBooleans.getAccommodations([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
-	commonBooleans.getAgeTables(
+	booleans.count([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
+	booleans.getAccommodations([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
+	booleans.getAgeTables(
 		[RESOURCES.ADMINISTRATIONS],
 		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
 	),
-	commonBooleans.getMedia(
+	booleans.getMedia(
 		[RESOURCES.ADMINISTRATIONS],
 		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
 	),
-	commonBooleans.getMeta(
+	booleans.getMeta(
 		[RESOURCES.ADMINISTRATIONS],
 		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
 	),
-	commonBooleans.getVatTables([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATION]),
-	commonBooleans.translations(
+	booleans.getVatTables([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATION]),
+	booleans.translations(
 		[RESOURCES.ADMINISTRATIONS],
 		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
 	),

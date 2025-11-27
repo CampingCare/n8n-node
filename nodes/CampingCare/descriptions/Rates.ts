@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const ratesDescription = [
 	{
@@ -537,7 +537,7 @@ export const ratesDescription = [
 		],
 	},
 
-	commonBooleans.count([RESOURCES.RATES], [OPERATIONS.GET_RATES]),
+	booleans.count([RESOURCES.RATES], [OPERATIONS.GET_RATES]),
 	{
 		displayName: 'Limit',
 		name: 'limit',

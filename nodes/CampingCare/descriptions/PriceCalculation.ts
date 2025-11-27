@@ -1,6 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
-import { commonBooleans } from '../utils/commonFields';
+import { booleans } from '../utils/booleansParams';
 
 export const priceCalculationDescription = [
 	{
@@ -121,19 +121,19 @@ export const priceCalculationDescription = [
 			},
 		},
 	},
-	commonBooleans.getGuestsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getTaxesPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getDiscountsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getRequiredOptionsPrice(
+	booleans.getGuestsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getTaxesPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getDiscountsPrice([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getRequiredOptionsPrice(
 		[RESOURCES.PRICE_CALCULATION],
 		[OPERATIONS.CALCULATE_PRICE],
 	),
-	commonBooleans.getOptions([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getDeposit([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.translations([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.searchAlternative([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getAvailablePlaces([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
-	commonBooleans.getRows([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getOptions([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getDeposit([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.translations([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.searchAlternative([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getAvailablePlaces([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
+	booleans.getRows([RESOURCES.PRICE_CALCULATION], [OPERATIONS.CALCULATE_PRICE]),
 	{
 		displayName: 'Age Table IDs',
 		name: 'age_tables',
