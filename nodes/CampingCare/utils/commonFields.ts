@@ -22,6 +22,15 @@ export const createBooleanField = (
 });
 
 export const commonBooleans = {
+	backend: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'backend',
+			'Backend',
+			'Whether to include backend data',
+			resources,
+			operations,
+		),
+
 	count: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'count',
@@ -333,7 +342,7 @@ export const commonBooleans = {
 			'translations',
 			'Translations',
 			'Whether to include translations',
-		resources,
-		operations,
-	),
+			resources,
+			operations,
+		),
 };

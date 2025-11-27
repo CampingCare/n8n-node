@@ -20,6 +20,8 @@ export const API_ENDPOINTS = {
 	LICENSE_PLATES: '/license_plates',
 	LOGS: '/logs',
 	TAGS: '/tags',
+	AVAILABILITY_STOCK: '/availability/stock',
+	AVAILABILITY_PLACES: '/availability/places',
 } as const;
 
 export const EXCLUDED_CONTACT_FIELDS = [
@@ -48,6 +50,7 @@ export const EXCLUDED_CONTACT_FIELDS = [
 export const RESOURCES = {
 	ACCOMMODATIONS: 'accommodations',
 	ADMINISTRATIONS: 'administrations',
+	AVAILABILITY: 'availability',
 	CATEGORIES: 'categories',
 	CONTACTS: 'contacts',
 	PRICE_CALCULATION: 'priceCalculation',
@@ -128,7 +131,11 @@ export const OPERATIONS = {
 	CANCEL_DELAYED_FINALIZED_INVOICE: 'cancelDelayedFinalizedInvoice',
 	CREATE_CREDIT: 'createCredit',
 
+	GET_LOGS: 'getLogs',
 	ADD_LOG: 'addLog',
+
+	GET_STOCK: 'getStock',
+	GET_PLACES: 'getPlaces',
 
 	GET_TAGS: 'getTags',
 	GET_TAG: 'getTag',

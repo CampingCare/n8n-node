@@ -10,6 +10,18 @@ export const logsDescription = [
 		displayOptions: { show: { resource: [RESOURCES.LOGS] } },
 		options: [
 			{
+				name: 'Get Logs',
+				value: OPERATIONS.GET_LOGS,
+				description: 'Get a list of log entries',
+				action: 'Get logs',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: '=/api/logs',
+					},
+				},
+			},
+			{
 				name: 'Add Log',
 				value: OPERATIONS.ADD_LOG,
 				description: 'Add a new log entry',

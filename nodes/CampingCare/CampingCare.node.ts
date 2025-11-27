@@ -2,17 +2,18 @@ import type { INodeType, INodeTypeDescription, ILoadOptionsFunctions } from 'n8n
 import { NodeApiError } from 'n8n-workflow';
 
 import { administrationsDescription } from './descriptions/Administrations';
-import { contactsDescription } from './descriptions/Contacts';
-import { priceCalculationDescription } from './descriptions/PriceCalculation';
-import { reservationsDescription } from './descriptions/Reservations';
 import { accommodationsDescription } from './descriptions/Accommodations';
+import { availabilityDescription } from './descriptions/Availability';
 import { categoriesDescription } from './descriptions/Categories';
-import { timezonesDescription } from './descriptions/Timezones';
-import { ratesDescription } from './descriptions/Rates';
+import { contactsDescription } from './descriptions/Contacts';
 import { invoicesDescription } from './descriptions/Invoices';
 import { licensePlatesDescription } from './descriptions/LicensePlates';
 import { logsDescription } from './descriptions/Logs';
+import { priceCalculationDescription } from './descriptions/PriceCalculation';
+import { ratesDescription } from './descriptions/Rates';
+import { reservationsDescription } from './descriptions/Reservations';
 import { tagsDescription } from './descriptions/Tags';
+import { timezonesDescription } from './descriptions/Timezones';
 import { API_BASE_URL, API_ENDPOINTS, EXCLUDED_CONTACT_FIELDS, RESOURCES } from './utils/constants';
 import type {
 	ContactField,
@@ -56,6 +57,7 @@ export class CampingCare implements INodeType {
 			options: [
 				{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
 				{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
+				{ name: 'Availability API', value: RESOURCES.AVAILABILITY },
 				{ name: 'Categories API', value: RESOURCES.CATEGORIES },
 				{ name: 'Contacts API', value: RESOURCES.CONTACTS },
 				{ name: 'Invoices API', value: RESOURCES.INVOICES },
@@ -72,13 +74,14 @@ export class CampingCare implements INodeType {
 
 			...accommodationsDescription,
 			...administrationsDescription,
+			...availabilityDescription,
 			...categoriesDescription,
 			...contactsDescription,
 			...invoicesDescription,
-			...priceCalculationDescription,
-			...ratesDescription,
 			...licensePlatesDescription,
 			...logsDescription,
+			...priceCalculationDescription,
+			...ratesDescription,
 			...reservationsDescription,
 			...tagsDescription,
 			...timezonesDescription,
