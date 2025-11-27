@@ -1,5 +1,6 @@
 import type { NodePropertyTypes, IHttpRequestMethods } from 'n8n-workflow';
 import { API_ENDPOINTS, RESOURCES, OPERATIONS } from '../utils/constants';
+import { commonBooleans } from '../utils/commonFields';
 
 export const timezonesDescription = [
 	{
@@ -31,16 +32,8 @@ export const timezonesDescription = [
 		default: OPERATIONS.GET_TIMEZONES,
 	},
 
-	{
-		displayName: 'Count',
-		name: 'count',
-		type: 'boolean' as NodePropertyTypes,
-		description: 'Get the total count of timezones',
-		default: false,
-		displayOptions: {
-			show: { resource: [RESOURCES.TIMEZONES], operation: [OPERATIONS.GET_TIMEZONES] },
-		},
-	},
+	commonBooleans.count([RESOURCES.TIMEZONES], [OPERATIONS.GET_TIMEZONES]),
+
 	{
 		displayName: 'Country Code',
 		name: 'country_code',

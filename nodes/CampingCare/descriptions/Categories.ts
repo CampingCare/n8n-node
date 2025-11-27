@@ -114,7 +114,6 @@ export const categoriesDescription = [
 		},
 	},
 
-	// Get Categories parameters - booleans first, then alphabetically
 	commonBooleans.count([RESOURCES.CATEGORIES], [OPERATIONS.GET_CATEGORIES]),
 	{
 		displayName: 'Limit',
