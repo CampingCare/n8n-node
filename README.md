@@ -83,6 +83,19 @@ Regular node for making API calls:
 - Create Credit - Create a credit note for an invoice
 - Meta Operations - Manage invoice metadata
 
+#### License Plates API
+
+- Get License Plates - List license plates with filtering
+- Get License Plate - Get a specific license plate by ID
+- Check Valid License Plate - Validate a license plate
+- Add License Plate - Create a new license plate entry
+- Update License Plate - Modify existing license plate
+- Delete License Plate - Remove a license plate
+
+#### Logs API
+
+- Add Log - Create a new log entry for tracking activities related to reservations, contacts, invoices, or accommodations
+
 #### Price Calculation API
 
 - Calculate Price - Get pricing information before creating a reservation

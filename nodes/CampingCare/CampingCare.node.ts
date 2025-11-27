@@ -10,6 +10,8 @@ import { timezonesDescription } from './descriptions/Timezones';
 import { ratesDescription } from './descriptions/Rates';
 import { invoicesDescription } from './descriptions/Invoices';
 import { licensePlatesDescription } from './descriptions/LicensePlates';
+import { logsDescription } from './descriptions/Logs';
+import { tagsDescription } from './descriptions/Tags';
 import { API_BASE_URL, API_ENDPOINTS, EXCLUDED_CONTACT_FIELDS, RESOURCES } from './utils/constants';
 import type {
 	ContactField,
@@ -50,17 +52,19 @@ export class CampingCare implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
-				options: [
-					{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
-					{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
-					{ name: 'Contacts API', value: RESOURCES.CONTACTS },
-					{ name: 'Invoices API', value: RESOURCES.INVOICES },
-					{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
-					{ name: 'Rates API', value: RESOURCES.RATES },
-					{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
-					{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
-					{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
-				],
+			options: [
+				{ name: 'Accommodations API', value: RESOURCES.ACCOMMODATIONS },
+				{ name: 'Administrations API', value: RESOURCES.ADMINISTRATIONS },
+				{ name: 'Contacts API', value: RESOURCES.CONTACTS },
+				{ name: 'Invoices API', value: RESOURCES.INVOICES },
+			{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
+			{ name: 'Logs API', value: RESOURCES.LOGS },
+			{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
+			{ name: 'Rates API', value: RESOURCES.RATES },
+			{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
+			{ name: 'Tags API', value: RESOURCES.TAGS },
+			{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
+			],
 				default: '',
 			},
 
@@ -71,7 +75,9 @@ export class CampingCare implements INodeType {
 			...priceCalculationDescription,
 			...ratesDescription,
 			...licensePlatesDescription,
+			...logsDescription,
 			...reservationsDescription,
+			...tagsDescription,
 			...timezonesDescription,
 		],
 	};

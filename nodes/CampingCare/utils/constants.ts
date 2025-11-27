@@ -17,6 +17,8 @@ export const API_ENDPOINTS = {
 	PAYMENTS: '/payments',
 	RATES: '/rates',
 	LICENSE_PLATES: '/license_plates',
+	LOGS: '/logs',
+	TAGS: '/tags',
 } as const;
 
 export const EXCLUDED_CONTACT_FIELDS = [
@@ -52,6 +54,8 @@ export const RESOURCES = {
 	RATES: 'rates',
 	INVOICES: 'invoices',
 	LICENSE_PLATES: 'licensePlates',
+	LOGS: 'logs',
+	TAGS: 'tags',
 } as const;
 
 export const OPERATIONS = {
@@ -115,4 +119,11 @@ export const OPERATIONS = {
 	FINALIZE_INVOICE: 'finalizeInvoice',
 	CANCEL_DELAYED_FINALIZED_INVOICE: 'cancelDelayedFinalizedInvoice',
 	CREATE_CREDIT: 'createCredit',
+
+	ADD_LOG: 'addLog',
+
+	GET_TAGS: 'getTags',
+	GET_TAG: 'getTag',
+	ADD_TAG: 'addTag',
+	DELETE_TAG: 'deleteTag',
 } as const;
