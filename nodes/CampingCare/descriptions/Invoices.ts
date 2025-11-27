@@ -58,7 +58,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}',
+						url: API_ENDPOINTS.INVOICE_BY_ID,
 						qs: {
 							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
 							get_contact: '={{ $parameter["get_contact"] || undefined }}',
@@ -99,7 +99,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}',
+						url: API_ENDPOINTS.INVOICE_BY_ID,
 						qs: {
 							contact_id: '={{ $parameter["contact_id"] || undefined }}',
 							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
@@ -115,7 +115,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}',
+						url: API_ENDPOINTS.INVOICE_BY_ID,
 					},
 				},
 			},
@@ -127,7 +127,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'POST' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}/finalize',
+						url: API_ENDPOINTS.INVOICE_FINALIZE,
 						qs: {
 							delay: '={{ $parameter["delay"] || undefined }}',
 						},
@@ -142,7 +142,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'POST' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}/cancel_finalize',
+						url: API_ENDPOINTS.INVOICE_CANCEL_FINALIZE,
 					},
 				},
 			},
@@ -154,7 +154,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'POST' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}/credit',
+						url: API_ENDPOINTS.INVOICE_CREDIT,
 					},
 				},
 			},
@@ -180,7 +180,7 @@ export const invoicesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/invoices/{{$parameter["invoice_id"]}}/meta',
+						url: API_ENDPOINTS.INVOICE_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',

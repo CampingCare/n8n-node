@@ -48,7 +48,7 @@ export const accommodationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/accommodations/{{$parameter["accommodation_id"]}}',
+						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 						qs: {
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
@@ -81,7 +81,7 @@ export const accommodationsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/accommodations/{{$parameter["accommodation_id"]}}',
+						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 						qs: {
 							name: '={{ $parameter["update_name"] }}',
 							description: '={{ $parameter["description"] || undefined }}',
@@ -99,7 +99,7 @@ export const accommodationsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/accommodations/{{$parameter["accommodation_id"]}}',
+						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 					},
 				},
 			},
@@ -125,7 +125,7 @@ export const accommodationsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/accommodations/{{$parameter["accommodation_id"]}}/meta',
+						url: API_ENDPOINTS.ACCOMMODATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
@@ -140,7 +140,7 @@ export const accommodationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/accommodations/{{$parameter["accommodation_id"]}}/meta',
+						url: API_ENDPOINTS.ACCOMMODATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},

@@ -47,7 +47,7 @@ export const licensePlatesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/license_plates/{{$parameter["license_plate_id"]}}',
+						url: API_ENDPOINTS.LICENSE_PLATE_BY_ID,
 					},
 				},
 			},
@@ -91,7 +91,7 @@ export const licensePlatesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/license_plates/{{$parameter["license_plate_id"]}}',
+						url: API_ENDPOINTS.LICENSE_PLATE_BY_ID,
 						qs: {
 							plate: '={{ $parameter["plate"] || undefined }}',
 							reservation_id: '={{ $parameter["reservation_id"] || undefined }}',
@@ -111,7 +111,7 @@ export const licensePlatesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/license_plates/{{$parameter["license_plate_id"]}}',
+						url: API_ENDPOINTS.LICENSE_PLATE_BY_ID,
 					},
 				},
 			},

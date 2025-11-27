@@ -34,7 +34,7 @@ export const exchangeRatesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: `${API_ENDPOINTS.EXCHANGE_RATES}/exchange_value`,
+						url: API_ENDPOINTS.EXCHANGE_RATES_VALUE,
 						qs: {
 							source_currency: '={{ $parameter["source_currency"] }}',
 							converted_currency: '={{ $parameter["converted_currency"] }}',

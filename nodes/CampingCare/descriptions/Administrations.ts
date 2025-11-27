@@ -54,7 +54,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}',
+						url: API_ENDPOINTS.ADMINISTRATION_BY_ID,
 						qs: {
 							get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
@@ -73,7 +73,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}',
+						url: API_ENDPOINTS.ADMINISTRATION_BY_ID,
 						qs: {
 							name: '={{ $parameter["update_name"] || undefined }}',
 						},
@@ -104,7 +104,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}',
+						url: API_ENDPOINTS.ADMINISTRATION_BY_ID,
 					},
 				},
 			},
@@ -130,7 +130,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						url: API_ENDPOINTS.ADMINISTRATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
@@ -146,7 +146,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						url: API_ENDPOINTS.ADMINISTRATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -160,7 +160,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}/meta',
+						url: API_ENDPOINTS.ADMINISTRATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -191,7 +191,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}/age_tables',
+						url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLES,
 						qs: {
 							translations: '={{ $parameter["translations_age_tables"] || undefined }}',
 							sort: '={{ $parameter["sort"] || undefined }}',
@@ -207,7 +207,7 @@ export const administrationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/administrations/{{$parameter["admin_id"]}}/age_tables/{{$parameter["age_table_id"]}}',
+						url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLE_BY_ID,
 						qs: {
 							translations: '={{ $parameter["translations_age_tables"] || undefined }}',
 						},

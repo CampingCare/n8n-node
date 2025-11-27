@@ -41,7 +41,7 @@ export const categoriesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/categories/{{$parameter["category_id"]}}',
+						url: API_ENDPOINTS.CATEGORY_BY_ID,
 					},
 				},
 			},
@@ -69,7 +69,7 @@ export const categoriesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/categories/{{$parameter["category_id"]}}',
+						url: API_ENDPOINTS.CATEGORY_BY_ID,
 						qs: {
 							name: '={{ $parameter["update_name"] || undefined }}',
 							description: '={{ $parameter["update_description"] || undefined }}',
@@ -86,7 +86,7 @@ export const categoriesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/categories/{{$parameter["category_id"]}}',
+						url: API_ENDPOINTS.CATEGORY_BY_ID,
 					},
 				},
 			},

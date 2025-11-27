@@ -36,7 +36,7 @@ export const tagsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '={{ $parameter["resource"] + "/" + $parameter["tagId"] }}',
+						url: API_ENDPOINTS.TAG_BY_RESOURCE,
 					},
 				},
 			},
@@ -63,7 +63,7 @@ export const tagsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '={{ $parameter["resource"] + "/" + $parameter["tagId"] }}',
+						url: API_ENDPOINTS.TAG_BY_RESOURCE,
 					},
 				},
 			},

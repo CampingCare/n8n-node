@@ -72,7 +72,7 @@ export const reservationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/reservations/{{$parameter["reservation_id"]}}',
+						url: API_ENDPOINTS.RESERVATION_BY_ID,
 						qs: {
 							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
 							get_booker: '={{ $parameter["get_booker"] || undefined }}',
@@ -103,7 +103,7 @@ export const reservationsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/reservations/{{$parameter["reservation_id"]}}',
+						url: API_ENDPOINTS.RESERVATION_BY_ID,
 					},
 				},
 			},
@@ -129,7 +129,7 @@ export const reservationsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						url: API_ENDPOINTS.RESERVATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
@@ -144,7 +144,7 @@ export const reservationsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						url: API_ENDPOINTS.RESERVATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -158,7 +158,7 @@ export const reservationsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/reservations/{{$parameter["reservation_id"]}}/meta',
+						url: API_ENDPOINTS.RESERVATION_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},

@@ -17,7 +17,7 @@ export const logsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/api/logs',
+						url: API_ENDPOINTS.LOGS,
 					},
 				},
 			},

@@ -52,7 +52,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}',
+						url: API_ENDPOINTS.RATE_BY_ID,
 					},
 				},
 			},
@@ -64,7 +64,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}',
+						url: API_ENDPOINTS.RATE_BY_ID,
 						qs: {
 							name: '={{ $parameter["name"] || undefined }}',
 							parent_id: '={{ $parameter["parent_id"] || undefined }}',
@@ -99,7 +99,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}',
+						url: API_ENDPOINTS.RATE_BY_ID,
 					},
 				},
 			},
@@ -126,7 +126,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}/prices',
+						url: API_ENDPOINTS.RATE_PRICES,
 						qs: {
 							start: '={{ $parameter["start"] || undefined }}',
 							end: '={{ $parameter["end"] || undefined }}',
@@ -143,7 +143,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}/prices',
+						url: API_ENDPOINTS.RATE_PRICES,
 						qs: {
 							start: '={{ $parameter["start"] || undefined }}',
 							end: '={{ $parameter["end"] || undefined }}',
@@ -184,7 +184,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}/meta',
+						url: API_ENDPOINTS.RATE_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
@@ -199,7 +199,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}/meta',
+						url: API_ENDPOINTS.RATE_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -213,7 +213,7 @@ export const ratesDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/rates/{{$parameter["rate_id"]}}/meta',
+						url: API_ENDPOINTS.RATE_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},

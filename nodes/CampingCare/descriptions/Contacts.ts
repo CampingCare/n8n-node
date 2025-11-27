@@ -51,7 +51,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}',
+						url: API_ENDPOINTS.CONTACT_BY_ID,
 						qs: {
 							get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
 							get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
@@ -105,7 +105,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}',
+						url: API_ENDPOINTS.CONTACT_BY_ID,
 						body: {
 							gender: '={{ $parameter["gender"] || undefined }}',
 							first_name: '={{ $parameter["first_name"] || undefined }}',
@@ -130,7 +130,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}',
+						url: API_ENDPOINTS.CONTACT_BY_ID,
 					},
 				},
 			},
@@ -156,7 +156,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'PUT' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						url: API_ENDPOINTS.CONTACT_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 							value: '={{ $parameter["value"] || undefined }}',
@@ -172,7 +172,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'GET' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						url: API_ENDPOINTS.CONTACT_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
@@ -186,7 +186,7 @@ export const contactsDescription = [
 				routing: {
 					request: {
 						method: 'DELETE' as IHttpRequestMethods,
-						url: '=/contacts/{{$parameter["contact_id"]}}/meta',
+						url: API_ENDPOINTS.CONTACT_META,
 						qs: {
 							key: '={{ $parameter["key"] || undefined }}',
 						},
