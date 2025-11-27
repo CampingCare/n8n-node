@@ -32,6 +32,7 @@ export const timezonesDescription = [
 		default: OPERATIONS.GET_TIMEZONES,
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.TIMEZONES], [OPERATIONS.GET_TIMEZONES]),
 
 	{

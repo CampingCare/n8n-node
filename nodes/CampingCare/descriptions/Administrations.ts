@@ -28,21 +28,23 @@ export const administrationsDescription = [
 				description: 'You can retrieve the administrations of a specific user',
 				action: 'Get administrations',
 				routing: {
-					request: {
-						method: 'GET' as IHttpRequestMethods,
-						url: API_ENDPOINTS.ADMINISTRATIONS,
-						qs: {
-							count: '={{ $parameter["count"] || undefined }}',
-							get_accommodations: '={{ $parameter["get_accommodations"] || undefined }}',
-							get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
-							get_media: '={{ $parameter["get_media"] || undefined }}',
-							get_meta: '={{ $parameter["get_meta"] || undefined }}',
-							translations: '={{ $parameter["translations"] || undefined }}',
-							limit: '={{ $parameter["limit"] || undefined }}',
-							offset: '={{ $parameter["offset"] || undefined }}',
-							order: '={{ $parameter["order"] || undefined }}',
-							search: '={{ $parameter["search"] || undefined }}',
-						},
+				request: {
+					method: 'GET' as IHttpRequestMethods,
+					url: API_ENDPOINTS.ADMINISTRATIONS,
+					qs: {
+						// Boolean parameters
+						count: '={{ $parameter["count"] || undefined }}',
+						get_accommodations: '={{ $parameter["get_accommodations"] || undefined }}',
+						get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
+						get_media: '={{ $parameter["get_media"] || undefined }}',
+						get_meta: '={{ $parameter["get_meta"] || undefined }}',
+						translations: '={{ $parameter["translations"] || undefined }}',
+						// Query parameters
+						limit: '={{ $parameter["limit"] || undefined }}',
+						offset: '={{ $parameter["offset"] || undefined }}',
+						order: '={{ $parameter["order"] || undefined }}',
+						search: '={{ $parameter["search"] || undefined }}',
+					},
 					},
 				},
 			},
@@ -56,6 +58,7 @@ export const administrationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.ADMINISTRATION_BY_ID,
 						qs: {
+							// Boolean parameters
 							get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
@@ -218,6 +221,7 @@ export const administrationsDescription = [
 		default: 'getAgeTables',
 	},
 
+	// Required ID fields
 	{
 		displayName: 'Administration ID',
 		name: 'admin_id',
@@ -240,34 +244,7 @@ export const administrationsDescription = [
 		},
 	},
 
-	{
-		displayName: 'Name',
-		name: 'name',
-		type: 'string' as NodePropertyTypes,
-		required: true,
-		description: 'Name of the administration',
-		placeholder: 'Camping.care Park',
-		default: '',
-		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
-		},
-	},
-	{
-		displayName: 'Type',
-		name: 'type',
-		type: 'options' as NodePropertyTypes,
-		required: true,
-		description: 'Type of administration',
-		options: [
-			{ name: 'Full', value: 'full' },
-			{ name: 'Lite', value: 'lite' },
-		],
-		default: 'full',
-		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
-		},
-	},
-
+	// Boolean parameters
 	booleanParams.count([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
 	booleanParams.getAccommodations([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
 	booleanParams.getAgeTables(
@@ -288,6 +265,7 @@ export const administrationsDescription = [
 		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_ADMINISTRATION],
 	),
 
+	// Query parameters (GET operations)
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -337,6 +315,36 @@ export const administrationsDescription = [
 		},
 	},
 
+	// Add operation parameters
+	{
+		displayName: 'Name',
+		name: 'name',
+		type: 'string' as NodePropertyTypes,
+		required: true,
+		description: 'Name of the administration',
+		placeholder: 'Camping.care Park',
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
+		},
+	},
+	{
+		displayName: 'Type',
+		name: 'type',
+		type: 'options' as NodePropertyTypes,
+		required: true,
+		description: 'Type of administration',
+		options: [
+			{ name: 'Full', value: 'full' },
+			{ name: 'Lite', value: 'lite' },
+		],
+		default: 'full',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.ADD_ADMINISTRATION] },
+		},
+	},
+
+	// Update operation parameters
 	{
 		displayName: 'Name',
 		name: 'update_name',

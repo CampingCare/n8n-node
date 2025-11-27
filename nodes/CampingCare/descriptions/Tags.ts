@@ -71,6 +71,7 @@ export const tagsDescription = [
 		default: OPERATIONS.GET_TAGS,
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.TAGS], [OPERATIONS.GET_TAGS]),
 	{
 		displayName: 'Limit',

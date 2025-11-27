@@ -94,7 +94,7 @@ export const categoriesDescription = [
 		default: OPERATIONS.GET_CATEGORIES,
 	},
 
-	// Category ID for Get/Update/Delete operations
+	// Required ID fields
 	{
 		displayName: 'Category ID',
 		name: 'category_id',
@@ -114,7 +114,10 @@ export const categoriesDescription = [
 		},
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.CATEGORIES], [OPERATIONS.GET_CATEGORIES]),
+
+	// Query parameters
 	{
 		displayName: 'Limit',
 		name: 'limit',

@@ -27,6 +27,7 @@ export const reservationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.RESERVATIONS,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
 							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
 							get_contact: '={{ $parameter["get_contact"] || undefined }}',
@@ -36,6 +37,7 @@ export const reservationsDescription = [
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_payment_terms: '={{ $parameter["get_payment_terms"] || undefined }}',
 							get_rows: '={{ $parameter["get_rows"] || undefined }}',
+							// Query/filter parameters
 							accommodation_id: '={{ $parameter["accommodation_id"] || undefined }}',
 							admin_id: '={{ $parameter["admin_id"] || undefined }}',
 							arrival: '={{ $parameter["arrival"] || undefined }}',
@@ -74,6 +76,7 @@ export const reservationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.RESERVATION_BY_ID,
 						qs: {
+							// Boolean parameters
 							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
 							get_booker: '={{ $parameter["get_booker"] || undefined }}',
 							get_co_travelers: '={{ $parameter["get_co_travelers"] || undefined }}',
@@ -203,6 +206,7 @@ export const reservationsDescription = [
 		default: 'withCalculation',
 	},
 
+	// Required ID fields
 	{
 		displayName: 'Reservation ID',
 		name: 'reservation_id',
@@ -219,6 +223,7 @@ export const reservationsDescription = [
 		},
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.RESERVATIONS], [OPERATIONS.GET_RESERVATIONS]),
 	booleanParams.filterRootMeta(
 		[RESOURCES.RESERVATIONS],

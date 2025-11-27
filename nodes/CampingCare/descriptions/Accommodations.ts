@@ -26,11 +26,13 @@ export const accommodationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.ACCOMMODATIONS,
 						qs: {
+							// Boolean parameters
 							count: '={{ $parameter["count"] || undefined }}',
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
 							get_services: '={{ $parameter["get_services"] || undefined }}',
 							translations: '={{ $parameter["translations"] || undefined }}',
+							// Query parameters
 							limit: '={{ $parameter["limit"] || undefined }}',
 							offset: '={{ $parameter["offset"] || undefined }}',
 							channel_id: '={{ $parameter["channel_id"] || undefined }}',
@@ -50,9 +52,11 @@ export const accommodationsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 						qs: {
+							// Boolean parameters
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
 							get_media: '={{ $parameter["get_media"] || undefined }}',
 							translations: '={{ $parameter["translations"] || undefined }}',
+							// Query parameters
 							admin_id: '={{ $parameter["admin_id"] || undefined }}',
 						},
 					},
@@ -151,6 +155,7 @@ export const accommodationsDescription = [
 		default: OPERATIONS.UPDATE_META,
 	},
 
+	// Required ID fields
 	{
 		displayName: 'Accommodation',
 		name: 'accommodation_id',
@@ -172,6 +177,7 @@ export const accommodationsDescription = [
 		},
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.ACCOMMODATIONS], [OPERATIONS.GET_ACCOMMODATIONS]),
 	booleanParams.getMeta(
 		[RESOURCES.ACCOMMODATIONS],
@@ -187,6 +193,7 @@ export const accommodationsDescription = [
 		[OPERATIONS.GET_ACCOMMODATIONS, OPERATIONS.GET_ACCOMMODATION],
 	),
 
+	// Query parameters
 	{
 		displayName: 'Limit',
 		name: 'limit',
@@ -251,6 +258,7 @@ export const accommodationsDescription = [
 		},
 	},
 
+	// Add operation parameters
 	{
 		displayName: 'Name',
 		name: 'name',
@@ -267,6 +275,7 @@ export const accommodationsDescription = [
 		},
 	},
 
+	// Update operation parameters
 	{
 		displayName: 'Name',
 		name: 'update_name',
@@ -328,6 +337,7 @@ export const accommodationsDescription = [
 		},
 	},
 
+	// Meta operation parameters
 	{
 		displayName: 'Key',
 		name: 'key',

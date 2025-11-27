@@ -246,8 +246,9 @@ export const ratesDescription = [
 		},
 	},
 
+	// Required ID fields
 	{
-		displayName: 'Key',
+		displayName: 'Rate ID',
 		name: 'key',
 		type: 'string' as NodePropertyTypes,
 		description: 'Meta key to get or update (e.g. pin, first_name)',
@@ -537,7 +538,10 @@ export const ratesDescription = [
 		],
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.RATES], [OPERATIONS.GET_RATES]),
+
+	// Query parameters
 	{
 		displayName: 'Limit',
 		name: 'limit',

@@ -23,23 +23,25 @@ export const contactsDescription = [
 				description: 'Get a list of contacts for this administration',
 				action: 'Get contacts',
 				routing: {
-					request: {
-						method: 'GET' as IHttpRequestMethods,
-						url: API_ENDPOINTS.CONTACTS,
-						qs: {
-							count: '={{ $parameter["count"] || undefined }}',
-							get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
-							get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
-							get_meta: '={{ $parameter["get_meta"] || undefined }}',
-							get_reservation_payment_terms:
-								'={{ $parameter["get_reservation_payment_terms"] || undefined }}',
-							get_reservations: '={{ $parameter["get_reservations"] || undefined }}',
-							limit: '={{ $parameter["limit"] || undefined }}',
-							offset: '={{ $parameter["offset"] || undefined }}',
-							order: '={{ $parameter["order"] || undefined }}',
-							order_by: '={{ $parameter["order_by"] || undefined }}',
-							search: '={{ $parameter["search"] || undefined }}',
-						},
+				request: {
+					method: 'GET' as IHttpRequestMethods,
+					url: API_ENDPOINTS.CONTACTS,
+					qs: {
+						// Boolean parameters
+						count: '={{ $parameter["count"] || undefined }}',
+						get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
+						get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
+						get_meta: '={{ $parameter["get_meta"] || undefined }}',
+						get_reservation_payment_terms:
+							'={{ $parameter["get_reservation_payment_terms"] || undefined }}',
+						get_reservations: '={{ $parameter["get_reservations"] || undefined }}',
+						// Query parameters
+						limit: '={{ $parameter["limit"] || undefined }}',
+						offset: '={{ $parameter["offset"] || undefined }}',
+						order: '={{ $parameter["order"] || undefined }}',
+						order_by: '={{ $parameter["order_by"] || undefined }}',
+						search: '={{ $parameter["search"] || undefined }}',
+					},
 					},
 				},
 			},
@@ -53,6 +55,7 @@ export const contactsDescription = [
 						method: 'GET' as IHttpRequestMethods,
 						url: API_ENDPOINTS.CONTACT_BY_ID,
 						qs: {
+							// Boolean parameters
 							get_invoice_payments: '={{ $parameter["get_invoice_payments"] || undefined }}',
 							get_invoices: '={{ $parameter["get_invoices"] || undefined }}',
 							get_meta: '={{ $parameter["get_meta"] || undefined }}',
@@ -197,6 +200,7 @@ export const contactsDescription = [
 		default: OPERATIONS.UPDATE_META,
 	},
 
+	// Required ID fields
 	{
 		displayName: 'Contact ID',
 		name: 'contact_id',
@@ -212,6 +216,8 @@ export const contactsDescription = [
 			},
 		},
 	},
+
+	// Boolean parameters
 	booleanParams.count([RESOURCES.CONTACTS], [OPERATIONS.GET_CONTACTS]),
 	booleanParams.getInvoicePayments(
 		[RESOURCES.CONTACTS],
@@ -231,6 +237,7 @@ export const contactsDescription = [
 		[OPERATIONS.GET_CONTACTS, OPERATIONS.GET_CONTACT],
 	),
 
+	// Query parameters
 	{
 		displayName: 'Limit',
 		name: 'limit',

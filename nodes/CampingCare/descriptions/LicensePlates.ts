@@ -119,6 +119,7 @@ export const licensePlatesDescription = [
 		default: OPERATIONS.GET_LICENSE_PLATES,
 	},
 
+	// Required ID fields
 	{
 		displayName: 'License Plate ID',
 		name: 'license_plate_id',
@@ -217,6 +218,7 @@ export const licensePlatesDescription = [
 		},
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
 	booleanParams.forceDates([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),
 	booleanParams.getReservation([RESOURCES.LICENSE_PLATES], [OPERATIONS.GET_LICENSE_PLATES]),

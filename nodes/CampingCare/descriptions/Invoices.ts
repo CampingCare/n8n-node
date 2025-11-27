@@ -56,21 +56,22 @@ export const invoicesDescription = [
 				description: 'Get a single invoice by id',
 				action: 'Get invoice',
 				routing: {
-					request: {
-						method: 'GET' as IHttpRequestMethods,
-						url: API_ENDPOINTS.INVOICE_BY_ID,
-						qs: {
-							filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
-							get_contact: '={{ $parameter["get_contact"] || undefined }}',
-							get_contact_meta: '={{ $parameter["get_contact_meta"] || undefined }}',
-							get_meta: '={{ $parameter["get_meta"] || undefined }}',
-							get_payment_terms: '={{ $parameter["get_payment_terms"] || undefined }}',
-							get_payments: '={{ $parameter["get_payments"] || undefined }}',
-							get_reservation: '={{ $parameter["get_reservation"] || undefined }}',
-							get_reservation_meta: '={{ $parameter["get_reservation_meta"] || undefined }}',
-							get_rows: '={{ $parameter["get_rows"] || undefined }}',
-							get_vat_totals: '={{ $parameter["get_vat_totals"] || undefined }}',
-						},
+				request: {
+					method: 'GET' as IHttpRequestMethods,
+					url: API_ENDPOINTS.INVOICE_BY_ID,
+					qs: {
+						// Boolean parameters
+						filter_root_meta: '={{ $parameter["filter_root_meta"] || undefined }}',
+						get_contact: '={{ $parameter["get_contact"] || undefined }}',
+						get_contact_meta: '={{ $parameter["get_contact_meta"] || undefined }}',
+						get_meta: '={{ $parameter["get_meta"] || undefined }}',
+						get_payment_terms: '={{ $parameter["get_payment_terms"] || undefined }}',
+						get_payments: '={{ $parameter["get_payments"] || undefined }}',
+						get_reservation: '={{ $parameter["get_reservation"] || undefined }}',
+						get_reservation_meta: '={{ $parameter["get_reservation_meta"] || undefined }}',
+						get_rows: '={{ $parameter["get_rows"] || undefined }}',
+						get_vat_totals: '={{ $parameter["get_vat_totals"] || undefined }}',
+					},
 					},
 				},
 			},
@@ -192,6 +193,7 @@ export const invoicesDescription = [
 		default: OPERATIONS.UPDATE_META,
 	},
 
+	// Required ID fields
 	{
 		displayName: 'Invoice ID',
 		name: 'invoice_id',
@@ -263,6 +265,7 @@ export const invoicesDescription = [
 		},
 	},
 
+	// Boolean parameters
 	booleanParams.count([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES]),
 	booleanParams.filterRootMeta(
 		[RESOURCES.INVOICES],
@@ -290,6 +293,7 @@ export const invoicesDescription = [
 	booleanParams.getRows([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICES, OPERATIONS.GET_INVOICE]),
 	booleanParams.getVatTotals([RESOURCES.INVOICES], [OPERATIONS.GET_INVOICE]),
 
+	// Query parameters
 	{
 		displayName: 'Channel',
 		name: 'channel_id',
