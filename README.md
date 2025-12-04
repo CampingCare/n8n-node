@@ -55,70 +55,128 @@ Regular node for making API calls:
 
 #### Accommodations API
 
-- Get Accommodations - List accommodations with filtering options
-- Get Accommodation - Retrieve a specific accommodation by ID
-- Add Accommodation - Create a new accommodation
+- **Get Accommodations** - List accommodations with filtering options
+- **Get Accommodation** - Retrieve a specific accommodation by ID
+- **Add Accommodation** - Create a new accommodation
+- **Update Accommodation** - Modify existing accommodation details
+- **Delete Accommodation** - Remove an accommodation
+- **Meta Operations** - Manage accommodation metadata (get, update, delete)
 
 #### Administrations API
 
-- Get Administrations - List all administrations
-- Get Administration - Get details of a specific administration
-- Age Tables - Retrieve age table configurations
+- **Get Administrations** - List all administrations
+- **Get Administration** - Get details of a specific administration
+- **Add Administration** - Create a new administration (full PMS or lite version)
+- **Update Administration** - Modify administration details
+- **Delete Administration** - Remove an administration
+- **Age Tables** - Retrieve and manage age table configurations
+- **Meta Operations** - Manage administration metadata
+
+#### Availability API
+
+- **Get Stock** - Check accommodation availability for specific date ranges
+- **Get Places** - Get available places/spots
+
+#### Categories API
+
+- **Get Categories** - List all categories
+- **Get Category** - Get a specific category by ID
+- **Add Category** - Create a new category
+- **Update Category** - Modify existing category
+- **Delete Category** - Remove a category
 
 #### Contacts API
 
-- Get Contacts - List contacts with filtering and pagination
-- Get Contact - Retrieve a specific contact by ID
-- Add Contact - Create a new contact with metadata support
+- **Get Contacts** - List contacts with filtering and pagination
+- **Get Contact** - Retrieve a specific contact by ID
+- **Add Contact** - Create a new contact with metadata support
+- **Update Contact** - Modify existing contact information
+- **Delete Contact** - Remove a contact
+- **Meta Operations** - Manage contact metadata
+
+#### Exchange Rates API
+
+- **Get Exchange Rates** - Get currency exchange rates for specific dates
+- **Exchange Value** - Convert amounts between currencies
 
 #### Invoices API
 
-- Get Invoices - List invoices with filters
-- Get Invoice - Get a specific invoice by ID
-- Add Invoice - Create a new invoice
-- Update Invoice - Modify existing invoice
-- Delete Invoice - Remove an invoice
-- Finalize Invoice - Finalize an invoice for payment
-- Cancel Delayed Finalized Invoice - Cancel a delayed finalization
-- Create Credit - Create a credit note for an invoice
-- Meta Operations - Manage invoice metadata
+- **Get Invoices** - List invoices with filters
+- **Get Invoice** - Get a specific invoice by ID
+- **Add Invoice** - Create a new invoice
+- **Update Invoice** - Modify existing invoice
+- **Delete Invoice** - Remove an invoice
+- **Finalize Invoice** - Finalize an invoice for payment
+- **Cancel Delayed Finalized Invoice** - Cancel a delayed finalization
+- **Create Credit** - Create a credit note for an invoice
+- **Add Rows** - Add line items to an invoice
+- **Meta Operations** - Manage invoice metadata
+
+#### Kiosks API
+
+- **Get Kiosks** - List all kiosks
+- **Get Kiosk** - Get a specific kiosk by ID
+- **Add Kiosk** - Create a new kiosk
+- **Update Kiosk** - Modify kiosk details
+- **Delete Kiosk** - Remove a kiosk
+- **Install Kiosk** - Install a kiosk
+- **Meta Operations** - Manage kiosk metadata
+
+#### Ledgers API
+
+- **Get Ledgers** - List all ledgers
+- **Get Ledger** - Get a specific ledger by ID
+- **Add Ledger** - Create a new ledger
+- **Update Ledger** - Modify ledger details
+- **Delete Ledger** - Remove a ledger
 
 #### License Plates API
 
-- Get License Plates - List license plates with filtering
-- Get License Plate - Get a specific license plate by ID
-- Check Valid License Plate - Validate a license plate
-- Add License Plate - Create a new license plate entry
-- Update License Plate - Modify existing license plate
-- Delete License Plate - Remove a license plate
+- **Get License Plates** - List license plates with filtering
+- **Get License Plate** - Get a specific license plate by ID
+- **Check Valid License Plate** - Validate a license plate
+- **Add License Plate** - Create a new license plate entry
+- **Update License Plate** - Modify existing license plate
+- **Delete License Plate** - Remove a license plate
 
 #### Logs API
 
-- Add Log - Create a new log entry for tracking activities related to reservations, contacts, invoices, or accommodations
+- **Get Logs** - Retrieve log entries
+- **Add Log** - Create a new log entry for tracking activities related to reservations, contacts, invoices, or accommodations
 
 #### Price Calculation API
 
-- Calculate Price - Get pricing information before creating a reservation
+- **Calculate Price** - Get pricing information before creating a reservation with support for age tables, birthdates, discount codes, and channels
 
 #### Rates API
 
-- Get Rates - List all rates
-- Get Rate - Get a specific rate by ID
-- Add Rate - Create a new rate
-- Update Rate - Modify existing rate
-- Delete Rate - Remove a rate
-- Prices - Manage rate prices (get/update)
-- Meta Operations - Manage rate metadata
+- **Get Rates** - List all rates
+- **Get Rate** - Get a specific rate by ID
+- **Add Rate** - Create a new rate
+- **Update Rate** - Modify existing rate
+- **Delete Rate** - Remove a rate
+- **Get Prices** - Retrieve prices for a specific rate and date range
+- **Update Prices** - Modify rate prices for specific dates
+- **Meta Operations** - Manage rate metadata
 
 #### Reservations API
 
-- Get Reservations - List reservations with filtering
-- Get Reservation - Get details of a specific reservation
-- Create Reservation - Create a new reservation (multiple methods available)
+- **Get Reservations** - List all reservations with filtering
+- **Get Reservation** - Get a specific reservation by ID
+- **Create Reservation** - Create a new reservation (with price calculation or forced data)
+- **Delete Reservation** - Remove a reservation
+- **Meta Operations** - Manage reservation metadata
+
+#### Tags API
+
+- **Get Tags** - List all tags
+- **Get Tag** - Get a specific tag by ID
+- **Add Tag** - Create a new tag
+- **Delete Tag** - Remove a tag
 
 #### Timezones API
 
-- Get Timezones - List supported timezones with country filtering
+- **Get Timezones** - List all available timezones
 
 ### Starfish (CampingCare/HotelCare) Trigger Node
 
@@ -201,6 +259,7 @@ For the price calculation method:
 - **Required Fields**: Some operations have required fields (marked with \*)
 - **Meta Fields**: Many resources support custom metadata via meta operations
 - **Pagination**: Use `count` and `limit` parameters for large datasets
+- **Boolean Parameters**: Use string values "0" or "1" for boolean query parameters
 
 ## Resources
 
@@ -213,10 +272,14 @@ For the price calculation method:
 
 ### Version 1.0.6 (Current)
 
-- Support for Invoices API
+- Support for Invoices API with advanced operations
 - Support for Rates API with pricing and metadata
 - Enhanced webhook trigger with signature validation
+- Support for Kiosks, Ledgers, and License Plates APIs
+- Support for Exchange Rates and Logs APIs
+- Support for Categories and Tags APIs
 - Improved error handling and validation
+- Meta operations for all major resources
 
 ### Version 1.0.0
 
@@ -246,6 +309,13 @@ For the price calculation method:
 **Date format errors**
 
 - Ensure all dates use YYYY-MM-DD format
+- For datetime fields, use YYYY-MM-DD HH:MM:SS format
+
+**Meta operations not working**
+
+- Verify the resource supports meta operations
+- Check that the meta key is valid for the resource type
+- Some meta operations may require specific permissions
 
 ## Contributing
 
