@@ -8,6 +8,7 @@ import { categoriesDescription } from './descriptions/Categories';
 import { contactsDescription } from './descriptions/Contacts';
 import { exchangeRatesDescription } from './descriptions/ExchangeRates';
 import { invoicesDescription } from './descriptions/Invoices';
+import { kiosksDescription } from './descriptions/Kiosks';
 import { licensePlatesDescription } from './descriptions/LicensePlates';
 import { logsDescription } from './descriptions/Logs';
 import { priceCalculationDescription } from './descriptions/PriceCalculation';
@@ -63,6 +64,7 @@ export class CampingCare implements INodeType {
 					{ name: 'Contacts API', value: RESOURCES.CONTACTS },
 					{ name: 'Exchange Rates API', value: RESOURCES.EXCHANGE_RATES },
 					{ name: 'Invoices API', value: RESOURCES.INVOICES },
+					{ name: 'Kiosks API', value: RESOURCES.KIOSKS },
 					{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
 					{ name: 'Logs API', value: RESOURCES.LOGS },
 					{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
@@ -81,6 +83,7 @@ export class CampingCare implements INodeType {
 			...contactsDescription,
 			...exchangeRatesDescription,
 			...invoicesDescription,
+			...kiosksDescription,
 			...licensePlatesDescription,
 			...logsDescription,
 			...priceCalculationDescription,

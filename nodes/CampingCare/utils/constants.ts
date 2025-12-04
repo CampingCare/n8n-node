@@ -38,6 +38,11 @@ export const API_ENDPOINTS = {
 	INVOICE_CREDIT: '=/invoices/{{$parameter["invoice_id"]}}/credit',
 	INVOICE_META: '=/invoices/{{$parameter["invoice_id"]}}/meta',
 
+	KIOSKS: '/kiosks',
+	KIOSK_BY_ID: '=/kiosks/{{$parameter["kiosk_id"]}}',
+	KIOSK_META: '=/kiosks/{{$parameter["kiosk_id"]}}/meta',
+	KIOSK_INSTALL: '=/kiosks/{{$parameter["kiosk_id"]}}/install',
+
 	LICENSE_PLATES: '/license_plates',
 	LICENSE_PLATE_BY_ID: '=/license_plates/{{$parameter["license_plate_id"]}}',
 
@@ -94,32 +99,27 @@ export const RESOURCES = {
 	AVAILABILITY: 'availability',
 	CATEGORIES: 'categories',
 	CONTACTS: 'contacts',
-	PRICE_CALCULATION: 'priceCalculation',
-	RESERVATIONS: 'reservations',
-	TIMEZONES: 'timezones',
-	RATES: 'rates',
+	EXCHANGE_RATES: 'exchangeRates',
 	INVOICES: 'invoices',
+	KIOSKS: 'kiosks',
 	LICENSE_PLATES: 'licensePlates',
 	LOGS: 'logs',
+	PRICE_CALCULATION: 'priceCalculation',
+	RATES: 'rates',
+	RESERVATIONS: 'reservations',
 	TAGS: 'tags',
-	EXCHANGE_RATES: 'exchangeRates',
+	TIMEZONES: 'timezones',
 } as const;
 
 export const OPERATIONS = {
-	GET_ACCOMMODATION: 'getAccommodation',
 	GET_ACCOMMODATIONS: 'getAccommodations',
+	GET_ACCOMMODATION: 'getAccommodation',
 	ADD_ACCOMMODATION: 'addAccommodation',
 	UPDATE_ACCOMMODATION: 'updateAccommodation',
 	DELETE_ACCOMMODATION: 'deleteAccommodation',
 
-	GET_CATEGORIES: 'getCategories',
-	GET_CATEGORY: 'getCategory',
-	ADD_CATEGORY: 'addCategory',
-	UPDATE_CATEGORY: 'updateCategory',
-	DELETE_CATEGORY: 'deleteCategory',
-
-	GET_ADMINISTRATION: 'getAdministration',
 	GET_ADMINISTRATIONS: 'getAdministrations',
+	GET_ADMINISTRATION: 'getAdministration',
 	UPDATE_ADMINISTRATION: 'updateAdministration',
 	ADD_ADMINISTRATION: 'addAdministration',
 	DELETE_ADMINISTRATION: 'deleteAdministration',
@@ -127,46 +127,23 @@ export const OPERATIONS = {
 	GET_AGE_TABLES: 'getAgeTables',
 	GET_AGE_TABLE: 'getAgeTable',
 
-	GET_CONTACT: 'getContact',
+	GET_STOCK: 'getStock',
+	GET_PLACES: 'getPlaces',
+
+	GET_CATEGORIES: 'getCategories',
+	GET_CATEGORY: 'getCategory',
+	ADD_CATEGORY: 'addCategory',
+	UPDATE_CATEGORY: 'updateCategory',
+	DELETE_CATEGORY: 'deleteCategory',
+
 	GET_CONTACTS: 'getContacts',
+	GET_CONTACT: 'getContact',
 	ADD_CONTACT: 'addContact',
 	UPDATE_CONTACT: 'updateContact',
 	DELETE_CONTACT: 'deleteContact',
 
 	GET_EXCHANGE_RATES: 'getExchangeRates',
 	EXCHANGE_VALUE: 'exchangeValue',
-
-	CALCULATE_PRICE: 'calculatePrice',
-
-	GET_RESERVATION: 'getReservation',
-	GET_RESERVATIONS: 'getReservations',
-	CREATE_RESERVATION: 'createReservation',
-	DELETE_RESERVATION: 'deleteReservation',
-
-	GET_TIMEZONES: 'getTimezones',
-
-	GET_RATES: 'getRates',
-	GET_RATE: 'getRate',
-	ADD_RATE: 'addRate',
-	UPDATE_RATE: 'updateRate',
-	DELETE_RATE: 'deleteRate',
-
-	GET_LICENSE_PLATES: 'getLicensePlates',
-	GET_LICENSE_PLATE: 'getLicensePlate',
-	CHECK_VALID_LICENSE_PLATE: 'checkValidLicensePlate',
-	ADD_LICENSE_PLATE: 'addLicensePlate',
-	UPDATE_LICENSE_PLATE: 'updateLicensePlate',
-	DELETE_LICENSE_PLATE: 'deleteLicensePlate',
-
-	PRICES: 'prices',
-	GET_PRICES: 'getPrices',
-	UPDATE_PRICES: 'updatePrices',
-	UPDATE_PRICES_BULK: 'updatePricesBulk',
-
-	META: 'meta',
-	GET_META: 'getMeta',
-	UPDATE_META: 'updateMeta',
-	DELETE_META: 'deleteMeta',
 
 	GET_INVOICES: 'getInvoices',
 	GET_INVOICE: 'getInvoice',
@@ -177,14 +154,49 @@ export const OPERATIONS = {
 	CANCEL_DELAYED_FINALIZED_INVOICE: 'cancelDelayedFinalizedInvoice',
 	CREATE_CREDIT: 'createCredit',
 
+	KIOSKS: 'kiosks',
+	GET_KIOSKS: 'getKiosks',
+	GET_KIOSK: 'getKiosk',
+	UPDATE_KIOSK: 'updateKiosk',
+	ADD_KIOSK: 'addKiosk',
+	DELETE_KIOSK: 'deleteKiosk',
+	INSTALL_KIOSK: 'installKiosk',
+
+	GET_LICENSE_PLATES: 'getLicensePlates',
+	GET_LICENSE_PLATE: 'getLicensePlate',
+	CHECK_VALID_LICENSE_PLATE: 'checkValidLicensePlate',
+	ADD_LICENSE_PLATE: 'addLicensePlate',
+	UPDATE_LICENSE_PLATE: 'updateLicensePlate',
+	DELETE_LICENSE_PLATE: 'deleteLicensePlate',
+
 	GET_LOGS: 'getLogs',
 	ADD_LOG: 'addLog',
 
-	GET_STOCK: 'getStock',
-	GET_PLACES: 'getPlaces',
+	CALCULATE_PRICE: 'calculatePrice',
+
+	GET_RATES: 'getRates',
+	GET_RATE: 'getRate',
+	ADD_RATE: 'addRate',
+	UPDATE_RATE: 'updateRate',
+	DELETE_RATE: 'deleteRate',
+	PRICES: 'prices',
+	GET_PRICES: 'getPrices',
+	UPDATE_PRICES: 'updatePrices',
+
+	GET_RESERVATION: 'getReservation',
+	GET_RESERVATIONS: 'getReservations',
+	CREATE_RESERVATION: 'createReservation',
+	DELETE_RESERVATION: 'deleteReservation',
 
 	GET_TAGS: 'getTags',
 	GET_TAG: 'getTag',
 	ADD_TAG: 'addTag',
 	DELETE_TAG: 'deleteTag',
+
+	GET_TIMEZONES: 'getTimezones',
+
+	META: 'meta',
+	GET_META: 'getMeta',
+	UPDATE_META: 'updateMeta',
+	DELETE_META: 'deleteMeta',
 } as const;
