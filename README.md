@@ -19,33 +19,6 @@ Starfish is a comprehensive booking and reservation management platform for camp
 
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-### Prerequisites
-
-- Node.js >= 20.15
-- n8n >= 1.0.0 (Community Nodes enabled)
-- A valid Starfish API key (available in your Starfish dashboard)
-
-### Install via npm
-
-```bash
-npm install n8n-nodes-starfish
-```
-
-### Install in n8n
-
-**Option A — via UI:**
-
-1. In n8n: Settings > Community Nodes > Install
-2. Search for or paste: `n8n-nodes-starfish`
-3. Confirm and restart n8n
-
-**Option B — via CLI:**
-
-1. Stop your n8n instance
-2. Install: `npm install n8n-nodes-starfish`
-3. Restart n8n
-4. The nodes will appear in the node panel
-
 ## Operations
 
 This package provides two nodes:
@@ -225,7 +198,7 @@ Webhook trigger node for real-time events:
 ### Obtaining Your API Key
 
 1. Log in to your Starfish dashboard (CampingCare or HotelCare)
-2. Navigate to Settings > API
+2. Navigate to Settings > API Keys
 3. Generate or copy your API key
 4. Paste it into the n8n credentials field
 
@@ -282,7 +255,7 @@ For the price calculation method:
 
 ### Important Notes
 
-- **Date Format**: Always use YYYY-MM-DD format for dates. For datetime fields, use YYYY-MM-DD HH:MM:SS format
+- **Date Format**: Always use YYYY-MM-DD format for dates.
 - **Required Fields**: Some operations have required fields (marked with \*)
 - **Meta Fields**: Many resources support custom metadata via meta operations
 - **Pagination**: Use `count` and `limit` parameters for large datasets
@@ -293,7 +266,7 @@ For the price calculation method:
 
 - [Starfish API Documentation](https://support.starfish.care/faq/n8n/)
 - [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [GitHub Repository](https://github.com/CampingCare/n8n-nodes-starfish)
+- [GitHub Repository](https://github.com/CampingCare/n8n-node)
 - [CampingCare Website](https://www.camping.care)
 - [HotelCare Website](https://www.hotel.care)
 
@@ -342,7 +315,6 @@ For the price calculation method:
 **Date format errors**
 
 - Ensure all dates use YYYY-MM-DD format
-- For datetime fields, use YYYY-MM-DD HH:MM:SS format
 - Check your system timezone settings
 
 **Meta operations not working**
