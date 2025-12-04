@@ -86,7 +86,7 @@ export const kiosksDescription = [
 			{
 				name: 'Install Kiosk',
 				value: OPERATIONS.INSTALL_KIOSK,
-				description: 'Installs a kiosk by generating and returning an installation code',
+				description: 'Installs a kiosk from the administration by ID',
 				action: 'Install kiosk',
 				routing: {
 					request: {

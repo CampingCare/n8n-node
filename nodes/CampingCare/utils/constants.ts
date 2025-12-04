@@ -43,6 +43,9 @@ export const API_ENDPOINTS = {
 	KIOSK_META: '=/kiosks/{{$parameter["kiosk_id"]}}/meta',
 	KIOSK_INSTALL: '=/kiosks/{{$parameter["kiosk_id"]}}/install',
 
+	LEDGERS: '/ledgers',
+	LEDGER_BY_ID: '=/ledgers/{{$parameter["ledger_id"]}}',
+
 	LICENSE_PLATES: '/license_plates',
 	LICENSE_PLATE_BY_ID: '=/license_plates/{{$parameter["license_plate_id"]}}',
 
@@ -102,6 +105,7 @@ export const RESOURCES = {
 	EXCHANGE_RATES: 'exchangeRates',
 	INVOICES: 'invoices',
 	KIOSKS: 'kiosks',
+	LEDGERS: 'ledgers',
 	LICENSE_PLATES: 'licensePlates',
 	LOGS: 'logs',
 	PRICE_CALCULATION: 'priceCalculation',
@@ -161,6 +165,12 @@ export const OPERATIONS = {
 	ADD_KIOSK: 'addKiosk',
 	DELETE_KIOSK: 'deleteKiosk',
 	INSTALL_KIOSK: 'installKiosk',
+
+	GET_LEDGERS: 'getLedgers',
+	GET_LEDGER: 'getLedger',
+	ADD_LEDGER: 'addLedger',
+	UPDATE_LEDGER: 'updateLedger',
+	DELETE_LEDGER: 'deleteLedger',
 
 	GET_LICENSE_PLATES: 'getLicensePlates',
 	GET_LICENSE_PLATE: 'getLicensePlate',
