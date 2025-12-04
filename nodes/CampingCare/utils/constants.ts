@@ -73,6 +73,9 @@ export const API_ENDPOINTS = {
 	USER_BY_ID: '=/users/{{$parameter["user_id"]}}',
 	USER_META: '=/users/{{$parameter["user_id"]}}/meta',
 
+	WIDGETS: '/widgets',
+	WIDGET_BY_ID: '=/widgets/{{$parameter["widget_id"]}}',
+
 	WEBHOOKS: '/webhooks',
 	WEBHOOKS_EVENTS: '/webhooks/events',
 } as const;
@@ -118,6 +121,7 @@ export const RESOURCES = {
 	TAGS: 'tags',
 	TIMEZONES: 'timezones',
 	USERS: 'users',
+	WIDGETS: 'widgets',
 } as const;
 
 export const OPERATIONS = {
@@ -214,6 +218,11 @@ export const OPERATIONS = {
 	GET_USER: 'getUser',
 	UPDATE_USER: 'updateUser',
 	ADD_USER: 'addUser',
+
+	GET_WIDGETS: 'getWidgets',
+	GET_WIDGET: 'getWidget',
+	ADD_WIDGET: 'addWidget',
+	DELETE_WIDGET: 'deleteWidget',
 
 	META: 'meta',
 	GET_META: 'getMeta',

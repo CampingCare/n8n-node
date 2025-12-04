@@ -187,6 +187,14 @@ Regular node for making API calls:
 - **Update User** - Modify user details
 - **Meta Operations** - Manage user metadata
 
+#### Widgets API
+
+- **Get Widgets** - List all widgets
+- **Get Widget** - Get a specific widget by ID
+- **Add Widget** - Create a new widget
+- **Update Widget** - Modify widget details
+- **Delete Widget** - Remove a widget
+
 ### Starfish (CampingCare/HotelCare) Trigger Node
 
 Webhook trigger node for real-time events:
