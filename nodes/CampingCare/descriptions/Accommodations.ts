@@ -87,7 +87,7 @@ export const accommodationsDescription = [
 						method: 'PUT' as IHttpRequestMethods,
 						url: API_ENDPOINTS.ACCOMMODATION_BY_ID,
 						qs: {
-							name: '={{ $parameter["update_name"] }}',
+							name: '={{ $parameter["update_name"] || undefined }}',
 							description: '={{ $parameter["description"] || undefined }}',
 							status: '={{ $parameter["status"] || undefined }}',
 							vat_procent: '={{ $parameter["vat_procent"] || undefined }}',
