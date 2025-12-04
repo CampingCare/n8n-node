@@ -55,6 +55,10 @@ export const API_ENDPOINTS = {
 	PAYMENTS: '/payments',
 	PRICE_CALCULATION: '/price_calculation',
 
+	PRODUCTS: '/products',
+	PRODUCT_BY_ID: '=/products/{{$parameter["product_id"]}}',
+	PRODUCT_META: '=/products/{{$parameter["product_id"]}}/meta',
+
 	RATES: '/rates',
 	RATE_BY_ID: '=/rates/{{$parameter["rate_id"]}}',
 	RATE_PRICES: '=/rates/{{$parameter["rate_id"]}}/prices',
@@ -116,6 +120,7 @@ export const RESOURCES = {
 	LICENSE_PLATES: 'licensePlates',
 	LOGS: 'logs',
 	PRICE_CALCULATION: 'priceCalculation',
+	PRODUCTS: 'products',
 	RATES: 'rates',
 	RESERVATIONS: 'reservations',
 	TAGS: 'tags',
@@ -192,6 +197,12 @@ export const OPERATIONS = {
 	ADD_LOG: 'addLog',
 
 	CALCULATE_PRICE: 'calculatePrice',
+
+	GET_PRODUCTS: 'getProducts',
+	GET_PRODUCT: 'getProduct',
+	ADD_PRODUCT: 'addProduct',
+	UPDATE_PRODUCT: 'updateProduct',
+	DELETE_PRODUCT: 'deleteProduct',
 
 	GET_RATES: 'getRates',
 	GET_RATE: 'getRate',

@@ -328,6 +328,15 @@ export const booleanParams = {
 			operations,
 		),
 
+	getTags: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'get_tags',
+			'Get Tags',
+			'Whether to include tags',
+			resources,
+			operations,
+		),
+
 	getVatTables: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'get_vat_tables',

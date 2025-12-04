@@ -149,6 +149,15 @@ Regular node for making API calls:
 
 - **Calculate Price** - Get pricing information before creating a reservation with support for age tables, birthdates, discount codes, and channels
 
+#### Products API
+
+- **Get Products** - List all products with filtering options
+- **Get Product** - Get a specific product by ID
+- **Add Product** - Create a new product with multiple meta fields support
+- **Update Product** - Modify existing product details including meta fields
+- **Delete Product** - Remove a product
+- **Meta Operations** - Manage product metadata (get, update, delete)
+
 #### Rates API
 
 - **Get Rates** - List all rates

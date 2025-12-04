@@ -13,6 +13,7 @@ import { ledgersDescription } from './descriptions/Ledgers';
 import { licensePlatesDescription } from './descriptions/LicensePlates';
 import { logsDescription } from './descriptions/Logs';
 import { priceCalculationDescription } from './descriptions/PriceCalculation';
+import { productsDescription } from './descriptions/Products';
 import { ratesDescription } from './descriptions/Rates';
 import { reservationsDescription } from './descriptions/Reservations';
 import { tagsDescription } from './descriptions/Tags';
@@ -72,6 +73,7 @@ export class CampingCare implements INodeType {
 					{ name: 'License Plates API', value: RESOURCES.LICENSE_PLATES },
 					{ name: 'Logs API', value: RESOURCES.LOGS },
 					{ name: 'Price Calculation API', value: RESOURCES.PRICE_CALCULATION },
+					{ name: 'Products API', value: RESOURCES.PRODUCTS },
 					{ name: 'Rates API', value: RESOURCES.RATES },
 					{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
 					{ name: 'Tags API', value: RESOURCES.TAGS },
@@ -94,6 +96,7 @@ export class CampingCare implements INodeType {
 			...licensePlatesDescription,
 			...logsDescription,
 			...priceCalculationDescription,
+			...productsDescription,
 			...ratesDescription,
 			...reservationsDescription,
 			...tagsDescription,
