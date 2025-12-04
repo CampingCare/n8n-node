@@ -69,6 +69,10 @@ export const API_ENDPOINTS = {
 
 	TIMEZONES: '/timezones',
 
+	USERS: '/users',
+	USER_BY_ID: '=/users/{{$parameter["user_id"]}}',
+	USER_META: '=/users/{{$parameter["user_id"]}}/meta',
+
 	WEBHOOKS: '/webhooks',
 	WEBHOOKS_EVENTS: '/webhooks/events',
 } as const;
@@ -113,6 +117,7 @@ export const RESOURCES = {
 	RESERVATIONS: 'reservations',
 	TAGS: 'tags',
 	TIMEZONES: 'timezones',
+	USERS: 'users',
 } as const;
 
 export const OPERATIONS = {
@@ -204,6 +209,11 @@ export const OPERATIONS = {
 	DELETE_TAG: 'deleteTag',
 
 	GET_TIMEZONES: 'getTimezones',
+
+	GET_USERS: 'getUsers',
+	GET_USER: 'getUser',
+	UPDATE_USER: 'updateUser',
+	ADD_USER: 'addUser',
 
 	META: 'meta',
 	GET_META: 'getMeta',

@@ -6,13 +6,14 @@ Starfish is a comprehensive booking and reservation management platform for camp
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Compatibility](#compatibility)
-[Usage](#usage)
-[Resources](#resources)
-[Version history](#version-history)
+- [Installation](#installation)
+- [Operations](#operations)
+- [Credentials](#credentials)
+- [Compatibility](#compatibility)
+- [Usage](#usage)
+- [Resources](#resources)
+- [Troubleshooting](#troubleshooting)
+- [Version history](#version-history)
 
 ## Installation
 
@@ -178,6 +179,14 @@ Regular node for making API calls:
 
 - **Get Timezones** - List all available timezones
 
+#### Users API
+
+- **Get Users** - List all users
+- **Get User** - Get a specific user by ID
+- **Add User** - Create a new user
+- **Update User** - Modify user details
+- **Meta Operations** - Manage user metadata
+
 ### Starfish (CampingCare/HotelCare) Trigger Node
 
 Webhook trigger node for real-time events:
@@ -196,11 +205,12 @@ Webhook trigger node for real-time events:
 3. Enter your API credentials:
    - **API Key**: Your Starfish API key
 
-To obtain your API key:
+### Obtaining Your API Key
 
 1. Log in to your Starfish dashboard (CampingCare or HotelCare)
 2. Navigate to Settings > API
 3. Generate or copy your API key
+4. Paste it into the n8n credentials field
 
 The API key is used for authentication with all Starfish API endpoints.
 
@@ -255,11 +265,12 @@ For the price calculation method:
 
 ### Important Notes
 
-- **Date Format**: Always use YYYY-MM-DD format for dates
+- **Date Format**: Always use YYYY-MM-DD format for dates. For datetime fields, use YYYY-MM-DD HH:MM:SS format
 - **Required Fields**: Some operations have required fields (marked with \*)
 - **Meta Fields**: Many resources support custom metadata via meta operations
 - **Pagination**: Use `count` and `limit` parameters for large datasets
 - **Boolean Parameters**: Use string values "0" or "1" for boolean query parameters
+- **Field Mapping**: When updating resources, only provided parameters will be updated
 
 ## Resources
 
@@ -267,8 +278,9 @@ For the price calculation method:
 - [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [GitHub Repository](https://github.com/CampingCare/n8n-nodes-starfish)
 - [CampingCare Website](https://www.camping.care)
+- [HotelCare Website](https://www.hotel.care)
 
-## Version history
+## Version History
 
 ### Version 1.0.6 (Current)
 
@@ -278,8 +290,10 @@ For the price calculation method:
 - Support for Kiosks, Ledgers, and License Plates APIs
 - Support for Exchange Rates and Logs APIs
 - Support for Categories and Tags APIs
+- Support for Users API with metadata operations
 - Improved error handling and validation
 - Meta operations for all major resources
+- Enhanced README documentation
 
 ### Version 1.0.0
 
@@ -298,24 +312,40 @@ For the price calculation method:
 **"Invalid API Key" error**
 
 - Verify your API key in the Starfish dashboard
-- Update the key in n8n credentials
+- Check that the key hasn't expired
+- Update the key in n8n credentials if necessary
 
 **Webhook not receiving events**
 
-- Check that the workflow is activated
-- Verify the webhook exists in Starfish dashboard
-- Ensure n8n is accessible from the internet
+- Ensure the workflow is activated
+- Verify the webhook exists in your Starfish dashboard (Settings > Webhooks)
+- Check that n8n is accessible from the internet (for webhooks to work)
+- Review your firewall and network settings
 
 **Date format errors**
 
 - Ensure all dates use YYYY-MM-DD format
 - For datetime fields, use YYYY-MM-DD HH:MM:SS format
+- Check your system timezone settings
 
 **Meta operations not working**
 
 - Verify the resource supports meta operations
 - Check that the meta key is valid for the resource type
 - Some meta operations may require specific permissions
+- Ensure your API key has the necessary scopes
+
+**Rate limiting issues**
+
+- Implement delays between API calls if needed
+- Check the API documentation for rate limits
+- Consider batching operations where possible
+
+**Connection timeouts**
+
+- Check your internet connection
+- Verify the Starfish API endpoint is accessible
+- Try again after a few moments
 
 ## Contributing
 

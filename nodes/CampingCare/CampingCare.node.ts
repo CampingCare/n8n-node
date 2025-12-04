@@ -17,6 +17,7 @@ import { ratesDescription } from './descriptions/Rates';
 import { reservationsDescription } from './descriptions/Reservations';
 import { tagsDescription } from './descriptions/Tags';
 import { timezonesDescription } from './descriptions/Timezones';
+import { usersDescription } from './descriptions/Users';
 import { API_BASE_URL, API_ENDPOINTS, EXCLUDED_CONTACT_FIELDS, RESOURCES } from './utils/constants';
 import type {
 	ContactField,
@@ -74,6 +75,7 @@ export class CampingCare implements INodeType {
 					{ name: 'Reservations API', value: RESOURCES.RESERVATIONS },
 					{ name: 'Tags API', value: RESOURCES.TAGS },
 					{ name: 'Timezones API', value: RESOURCES.TIMEZONES },
+					{ name: 'Users API', value: RESOURCES.USERS },
 				],
 				default: '',
 			},
@@ -94,6 +96,7 @@ export class CampingCare implements INodeType {
 			...reservationsDescription,
 			...tagsDescription,
 			...timezonesDescription,
+			...usersDescription,
 		],
 	};
 

@@ -67,6 +67,15 @@ export const booleanParams = {
 			operations,
 		),
 
+	getAdministrations: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'get_administrations',
+			'Get Administrations',
+			'Whether to include administration data',
+			resources,
+			operations,
+		),
+
 	getAgeTables: (resources: string[], operations: string[]) =>
 		createBooleanField(
 			'get_age_tables',
@@ -288,6 +297,15 @@ export const booleanParams = {
 			'get_rows',
 			'Get Rows',
 			'Whether to include detailed row information',
+			resources,
+			operations,
+		),
+
+	getRights: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'get_rights',
+			'Get Rights',
+			'Whether to include user rights information',
 			resources,
 			operations,
 		),
