@@ -329,13 +329,7 @@ export const booleanParams = {
 		),
 
 	getTags: (resources: string[], operations: string[]) =>
-		createBooleanField(
-			'get_tags',
-			'Get Tags',
-			'Whether to include tags',
-			resources,
-			operations,
-		),
+		createBooleanField('get_tags', 'Get Tags', 'Whether to include tags', resources, operations),
 
 	getVatTables: (resources: string[], operations: string[]) =>
 		createBooleanField(
@@ -351,6 +345,15 @@ export const booleanParams = {
 			'get_vat_totals',
 			'Get VAT Totals',
 			'Whether to include VAT totals',
+			resources,
+			operations,
+		),
+
+	languages: (resources: string[], operations: string[]) =>
+		createBooleanField(
+			'languages',
+			'Languages',
+			'Whether to include language information',
 			resources,
 			operations,
 		),

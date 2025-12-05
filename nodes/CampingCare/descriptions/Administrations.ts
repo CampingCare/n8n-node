@@ -23,28 +23,49 @@ export const administrationsDescription = [
 				action: 'Age tables',
 			},
 			{
+				name: 'Get Places',
+				value: OPERATIONS.GET_PLACES,
+				description: 'Get places for a specific administration',
+				action: 'Get places',
+				routing: {
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: API_ENDPOINTS.ADMINISTRATION_GET_PLACES,
+						qs: {
+							count: '={{ $parameter["count"] || undefined }}',
+							limit: '={{ $parameter["limit"] || undefined }}',
+							offset: '={{ $parameter["offset"] || undefined }}',
+							order: '={{ $parameter["order"] || undefined }}',
+							order_by: '={{ $parameter["order_by"] || undefined }}',
+							search: '={{ $parameter["search"] || undefined }}',
+							status: '={{ $parameter["status"] || undefined }}',
+						},
+					},
+				},
+			},
+			{
 				name: 'Get Administrations',
 				value: OPERATIONS.GET_ADMINISTRATIONS,
 				description: 'You can retrieve the administrations of a specific user',
 				action: 'Get administrations',
 				routing: {
-				request: {
-					method: 'GET' as IHttpRequestMethods,
-					url: API_ENDPOINTS.ADMINISTRATIONS,
-					qs: {
-						// Boolean parameters
-						count: '={{ $parameter["count"] || undefined }}',
-						get_accommodations: '={{ $parameter["get_accommodations"] || undefined }}',
-						get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
-						get_media: '={{ $parameter["get_media"] || undefined }}',
-						get_meta: '={{ $parameter["get_meta"] || undefined }}',
-						translations: '={{ $parameter["translations"] || undefined }}',
-						// Query parameters
-						limit: '={{ $parameter["limit"] || undefined }}',
-						offset: '={{ $parameter["offset"] || undefined }}',
-						order: '={{ $parameter["order"] || undefined }}',
-						search: '={{ $parameter["search"] || undefined }}',
-					},
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: API_ENDPOINTS.ADMINISTRATIONS,
+						qs: {
+							// Boolean parameters
+							count: '={{ $parameter["count"] || undefined }}',
+							get_accommodations: '={{ $parameter["get_accommodations"] || undefined }}',
+							get_age_tables: '={{ $parameter["get_age_tables"] || undefined }}',
+							get_media: '={{ $parameter["get_media"] || undefined }}',
+							get_meta: '={{ $parameter["get_meta"] || undefined }}',
+							translations: '={{ $parameter["translations"] || undefined }}',
+							// Query parameters
+							limit: '={{ $parameter["limit"] || undefined }}',
+							offset: '={{ $parameter["offset"] || undefined }}',
+							order: '={{ $parameter["order"] || undefined }}',
+							search: '={{ $parameter["search"] || undefined }}',
+						},
 					},
 				},
 			},
@@ -192,12 +213,12 @@ export const administrationsDescription = [
 				description: 'Get age tables for this administrations',
 				action: 'Get age tables',
 				routing: {
-				request: {
-					method: 'GET' as IHttpRequestMethods,
-					url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLES,
-					qs: {
-						translations: '={{ $parameter["translations"] || undefined }}',
-						sort: '={{ $parameter["sort"] || undefined }}',
+					request: {
+						method: 'GET' as IHttpRequestMethods,
+						url: API_ENDPOINTS.ADMINISTRATION_AGE_TABLES,
+						qs: {
+							translations: '={{ $parameter["translations"] || undefined }}',
+							sort: '={{ $parameter["sort"] || undefined }}',
 						},
 					},
 				},
@@ -239,13 +260,17 @@ export const administrationsDescription = [
 					OPERATIONS.UPDATE_ADMINISTRATION,
 					OPERATIONS.DELETE_ADMINISTRATION,
 					OPERATIONS.META,
+					OPERATIONS.GET_PLACES,
 				],
 			},
 		},
 	},
 
 	// Boolean parameters
-	booleanParams.count([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
+	booleanParams.count(
+		[RESOURCES.ADMINISTRATIONS],
+		[OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_PLACES],
+	),
 	booleanParams.getAccommodations([RESOURCES.ADMINISTRATIONS], [OPERATIONS.GET_ADMINISTRATIONS]),
 	booleanParams.getAgeTables(
 		[RESOURCES.ADMINISTRATIONS],
@@ -274,7 +299,10 @@ export const administrationsDescription = [
 		placeholder: '5',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_PLACES],
+			},
 		},
 	},
 	{
@@ -285,7 +313,10 @@ export const administrationsDescription = [
 		placeholder: '0',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_PLACES],
+			},
 		},
 	},
 	{
@@ -300,18 +331,54 @@ export const administrationsDescription = [
 		],
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_PLACES],
+			},
+		},
+	},
+	{
+		displayName: 'Order By',
+		name: 'order_by',
+		type: 'options' as NodePropertyTypes,
+		description: 'Field to order the administrations by',
+		options: [
+			{ name: 'None', value: '' },
+			{ name: 'ID', value: 'id' },
+			{ name: 'Name', value: 'name' },
+		],
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_PLACES] },
 		},
 	},
 	{
 		displayName: 'Search',
 		name: 'search',
 		type: 'string' as NodePropertyTypes,
-		description: 'Filter administrations by ID or name. Partial matches are allowed.',
+		description: 'Search by ID or name. Partial matches are allowed.',
 		placeholder: 'Enter ID or name',
 		default: '',
 		displayOptions: {
-			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_ADMINISTRATIONS] },
+			show: {
+				resource: [RESOURCES.ADMINISTRATIONS],
+				operation: [OPERATIONS.GET_ADMINISTRATIONS, OPERATIONS.GET_PLACES],
+			},
+		},
+	},
+	{
+		displayName: 'Status',
+		name: 'status',
+		type: 'options' as NodePropertyTypes,
+		description: 'Filter places by status',
+		options: [
+			{ name: 'None', value: '' },
+			{ name: 'Active', value: 'active' },
+			{ name: 'Inactive', value: 'inactive' },
+		],
+		default: '',
+		displayOptions: {
+			show: { resource: [RESOURCES.ADMINISTRATIONS], operation: [OPERATIONS.GET_PLACES] },
 		},
 	},
 

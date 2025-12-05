@@ -309,8 +309,8 @@ export const contactsDescription = [
 		displayName: 'Search',
 		name: 'search',
 		type: 'string' as NodePropertyTypes,
-		description: 'Filter contacts by ID or name. Partial matches are allowed.',
-		placeholder: 'Enter ID or name',
+		description: 'Filter contacts by ID, name, or email. Partial matches are allowed.',
+		placeholder: 'Enter ID, name or Email',
 		default: '',
 		displayOptions: {
 			show: { resource: [RESOURCES.CONTACTS], operation: [OPERATIONS.GET_CONTACTS] },

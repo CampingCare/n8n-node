@@ -11,6 +11,7 @@ Starfish is a comprehensive booking and reservation management platform for camp
 - [Credentials](#credentials)
 - [Compatibility](#compatibility)
 - [Usage](#usage)
+- [Development](#development)
 - [Resources](#resources)
 - [Troubleshooting](#troubleshooting)
 - [Version history](#version-history)
@@ -34,6 +35,7 @@ Regular node for making API calls:
 - **Add Accommodation** - Create a new accommodation
 - **Update Accommodation** - Modify existing accommodation details
 - **Delete Accommodation** - Remove an accommodation
+- **Places** - Get places, get a single place, and update cleaning status (unknown, clean, wait_for_review, dirty)
 - **Meta Operations** - Manage accommodation metadata (get, update, delete)
 
 #### Administrations API
@@ -43,6 +45,7 @@ Regular node for making API calls:
 - **Add Administration** - Create a new administration (full PMS or lite version)
 - **Update Administration** - Modify administration details
 - **Delete Administration** - Remove an administration
+- **Get Places** - List places for a specific administration (filter, search, sort)
 - **Age Tables** - Retrieve and manage age table configurations
 - **Meta Operations** - Manage administration metadata
 
@@ -259,8 +262,38 @@ For the price calculation method:
 - **Required Fields**: Some operations have required fields (marked with \*)
 - **Meta Fields**: Many resources support custom metadata via meta operations
 - **Pagination**: Use `count` and `limit` parameters for large datasets
-- **Boolean Parameters**: Use string values "0" or "1" for boolean query parameters
+- **Boolean Parameters**: Use string values "0" or "1" for boolean query parameters (examples: `get_meta`, `get_media`, `count`)
 - **Field Mapping**: When updating resources, only provided parameters will be updated
+- **Cleaning Status**: Accommodation places cleaning uses the `/cleaning` path and statuses `unknown|clean|wait_for_review|dirty`
+
+## Development
+
+- Install dependencies: `pnpm install`
+- Build: `pnpm run build` (cleans `dist`, runs TypeScript, then `gulp build:icons`)
+- Dev watch: `pnpm run dev`
+- Lint: `pnpm run lint` (use `pnpm run lintfix` to auto-fix)
+- Format: `pnpm run format`
+
+### Deploy to local n8n container (Windows)
+
+- Run `win_docker_deploy.bat` from the repo root to build and copy the node into a Dockerized n8n instance. Ensure Docker Desktop is running and your container name matches what the script expects.
+
+### Webhook trigger validation
+
+- The trigger node validates webhook signatures; configure events in the node, activate the workflow, and ensure the public URL is reachable by Starfish.
+
+### Resource coverage quick view
+
+| Resource | Key operations |
+| --- | --- |
+| Accommodations | get, get by id, add/update/delete, meta, places, cleaning status |
+| Administrations | get, get by id, add/update/delete, meta, age tables, places |
+| Reservations | get, get by id, create, delete, meta |
+| Contacts | get, get by id, add/update/delete, meta |
+| Rates | get, get by id, add/update/delete, prices get/update, meta |
+| Invoices | get, get by id, add/update/delete, finalize/cancel, credit, rows, meta |
+| Products | get, get by id, add/update/delete, meta |
+| Others | Kiosks, Ledgers, License Plates, Exchange Rates, Logs, Categories, Tags, Users, Widgets, Timezones |
 
 ## Resources
 
@@ -272,17 +305,16 @@ For the price calculation method:
 
 ## Version History
 
-### Version 1.0.6 (Current)
+### Version 2.0.2 (Current)
 
-- Support for Invoices API with advanced operations
-- Support for Rates API with pricing and metadata
-- Enhanced webhook trigger with signature validation
-- Support for Kiosks, Ledgers, and License Plates APIs
-- Support for Exchange Rates and Logs APIs
-- Support for Categories and Tags APIs
-- Support for Users API with metadata operations
-- Improved error handling and validation
-- Meta operations for all major resources
+- Added accommodations places coverage (get places, get place, update cleaning status via `/cleaning`)
+- Fixed cleaning status endpoint path for accommodation places
+- Existing coverage retained: Invoices, Rates (pricing and metadata), Kiosks, Ledgers, License Plates, Exchange Rates, Logs, Categories, Tags, Users, and meta operations across major resources
+- Enhanced webhook trigger with signature validation and improved error handling
+
+### Version 1.0.6
+
+- Broader API coverage across accommodations, reservations, contacts, and meta operations
 - Enhanced README documentation
 
 ### Version 1.0.0

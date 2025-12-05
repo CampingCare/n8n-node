@@ -4,6 +4,11 @@ export const API_ENDPOINTS = {
 	ACCOMMODATIONS: '/accommodations',
 	ACCOMMODATION_BY_ID: '=/accommodations/{{$parameter["accommodation_id"]}}',
 	ACCOMMODATION_META: '=/accommodations/{{$parameter["accommodation_id"]}}/meta',
+	ACCOMMODATION_PLACES: '=/accommodations/{{$parameter["accommodation_id"]}}/places',
+	ACCOMMODATION_PLACE:
+		'=/accommodations/{{$parameter["accommodation_id"]}}/places/{{$parameter["place_id"]}}',
+	ACCOMMODATION_PLACE_CLEANING:
+		'=/accommodations/{{$parameter["accommodation_id"]}}/places/{{$parameter["place_id"]}}/cleaning',
 
 	ADMINISTRATIONS: '/administrations',
 	ADMINISTRATION_BY_ID: '=/administrations/{{$parameter["admin_id"]}}',
@@ -11,6 +16,7 @@ export const API_ENDPOINTS = {
 	ADMINISTRATION_AGE_TABLES: '=/administrations/{{$parameter["admin_id"]}}/age_tables',
 	ADMINISTRATION_AGE_TABLE_BY_ID:
 		'=/administrations/{{$parameter["admin_id"]}}/age_tables/{{$parameter["age_table_id"]}}',
+	ADMINISTRATION_GET_PLACES: '=/administrations/{{$parameter["admin_id"]}}/places',
 
 	AVAILABILITY_STOCK: '/availability/stock',
 	AVAILABILITY_PLACES: '/availability/places',
@@ -135,6 +141,9 @@ export const OPERATIONS = {
 	ADD_ACCOMMODATION: 'addAccommodation',
 	UPDATE_ACCOMMODATION: 'updateAccommodation',
 	DELETE_ACCOMMODATION: 'deleteAccommodation',
+	UPDATE_CLEANING_STATUS: 'updateCleaningStatus',
+	PLACES: 'places',
+	GET_PLACE: 'getPlace',
 
 	GET_ADMINISTRATIONS: 'getAdministrations',
 	GET_ADMINISTRATION: 'getAdministration',
