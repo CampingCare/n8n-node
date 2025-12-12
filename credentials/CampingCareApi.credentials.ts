@@ -17,6 +17,18 @@ export class CampingCareApi implements ICredentialType {
 			required: true,
 			description: 'Bearer token for API authentication',
 		},
+		{
+			displayName: 'Webhook Secret',
+			name: 'webhookSecret',
+			type: 'string',
+			typeOptions: {
+				password: true,
+			},
+			default: '',
+			required: false,
+			description:
+				'Optional secret passed to Starfish when creating webhooks; incoming webhook requests must include this value in the X-Webhook-Secret header.',
+		},
 	];
 
 	test: ICredentialTestRequest = {

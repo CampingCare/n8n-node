@@ -197,6 +197,7 @@ Webhook trigger node for real-time events:
 2. Search for "Starfish (CampingCare/HotelCare) API"
 3. Enter your API credentials:
    - **API Key**: Your Starfish API key
+   - **Webhook Secret** (optional): Value used to validate incoming webhooks; Starfish will echo it in the `X-Webhook-Secret` header and requests without it will be rejected.
 
 ### Obtaining Your API Key
 
@@ -205,7 +206,7 @@ Webhook trigger node for real-time events:
 3. Generate or copy your API key
 4. Paste it into the n8n credentials field
 
-The API key is used for authentication with all Starfish API endpoints.
+The API key is used for authentication with all Starfish API endpoints. When provided, the webhook secret secures incoming webhooks.
 
 ## Compatibility
 

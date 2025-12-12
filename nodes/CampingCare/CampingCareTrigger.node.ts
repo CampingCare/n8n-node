@@ -104,10 +104,12 @@ export class CampingCareTrigger implements INodeType {
 				const webhookUrl = this.getNodeWebhookUrl('default');
 				const events = this.getNodeParameter('events') as string[];
 				const credentials = await this.getCredentials('campingCareApi');
+				const webhookSecret = (credentials as { webhookSecret?: string }).webhookSecret;
 
-				const body = {
+				const body: Record<string, unknown> = {
 					url: webhookUrl,
 					events: events,
+					...(webhookSecret ? { secret: webhookSecret } : {}),
 				};
 
 				try {
@@ -161,6 +163,27 @@ export class CampingCareTrigger implements INodeType {
 	};
 
 	async webhook(this: IWebhookFunctions): Promise<IWebhookResponseData> {
+		const credentials = await this.getCredentials('campingCareApi');
+		const webhookSecret = (credentials as { webhookSecret?: string }).webhookSecret;
+
+		if (webhookSecret) {
+			const headers = this.getHeaderData();
+			const headerSecret = headers['x-webhook-secret'] ?? headers['x-starfish-webhook-secret'] ?? headers['webhook-secret'];
+			const incomingSecret = Array.isArray(headerSecret) ? headerSecret[0] : headerSecret;
+
+			if (!incomingSecret) {
+				throw new NodeApiError(this.getNode(), { message: 'Missing webhook secret key in request headers' }, {
+					message: 'Webhook request rejected: No secret key provided',
+				});
+			}
+
+			if (incomingSecret !== webhookSecret) {
+				throw new NodeApiError(this.getNode(), { message: 'Invalid webhook secret key' }, {
+					message: 'Webhook request rejected: Invalid secret key provided',
+				});
+			}
+		}
+
 		const bodyData = this.getBodyData();
 		return {
 			workflowData: [this.helpers.returnJsonArray(bodyData)],
