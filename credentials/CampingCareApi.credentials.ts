@@ -3,8 +3,7 @@ import { ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-wo
 export class CampingCareApi implements ICredentialType {
 	name = 'campingCareApi';
 	displayName = 'Starfish (CampingCare/HotelCare) API';
-	documentationUrl =
-		'https://support.starfish.care/faq/n8n/';
+	documentationUrl = 'https://support.starfish.care/faq/n8n/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',

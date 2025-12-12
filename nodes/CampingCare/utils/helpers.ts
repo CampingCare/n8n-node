@@ -34,7 +34,10 @@ export const createContactField = (
 	description,
 	default: options.default !== undefined ? options.default : '',
 	required: options.required || false,
-	displayOptions: createDisplayOptions('contacts', options.operations || ['addContact', 'updateContact']),
+	displayOptions: createDisplayOptions(
+		'contacts',
+		options.operations || ['addContact', 'updateContact'],
+	),
 	...(options.typeOptions && { typeOptions: options.typeOptions }),
 	...(options.placeholder && { placeholder: options.placeholder }),
 });

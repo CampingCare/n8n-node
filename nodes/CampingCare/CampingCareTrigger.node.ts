@@ -168,19 +168,30 @@ export class CampingCareTrigger implements INodeType {
 
 		if (webhookSecret) {
 			const headers = this.getHeaderData();
-			const headerSecret = headers['x-webhook-secret'] ?? headers['x-starfish-webhook-secret'] ?? headers['webhook-secret'];
+			const headerSecret =
+				headers['x-webhook-secret'] ??
+				headers['x-starfish-webhook-secret'] ??
+				headers['webhook-secret'];
 			const incomingSecret = Array.isArray(headerSecret) ? headerSecret[0] : headerSecret;
 
 			if (!incomingSecret) {
-				throw new NodeApiError(this.getNode(), { message: 'Missing webhook secret key in request headers' }, {
-					message: 'Webhook request rejected: No secret key provided',
-				});
+				throw new NodeApiError(
+					this.getNode(),
+					{ message: 'Missing webhook secret key in request headers' },
+					{
+						message: 'Webhook request rejected: No secret key provided',
+					},
+				);
 			}
 
 			if (incomingSecret !== webhookSecret) {
-				throw new NodeApiError(this.getNode(), { message: 'Invalid webhook secret key' }, {
-					message: 'Webhook request rejected: Invalid secret key provided',
-				});
+				throw new NodeApiError(
+					this.getNode(),
+					{ message: 'Invalid webhook secret key' },
+					{
+						message: 'Webhook request rejected: Invalid secret key provided',
+					},
+				);
 			}
 		}
 

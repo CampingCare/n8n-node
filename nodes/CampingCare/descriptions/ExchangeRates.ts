@@ -78,7 +78,7 @@ export const exchangeRatesDescription = [
 		default: '',
 	},
 	{
-		displayName	: 'Value',
+		displayName: 'Value',
 		name: 'value',
 		type: 'string' as NodePropertyTypes,
 		required: true,

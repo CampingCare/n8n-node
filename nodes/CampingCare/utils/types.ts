@@ -81,8 +81,8 @@ export interface WebhookResponse {
 }
 
 export interface LicensePlate {
-    id: string;
-    plate: string;
-    valid?: boolean;
-    [other: string]: unknown;
+	id: string;
+	plate: string;
+	valid?: boolean;
+	[other: string]: unknown;
 }
